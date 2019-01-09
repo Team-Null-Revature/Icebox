@@ -1,122 +1,60 @@
 package com.revature._1811_nov27_wvu.icebox.entity;
 
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "users")
 public class User {
-	int id; 
-	String username, password, firstname, lastname, email;
-	
-	
-	
-	public User() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public User(int id, String username, String password, String firstname, String lastname, String email) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.email = email;
-	}
-	/**
-	 * @return the id
-	 */
+	private int id;
+	private String username;
+	private String pass;
+	private String fname;
+	private String lname;
+	private String email;
 	public int getId() {
 		return id;
 	}
-	/**
-	 * @param id the id to set
-	 */
 	public void setId(int id) {
 		this.id = id;
 	}
-	/**
-	 * @return the username
-	 */
 	public String getUsername() {
 		return username;
 	}
-	/**
-	 * @param username the username to set
-	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	/**
-	 * @return the password
-	 */
-	public String getPassword() {
-		return password;
+	public String getPass() {
+		return pass;
 	}
-	/**
-	 * @param password the password to set
-	 */
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
-	/**
-	 * @return the firstname
-	 */
-	public String getFirstname() {
-		return firstname;
+	public String getFname() {
+		return fname;
 	}
-	/**
-	 * @param firstname the firstname to set
-	 */
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setFname(String fname) {
+		this.fname = fname;
 	}
-	/**
-	 * @return the lastname
-	 */
-	public String getLastname() {
-		return lastname;
+	public String getLname() {
+		return lname;
 	}
-	/**
-	 * @param lastname the lastname to set
-	 */
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setLname(String lname) {
+		this.lname = lname;
 	}
-	/**
-	 * @return the email
-	 */
 	public String getEmail() {
 		return email;
 	}
-	/**
-	 * @param email the email to set
-	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((firstname == null) ? 0 : firstname.hashCode());
+		result = prime * result + ((fname == null) ? 0 : fname.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((lastname == null) ? 0 : lastname.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((lname == null) ? 0 : lname.hashCode());
+		result = prime * result + ((pass == null) ? 0 : pass.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -131,22 +69,22 @@ public class User {
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (firstname == null) {
-			if (other.firstname != null)
+		if (fname == null) {
+			if (other.fname != null)
 				return false;
-		} else if (!firstname.equals(other.firstname))
+		} else if (!fname.equals(other.fname))
 			return false;
 		if (id != other.id)
 			return false;
-		if (lastname == null) {
-			if (other.lastname != null)
+		if (lname == null) {
+			if (other.lname != null)
 				return false;
-		} else if (!lastname.equals(other.lastname))
+		} else if (!lname.equals(other.lname))
 			return false;
-		if (password == null) {
-			if (other.password != null)
+		if (pass == null) {
+			if (other.pass != null)
 				return false;
-		} else if (!password.equals(other.password))
+		} else if (!pass.equals(other.pass))
 			return false;
 		if (username == null) {
 			if (other.username != null)
@@ -155,14 +93,11 @@ public class User {
 			return false;
 		return true;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstname=" + firstname
-				+ ", lastname=" + lastname + ", email=" + email + "]";
-	} 
+		return "User [id=" + id + ", username=" + username + ", pass=" + pass + ", fname=" + fname + ", lname=" + lname
+				+ ", email=" + email + "]";
+	}
 	
 	
 }
