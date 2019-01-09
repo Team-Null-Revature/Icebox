@@ -1,4 +1,4 @@
-package com.revature.beans;
+package com.revature._1811_nov27_wvu.icebox.entity;
 
 public class Tag {
 	private int tag_id;
