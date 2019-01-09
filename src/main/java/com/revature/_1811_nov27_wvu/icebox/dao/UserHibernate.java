@@ -14,7 +14,6 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import utils.HibernateUtil;
 
 import com.revature._1811_nov27_wvu.icebox.entity.User;
 
