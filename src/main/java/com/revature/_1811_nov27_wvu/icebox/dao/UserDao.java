@@ -9,14 +9,10 @@ import org.springframework.stereotype.Component;
 import com.revature._1811_nov27_wvu.icebox.entity.User;
 
 @Component
-public class UserDao {
-	SessionFactory sf; 
-	
-	public List<User> getAllUsers(){
-		Session s = sf.getSession();
-		List<User> u = s.createQuery("From User", User.class).list();
-		
-		s.close();
-		return u; 
-	}
+public interface UserDao {
+	User addUser(User u); 
+	User getUserById(int i);
+	Set<User> getUserHQL();
+	User updateUser(User u);
+	void deleteUser(User u);
 }
