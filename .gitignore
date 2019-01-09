@@ -4,30 +4,30 @@
 ### Angular ###
 ## Angular ##
 # compiled output
-/dist
-/tmp
-/app/**/*.js
-/app/**/*.js.map
+/src/main/angular/dist
+/src/main/angular/tmp
+/src/main/angular/app/**/*.js
+/src/main/angular/app/**/*.js.map
 
 # dependencies
-/node_modules
-/bower_components
+/src/main/angular/node_modules
+/src/main/angular/bower_components
 
 # IDEs and editors
 /.idea
 
 # misc
-/.sass-cache
-/connect.lock
-/coverage/*
-/libpeerconnection.log
+/src/main/angular/.sass-cache
+/src/main/angular/connect.lock
+/src/main/angular/coverage/*
+/src/main/angular/libpeerconnection.log
 npm-debug.log
 testem.log
-/typings
+/src/main/angular/typings
 
 # e2e
-/e2e/*.js
-/e2e/*.map
+/src/main/angular/e2e/*.js
+/src/main/angular/e2e/*.map
 
 #System Files
 .DS_Store
