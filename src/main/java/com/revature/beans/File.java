@@ -1,6 +1,7 @@
 package com.revature.beans;
 
 import java.sql.Date;
+import java.util.Set;
 
 public class File {
 	private int id;
@@ -10,6 +11,7 @@ public class File {
 	private double filesize;
 	private String sharestr;
 	private Folder parent;
+	private Set<Tag> tags;
 	public int getId() {
 		return id;
 	}
@@ -52,6 +54,12 @@ public class File {
 	public void setParent(Folder parent) {
 		this.parent = parent;
 	}
+	public Set<Tag> getTags() {
+		return tags;
+	}
+	public void setTags(Set<Tag> tags) {
+		this.tags = tags;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -65,6 +73,7 @@ public class File {
 		result = prime * result + id;
 		result = prime * result + ((parent == null) ? 0 : parent.hashCode());
 		result = prime * result + ((sharestr == null) ? 0 : sharestr.hashCode());
+		result = prime * result + ((tags == null) ? 0 : tags.hashCode());
 		return result;
 	}
 	@Override
@@ -105,12 +114,17 @@ public class File {
 				return false;
 		} else if (!sharestr.equals(other.sharestr))
 			return false;
+		if (tags == null) {
+			if (other.tags != null)
+				return false;
+		} else if (!tags.equals(other.tags))
+			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
 		return "File [id=" + id + ", filename=" + filename + ", filetype=" + filetype + ", added=" + added
-				+ ", filesize=" + filesize + ", sharestr=" + sharestr + ", parent=" + parent + "]";
+				+ ", filesize=" + filesize + ", sharestr=" + sharestr + ", parent=" + parent + ", tags=" + tags + "]";
 	}
 	
 	
