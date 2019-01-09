@@ -1,9 +1,16 @@
 package com.revature._1811_nov27_wvu.icebox.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -11,16 +18,19 @@ import javax.persistence.Table;
 public class Folder {
 	@Id
 	@Column(name="folder_id")
+	@SequenceGenerator(name="folderID", sequenceName="folder_seq", allocationSize=1)
+	@GeneratedValue(generator="folderID", strategy=GenerationType.SEQUENCE)
 	int id; //Folder's id number
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="user_id")
 	private int owner; //Id of user that owns the folder
 	private String name; //Folder's name as text
+	@OneToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="folder_id")
 	private int p_folder; //Id of folder containing this folder
 	
 	public Folder() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Folder(int id, int owner, String name, int p_folder) {

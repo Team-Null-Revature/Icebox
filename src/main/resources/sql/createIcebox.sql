@@ -5,6 +5,7 @@ drop table ib_file_tag cascade constraints;
 drop table ib_file cascade constraints;
 drop table ib_folder cascade constraints;
 drop table ib_user cascade constraints;
+drop sequence folder_seq;
 
 -- creating tables
 create table ib_user (
@@ -50,6 +51,8 @@ create table ib_file_tag (
     recfile number(10) not null, --fk
     tagnum number(10) not null --fk
 );
+--Sequences
+create sequence Folder_seq;
 
 --altering tables
 --folder
