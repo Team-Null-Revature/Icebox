@@ -5,8 +5,8 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -25,9 +25,13 @@ public class File {
 	private Date added;
 	private double filesize;
 	private String sharestr;
-	//Join folder table
+	@OneToMany
+	@JoinColumn(name="folder_id")
 	private Folder parent;
-	//Join tag table
+	@ManyToMany
+	@JoinTable(name="ib_file_tag",
+			joinColumns=@JoinColumn(name="file_id"),
+			inverseJoinColumns=@JoinColumn(name="tag_id"))
 	private Set<Tag> tags;
 	public int getId() {
 		return id;

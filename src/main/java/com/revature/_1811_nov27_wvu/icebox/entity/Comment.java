@@ -3,6 +3,8 @@ package com.revature._1811_nov27_wvu.icebox.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -11,10 +13,12 @@ public class Comment {
 	@Id
 	@Column(name="comment_id")
 	private int id;
-	//Join user annotation
+	@OneToMany
+	@JoinColumn(name="user_id")
 	private User sender;
-	//Join file annotation
-	private File file;
+	@OneToMany
+	@JoinColumn(name="file_id")
+	private File recfile;
 	private String comment;
 	public int getId() {
 		return id;
@@ -29,10 +33,10 @@ public class Comment {
 		this.sender = sender;
 	}
 	public File getFile() {
-		return file;
+		return recfile;
 	}
-	public void setFile(File file) {
-		this.file = file;
+	public void setFile(File recfile) {
+		this.recfile = recfile;
 	}
 	public String getComment() {
 		return comment;
@@ -45,7 +49,7 @@ public class Comment {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((comment == null) ? 0 : comment.hashCode());
-		result = prime * result + ((file == null) ? 0 : file.hashCode());
+		result = prime * result + ((recfile == null) ? 0 : recfile.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((sender == null) ? 0 : sender.hashCode());
 		return result;
@@ -64,10 +68,10 @@ public class Comment {
 				return false;
 		} else if (!comment.equals(other.comment))
 			return false;
-		if (file == null) {
-			if (other.file != null)
+		if (recfile == null) {
+			if (other.recfile != null)
 				return false;
-		} else if (!file.equals(other.file))
+		} else if (!recfile.equals(other.recfile))
 			return false;
 		if (id != other.id)
 			return false;
@@ -80,7 +84,7 @@ public class Comment {
 	}
 	@Override
 	public String toString() {
-		return "Comment [id=" + id + ", sender=" + sender + ", file=" + file + ", comment=" + comment + "]";
+		return "Comment [id=" + id + ", sender=" + sender + ", recfile=" + recfile + ", comment=" + comment + "]";
 	}
 	
 	
