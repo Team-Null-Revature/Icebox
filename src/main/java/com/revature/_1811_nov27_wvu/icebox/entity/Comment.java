@@ -3,6 +3,8 @@ package com.revature._1811_nov27_wvu.icebox.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -11,9 +13,11 @@ public class Comment {
 	@Id
 	@Column(name="comment_id")
 	private int id;
-	//Join user annotation
+	@OneToMany
+	@JoinColumn(name="user_id")
 	private User sender;
-	//Join file annotation
+	@OneToMany
+	@JoinColumn(name="file_id")
 	private File file;
 	private String comment;
 	public int getId() {
