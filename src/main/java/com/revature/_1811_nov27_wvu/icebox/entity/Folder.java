@@ -1,9 +1,19 @@
 package com.revature._1811_nov27_wvu.icebox.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="ib_folder")
 public class Folder {
+	@Id
+	@Column(name="folder_id")
 	private int id;
 	private User owner;
 	private String name;
+	//join annotations here
 	private Folder parent;
 	public int getId() {
 		return id;

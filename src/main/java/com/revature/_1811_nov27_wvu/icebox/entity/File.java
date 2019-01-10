@@ -3,14 +3,31 @@ package com.revature._1811_nov27_wvu.icebox.entity;
 import java.sql.Date;
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+
+
+@Entity
+@Table(name="ib_file")
 public class File {
+	@Id
+	@Column(name="File_id")
 	private int id;
 	private String filename;
 	private String filetype;
 	private Date added;
 	private double filesize;
 	private String sharestr;
+	//Join folder table
 	private Folder parent;
+	//Join tag table
 	private Set<Tag> tags;
 	public int getId() {
 		return id;
