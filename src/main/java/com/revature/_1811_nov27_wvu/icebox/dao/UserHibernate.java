@@ -44,7 +44,7 @@ public class UserHibernate implements UserDao{
 	}
 
 	@Override
-	public Set<User> getUserHQL() {
+	public Set<User> getUsers() {
 		Session s = sf.getSession();
 		String query = "from com.revature._1811_nov27_wvu.icebox.entity.User";
 		Query<User> q = s.createQuery(query, User.class);
