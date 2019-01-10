@@ -9,6 +9,7 @@ import org.hibernate.cfg.Environment;
 import org.springframework.stereotype.Component;
 
 import com.revature._1811_nov27_wvu.icebox.entity.Address;
+import com.revature._1811_nov27_wvu.icebox.entity.User;
 
 @Component
 public class SessionFactory {
@@ -31,6 +32,7 @@ public class SessionFactory {
 		sf = new Configuration()
 				.setProperties(settings)
 				.addAnnotatedClass(Address.class)
+				.addAnnotatedClass(User.class)
 				.addPackage("com.revature._1811_nov27_wvu.icebox")
 				.buildSessionFactory();
 	}

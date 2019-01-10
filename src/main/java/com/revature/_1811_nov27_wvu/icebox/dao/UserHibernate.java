@@ -10,6 +10,7 @@ import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 import javax.transaction.Transaction;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.revature._1811_nov27_wvu.icebox.entity.User;
 
 public class UserHibernate implements UserDao{
+	private Logger log = Logger.getLogger(UserHibernate.class);
 	@Autowired
-	private static SessionFactory sf;
+	private static SessionFactory sf = new SessionFactory();
 
 	@Override
 	public User addUser(User u) {
@@ -42,6 +44,7 @@ public class UserHibernate implements UserDao{
 	public User getUserById(int i) {
 		Session s = sf.getSession();
 		User u = s.get(User.class, i);
+		log.trace("User:"+u);
 		s.close();
 		return u;
 	}
