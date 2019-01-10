@@ -1,4 +1,4 @@
-package com.revature._1811_nov27_wvu.services;
+package com.revature._1811_nov27_wvu.icebox.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

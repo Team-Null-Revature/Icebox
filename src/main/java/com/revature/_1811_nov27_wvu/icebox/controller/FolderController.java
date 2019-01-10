@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature._1811_nov27_wvu.icebox.entity.Folder;
-import com.revature._1811_nov27_wvu.services.FolderService;
+import com.revature._1811_nov27_wvu.icebox.services.FolderService;
 
 @RestController
 @RequestMapping(value="/folders")
