@@ -6,10 +6,14 @@ import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.revature._1811_nov27_wvu.icebox.entity.File;
 
+@Component
 public class FileHibernate implements FileDAO {
+	@Autowired
 	SessionFactory sf;
 	@Override
 	public File addFile(File f) {

@@ -2,13 +2,16 @@ package com.revature._1811_nov27_wvu.icebox.services;
 
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.revature._1811_nov27_wvu.icebox.dao.FileDAO;
-import com.revature._1811_nov27_wvu.icebox.dao.FileHibernate;
 import com.revature._1811_nov27_wvu.icebox.entity.File;
 
+@Service
 public class FileServiceImp implements FileService {
-	private FileDAO fd = new FileHibernate();
-	
+	@Autowired
+	private FileDAO fd;
 	@Override
 	public Set<File> getAllFiles() {
 		return fd.getAllFiles();
