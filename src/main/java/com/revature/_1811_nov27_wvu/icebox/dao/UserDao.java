@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.revature._1811_nov27_wvu.icebox.entity.User;
 
-@Component
+
 public interface UserDao {
 	User addUser(User u); 
 	User getUserById(int i);

@@ -13,11 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 import com.revature._1811_nov27_wvu.icebox.entity.User;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserHibernate implements UserDao{
 	private Logger log = Logger.getLogger(UserHibernate.class);
 	@Autowired
-	private static SessionFactory sf = new SessionFactory();
+	private SessionFactory sf;
 
 	@Override
 	public User addUser(User u) {
@@ -33,7 +35,9 @@ public class UserHibernate implements UserDao{
 
 	@Override
 	public User getUserById(int i) {
+		log.trace("inGet"+sf);
 		Session s = sf.getSession();
+		log.trace("after");
 		User u = s.get(User.class, i);
 		s.close();
 		return u;
