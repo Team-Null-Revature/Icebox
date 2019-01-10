@@ -8,14 +8,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature._1811_nov27_wvu.icebox.dao.AddressDao;
 import com.revature._1811_nov27_wvu.icebox.entity.Address;
+import com.revature._1811_nov27_wvu.icebox.services.AddressService;
 
 @RestController
 public class HomeController {
 	@Autowired
-	AddressDao ad;
+	AddressService as;
 	
 	@GetMapping("/addresses")
 	public List<Address> getAddresses() {
-		return ad.getAll();
+		return as.getAll();
 	}
 }
