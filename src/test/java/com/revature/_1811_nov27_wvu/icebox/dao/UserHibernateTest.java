@@ -29,7 +29,6 @@ public class UserHibernateTest {
 	public void testGetUserById() {
 		UserDao userDao = new UserHibernate();
 		User u = userDao.getUserById(4);
-		log.trace(u);
 		assertEquals(u.getFname(),"David");
 	}
 

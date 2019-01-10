@@ -35,7 +35,6 @@ public class UserHibernate implements UserDao{
 	public User getUserById(int i) {
 		Session s = sf.getSession();
 		User u = s.get(User.class, i);
-		log.trace("User:"+u);
 		s.close();
 		return u;
 	}
