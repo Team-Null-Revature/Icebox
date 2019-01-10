@@ -12,7 +12,17 @@ public class UserHibernateTest {
 
 	@Test
 	public void testAddUser() {
+//		UserDao userDao = new UserHibernate();
+//		User u = new User();
+//		u.setFname("Jimmy");
+//		u.setEmail("J@J");
+//		//u.setId(id);
+//		u.setLname("John");
+//		u.setPass("p");
+//		u.setUsername("u");
+//		userDao.addUser(u);
 		fail("Not yet implemented");
+		//Does actually work, but testing it is strange
 	}
 
 	@Test
