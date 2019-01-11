@@ -43,4 +43,9 @@ public class HomeController {
 	public Set<File> getFiles() {
 		return fis.getAllFiles();
 	}
+	
+	@GetMapping("/file{id}")
+	public File getFile(@PathVariable("id")int id) {
+		return fis.getFileById(id);
+	}
 }
