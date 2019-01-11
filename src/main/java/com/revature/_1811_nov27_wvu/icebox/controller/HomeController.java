@@ -12,6 +12,7 @@ import com.revature._1811_nov27_wvu.icebox.dao.FileDAO;
 import com.revature._1811_nov27_wvu.icebox.entity.Address;
 import com.revature._1811_nov27_wvu.icebox.entity.File;
 
+
 @RestController
 public class HomeController {
 	@Autowired
@@ -21,10 +22,9 @@ public class HomeController {
 	public void getHomepage(HttpServletResponse response) throws IOException {
 		response.sendRedirect("static/index.html");
 	}
-
 	
 	@GetMapping("/addresses")
 	public List<Address> getAddresses() {
-		return ad.getAll();
+		return as.getAll();
 	}
 }
