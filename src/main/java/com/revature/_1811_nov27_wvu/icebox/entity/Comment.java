@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -13,10 +14,10 @@ public class Comment {
 	@Id
 	@Column(name="comment_id")
 	private int id;
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User sender;
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name="file_id")
 	private File file;
 	private String comment;

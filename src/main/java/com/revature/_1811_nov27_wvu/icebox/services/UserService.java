@@ -2,8 +2,6 @@ package com.revature._1811_nov27_wvu.icebox.services;
 
 import java.util.Set;
 
-import org.springframework.stereotype.Service;
-
 import com.revature._1811_nov27_wvu.icebox.entity.User;
 
 public interface UserService {
