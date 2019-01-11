@@ -33,6 +33,7 @@ public class HomeController {
   @GetMapping("/user{id}")
 	public User getUser(@PathVariable("id") int id) {
 		return us.getUserById(id);
+	}
 	
 	@GetMapping("/addresses")
 	public List<Address> getAddresses() {
