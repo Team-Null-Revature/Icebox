@@ -41,6 +41,7 @@ public class SessionFactory {
 				.addAnnotatedClass(Tag.class)
 				.addAnnotatedClass(Comment.class)
 				.addAnnotatedClass(Address.class)
+				.addAnnotatedClass(User.class)
 				.addPackage("com.revature._1811_nov27_wvu.icebox")
 				.buildSessionFactory();
 	}
