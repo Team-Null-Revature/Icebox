@@ -14,7 +14,7 @@ public class Folder {
 	@Column(name="folder_id")
 	private int id;
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="owner")
 	private User owner;
 	private String name;
 	@ManyToOne

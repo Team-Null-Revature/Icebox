@@ -5,12 +5,15 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.Hibernate;
 
 @Entity
 @Table(name="ib_file")
@@ -24,9 +27,9 @@ public class File {
 	private double filesize;
 	private String sharestr;
 	@ManyToOne
-	@JoinColumn(name="folder_id")
-	private Folder parent;
-	@ManyToMany
+	@JoinColumn(name="p_folder")
+	private Folder p_folder;
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="ib_file_tag",
 			joinColumns=@JoinColumn(name="file_id"),
 			inverseJoinColumns=@JoinColumn(name="tag_id"))
@@ -67,11 +70,11 @@ public class File {
 	public void setSharestr(String sharestr) {
 		this.sharestr = sharestr;
 	}
-	public Folder getParent() {
-		return parent;
+	public Folder getFolder() {
+		return p_folder;
 	}
-	public void setParent(Folder parent) {
-		this.parent = parent;
+	public void setFolder(Folder p_folder) {
+		this.p_folder = p_folder;
 	}
 	public Set<Tag> getTags() {
 		return tags;
@@ -90,7 +93,7 @@ public class File {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((filetype == null) ? 0 : filetype.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((parent == null) ? 0 : parent.hashCode());
+		result = prime * result + ((p_folder == null) ? 0 : p_folder.hashCode());
 		result = prime * result + ((sharestr == null) ? 0 : sharestr.hashCode());
 		result = prime * result + ((tags == null) ? 0 : tags.hashCode());
 		return result;
@@ -123,10 +126,10 @@ public class File {
 			return false;
 		if (id != other.id)
 			return false;
-		if (parent == null) {
-			if (other.parent != null)
+		if (p_folder == null) {
+			if (other.p_folder != null)
 				return false;
-		} else if (!parent.equals(other.parent))
+		} else if (!p_folder.equals(other.p_folder))
 			return false;
 		if (sharestr == null) {
 			if (other.sharestr != null)
@@ -143,7 +146,7 @@ public class File {
 	@Override
 	public String toString() {
 		return "File [id=" + id + ", filename=" + filename + ", filetype=" + filetype + ", added=" + added
-				+ ", filesize=" + filesize + ", sharestr=" + sharestr + ", parent=" + parent + ", tags=" + tags + "]";
+				+ ", filesize=" + filesize + ", sharestr=" + sharestr + ", p_folder=" + p_folder + ", tags=" + tags + "]";
 	}
 	
 	
