@@ -11,7 +11,11 @@ import com.revature._1811_nov27_wvu.icebox.services.AddressService;
 import com.revature._1811_nov27_wvu.icebox.services.UserService;
 import com.revature._1811_nov27_wvu.icebox.entity.Address;
 
-
+/**
+ * 
+ * Test Component, to be used only for testing code. Do not map any API endpoints here.
+ *
+ */
 @RestController
 public class HomeController {
 	@Autowired
