@@ -9,6 +9,10 @@ import org.hibernate.cfg.Environment;
 import org.springframework.stereotype.Component;
 
 import com.revature._1811_nov27_wvu.icebox.entity.Address;
+import com.revature._1811_nov27_wvu.icebox.entity.Comment;
+import com.revature._1811_nov27_wvu.icebox.entity.File;
+import com.revature._1811_nov27_wvu.icebox.entity.Folder;
+import com.revature._1811_nov27_wvu.icebox.entity.Tag;
 import com.revature._1811_nov27_wvu.icebox.entity.User;
 
 @Component
@@ -31,6 +35,11 @@ public class SessionFactory {
 		// Create the SessionFactory with the configuration
 		sf = new Configuration()
 				.setProperties(settings)
+				.addAnnotatedClass(User.class)
+				.addAnnotatedClass(Folder.class)
+				.addAnnotatedClass(File.class)
+				.addAnnotatedClass(Tag.class)
+				.addAnnotatedClass(Comment.class)
 				.addAnnotatedClass(Address.class)
 				.addAnnotatedClass(User.class)
 				.addPackage("com.revature._1811_nov27_wvu.icebox")

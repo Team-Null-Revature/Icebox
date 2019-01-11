@@ -103,6 +103,8 @@ local.properties
 .sts4-cache/
 
 ### Java ###
+# Test classes
+HomeController.java
 # Compiled class file
 *.class
 

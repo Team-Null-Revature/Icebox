@@ -2,10 +2,7 @@ package com.revature._1811_nov27_wvu.icebox.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -13,8 +10,6 @@ import javax.persistence.Table;
 public class User {
 	@Id
 	@Column(name="user_id")
-	@SequenceGenerator(name="userSeq", sequenceName="user_id_seq", allocationSize=1)
-	@GeneratedValue(generator="userSeq", strategy=GenerationType.SEQUENCE)
 	private int id;
 	private String username;
 	private String pass;

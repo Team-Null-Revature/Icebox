@@ -7,6 +7,6 @@ values (user_id_seq.nextVal, 'chrispham','alsosecure','Chris','Pham','another@ta
 insert into ib_user(user_id,username,pass,fname,lname,email)
 values (user_id_seq.nextVal, 'daviddonnely','verysecure','David','Donnely','onemore@ta.org');
 insert into ib_user(user_id,username,pass,fname,lname,email)
-values (user_id_seq.nextVal, 'derrekrueger','supersecure','Derrek','Rueger','lastone@ta.org');
+values (5, 'derrekrueger','supersecure','Derrek','Rueger','lastone@ta.org');
 
 commit;
