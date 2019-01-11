@@ -9,7 +9,7 @@ import com.revature._1811_nov27_wvu.icebox.dao.FileDAO;
 import com.revature._1811_nov27_wvu.icebox.entity.File;
 
 @Service
-public class FileServiceImp implements FileService {
+public class FileServiceImpl implements FileService {
 	@Autowired
 	private FileDAO fd;
 	@Override

@@ -9,10 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-
 
 @Entity
 @Table(name="ib_file")
@@ -25,7 +23,7 @@ public class File {
 	private Date added;
 	private double filesize;
 	private String sharestr;
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name="folder_id")
 	private Folder parent;
 	@ManyToMany

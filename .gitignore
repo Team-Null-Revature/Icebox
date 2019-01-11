@@ -103,8 +103,6 @@ local.properties
 .sts4-cache/
 
 ### Java ###
-# Test classes
-HomeController.java
 # Compiled class file
 *.class
 
@@ -132,6 +130,7 @@ hs_err_pid*
 ### Java-Web ###
 ## ignoring target file
 target/
+webapp/
 
 ### Maven ###
 pom.xml.tag
