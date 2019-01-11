@@ -30,8 +30,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/user",method=RequestMethod.POST)
-	public Set<User> addUser(@RequestBody User u) {
+	public User addUser(@RequestBody User u) {
 		us.addUser(u);
-		return us.getUsers();
+		return u;
 	}
 }
