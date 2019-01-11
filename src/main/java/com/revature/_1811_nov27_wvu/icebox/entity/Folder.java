@@ -21,11 +21,11 @@ public class Folder {
 	@SequenceGenerator(name="folderID", sequenceName="folder_seq", allocationSize=1)
 	@GeneratedValue(generator="folderID", strategy=GenerationType.SEQUENCE)
 	int id; //Folder's id number
-	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	//@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="user_id")
 	private int owner; //Id of user that owns the folder
 	private String name; //Folder's name as text
-	@OneToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	//@OneToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="folder_id")
 	private int p_folder; //Id of folder containing this folder
 	
