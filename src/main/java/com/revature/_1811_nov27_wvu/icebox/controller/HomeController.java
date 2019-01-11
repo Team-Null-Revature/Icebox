@@ -1,7 +1,10 @@
 package com.revature._1811_nov27_wvu.icebox.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Set;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +15,7 @@ import com.revature._1811_nov27_wvu.icebox.dao.AddressDao;
 
 import com.revature._1811_nov27_wvu.icebox.dao.UserDao;
 import com.revature._1811_nov27_wvu.icebox.entity.User;
+import com.revature._1811_nov27_wvu.icebox.services.AddressService;
 import com.revature._1811_nov27_wvu.icebox.services.UserService;
 import com.revature._1811_nov27_wvu.icebox.dao.FileDAO;
 import com.revature._1811_nov27_wvu.icebox.entity.Address;
@@ -21,7 +25,7 @@ import com.revature._1811_nov27_wvu.icebox.entity.File;
 @RestController
 public class HomeController {
 	@Autowired
-	AddressDao ad;
+	AddressService as;
 	@Autowired
 	UserService us;
 
