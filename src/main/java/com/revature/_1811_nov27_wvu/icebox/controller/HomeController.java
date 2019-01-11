@@ -23,10 +23,10 @@ public class HomeController {
 	@Autowired
 	UserService us;
   
-	@GetMapping("/user{id}")
-	public User getUser(@PathVariable("id") int id) {
-		return us.getUserById(id);
-	}
+//	@GetMapping("/user{id}")
+//	public User getUser(@PathVariable("id") int id) {
+//		return us.getUserById(id);
+//	}
 	
 	@GetMapping("/addresses")
 	public List<Address> getAddresses() {
