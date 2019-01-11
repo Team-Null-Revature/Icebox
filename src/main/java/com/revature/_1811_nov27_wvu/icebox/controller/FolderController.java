@@ -1,5 +1,7 @@
 package com.revature._1811_nov27_wvu.icebox.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,5 +21,9 @@ public class FolderController {
 	@RequestMapping(method=RequestMethod.PUT)
 	public Folder addFolder(@RequestBody Folder f) {
 		return fs.addFolder(f);
+	}
+	@RequestMapping(method=RequestMethod.GET)
+	public List<Folder> getFolders(){
+		return fs.getFolders();
 	}
 }
