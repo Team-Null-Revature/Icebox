@@ -4,50 +4,47 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.transaction.HeuristicMixedException;
-import javax.transaction.HeuristicRollbackException;
-import javax.transaction.RollbackException;
-import javax.transaction.SystemException;
-import javax.transaction.Transaction;
+import org.hibernate.Transaction;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
 import com.revature._1811_nov27_wvu.icebox.entity.User;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserHibernate implements UserDao{
+	private Logger log = Logger.getLogger(UserHibernate.class);
 	@Autowired
-	private static SessionFactory sf;
+	private SessionFactory sf;
 
 	@Override
 	public User addUser(User u) {
 		Session s = sf.getSession();
-		Transaction tx = (Transaction) s.beginTransaction();
-		
+		log.trace("About to add user");
+		Transaction tx = s.beginTransaction();
+		log.trace("made transaction:"+tx);
 		s.save(u);
-		try {
-			tx.commit();
-		} catch (SecurityException | RollbackException | HeuristicMixedException | HeuristicRollbackException
-				| SystemException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		tx.commit();
 		s.close();
 		return u;
 	}
 
 	@Override
 	public User getUserById(int i) {
+		log.trace("inGet"+sf);
 		Session s = sf.getSession();
+		log.trace("after");
 		User u = s.get(User.class, i);
 		s.close();
 		return u;
 	}
 
 	@Override
-	public Set<User> getUserHQL() {
+	public Set<User> getUsers() {
 		Session s = sf.getSession();
 		String query = "from com.revature._1811_nov27_wvu.icebox.entity.User";
 		Query<User> q = s.createQuery(query, User.class);
@@ -62,13 +59,7 @@ public class UserHibernate implements UserDao{
 		Session s = sf.getSession();
 		Transaction tx = (Transaction) s.beginTransaction();
 		s.update(u);
-		try {
-			tx.commit();
-		} catch (SecurityException | RollbackException | HeuristicMixedException | HeuristicRollbackException
-				| SystemException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		tx.commit();
 		s.close();
 		return u;
 	}
@@ -78,13 +69,7 @@ public class UserHibernate implements UserDao{
 		Session s = sf.getSession();
 		Transaction tx = (Transaction) s.beginTransaction();
 		s.delete(u);
-		try {
-			tx.commit();
-		} catch (SecurityException | RollbackException | HeuristicMixedException | HeuristicRollbackException
-				| SystemException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		tx.commit();
 		s.close();
 	}
 	

@@ -9,8 +9,8 @@ import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
-    LoginComponent,
-    AppComponent, 
+    AppComponent,
+    LoginComponent, 
     HomeComponent
   ],
   imports: [

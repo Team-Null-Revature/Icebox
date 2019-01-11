@@ -1,8 +1,23 @@
 package com.revature._1811_nov27_wvu.icebox.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="ib_comment")
 public class Comment {
+	@Id
+	@Column(name="comment_id")
 	private int id;
+	@ManyToOne
+	@JoinColumn(name="user_id")
 	private User sender;
+	@ManyToOne
+	@JoinColumn(name="file_id")
 	private File file;
 	private String comment;
 	public int getId() {
