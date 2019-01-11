@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,12 +13,12 @@ public class Folder {
 	@Id
 	@Column(name="folder_id")
 	private int id;
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User owner;
 	private String name;
-	@OneToMany
-	@JoinColumn(name="folder_id")
+	@ManyToOne
+	@JoinColumn(name="p_folder")
 	private Folder parent;
 	public int getId() {
 		return id;
