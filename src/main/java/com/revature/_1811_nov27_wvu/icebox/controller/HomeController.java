@@ -34,7 +34,7 @@ public class HomeController {
 		response.sendRedirect("static/index.html");
 	}
   
-  @GetMapping("/user{id}")
+    @GetMapping("/user{id}")
 	public User getUser(@PathVariable("id") int id) {
 		return us.getUserById(id);
 	}
