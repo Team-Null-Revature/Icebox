@@ -9,4 +9,5 @@ values (user_id_seq.nextVal, 'daviddonnely','verysecure','David','Donnely','onem
 insert into ib_user(user_id,username,pass,fname,lname,email)
 values (user_id_seq.nextVal, 'derrekrueger','supersecure','Derrek','Rueger','lastone@ta.org');
 
+
 commit;
