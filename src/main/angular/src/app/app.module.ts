@@ -12,6 +12,7 @@ import { TagComponent } from 'src/app/files/tag/tag.component';
 import { UploadComponent } from './upload/upload.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeComponent } from './home/home.component';
+import { CommentComponent } from 'src/app/files/comment/comment.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { HomeComponent } from './home/home.component';
     TagComponent,
     UploadComponent,
     NavBarComponent,
-    HomeComponent
+    HomeComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,

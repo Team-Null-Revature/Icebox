@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FileService } from 'src/app/files/shared/file.service';
+import { File } from 'src/app/files/shared/file';
 
 @Component({
   selector: 'app-file',

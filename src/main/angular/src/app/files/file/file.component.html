@@ -1,5 +1,46 @@
 <div class="container border" *ngIf="openFile">
-    <div class=row>
-        
+    <div class="row">
+        <div class="col-sm">
+            <div class="row">
+                <div class="col">
+                    <h5>Name: </h5>
+                </div>
+                <div class="col">
+                    <p>{{openFile.filename}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h5>Type: </h5>
+                </div>
+                <div class="col">
+                    <p>{{openFile.filetype}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h5>Date added: </h5>
+                </div>
+                <div class="col">
+                    <p>{{openFile.added}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h5>File size</h5>
+                </div>
+                <div class="col">
+                    <p>{{openFile.filesize}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h5>Tags: </h5>
+                </div>
+                <div class="col">
+                    <p>{{openFile.tags}}</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>>

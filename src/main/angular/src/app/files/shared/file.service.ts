@@ -14,23 +14,25 @@ export class FileService {
   constructor(private http: HttpClient, private url: UrlService) { }
 
   getFiles(): Observable<File[]> {
-      return this.http.get(this.appUrl).pipe(
+      return this.http.get(this.appUrl, {withCredentials: true}).pipe(
           map(resp => resp as File[])
       );
   }
   getFile(id: number): Observable<File> {
       const url: string = this.appUrl + '/' + id;
-      return this.http.get(url).pipe(map(resp => resp as File));
+      return this.http.get(url, {withCredentials: true}).pipe(map(resp => resp as File));
   }
   updateFile(file: File): Observable<File> {
       const body = JSON.stringify(file);
       if (file.id) {
           const url = this.appUrl + '/' + file.id;
-          return this.http.put(url, body, {headers: this.headers}).pipe(
+          return this.http.put(url, body,
+             {headers: this.headers, withCredentials: true}).pipe(
               map(resp => resp as File)
           );
       } else {
-          return this.http.post(this.appUrl, body, {headers: this.headers}).pipe(
+          return this.http.post(this.appUrl, body,
+             {headers: this.headers, withCredentials: true}).pipe(
               map(resp => resp as File)
           );
       }
