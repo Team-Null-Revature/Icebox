@@ -1,3 +1,67 @@
+<<<<<<< HEAD
 <router-outlet></router-outlet>
 
 <h1>Logged In!</h1>
+=======
+<!-- Add the top navigation bar -->
+<app-nav-bar></app-nav-bar>
+<!-- Wrap everyting in a container -->
+<div class="container-fluid">
+  <!-- Make a row -->
+  <div class="row">
+    <!-- Column for the file and folder table -->
+    <div class="col-md-8 px-0">
+      <!-- Table for files and folders -->
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" class="border-top-0">Name</th>
+            <th scope="col" class="border-top-0">Modified</th>
+            <th scope="col" class="border-top-0">Size</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Fake data for testing. -->
+          <tr>
+            <th scope="row">Ideas.txt</th>
+            <td>1/12/2019 4:04PM</td>
+            <td>0KB</td>
+          </tr>
+          <tr>
+            <th scope="row">Image.jpg</th>
+            <td>8/16/2018 3:25AM</td>
+            <td>5MB</td>
+          </tr>
+          <tr>
+            <th scope="row">Instructions.pdf</th>
+            <td>5/13/2017 10:00AM</td>
+            <td>500KB</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Column for the currently selected file info -->
+    <div class="col-md-4 px-0">
+      <!-- Table for the create folder and upload buttons -->
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" class="border-top-0 th-md-btn">
+              <button type="button" class="btn btn-outline-primary btn-sm w-100">New Folder</button>
+            </th>
+            <th scope="col" class="border-top-0 th-md-btn">
+              <!-- Import the upload button -->
+              <app-upload></app-upload>
+            </th>
+          </tr>
+        </thead>
+      </table>
+      <div class="card">
+        <div class="card-body">
+          <p>File info goes here.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+>>>>>>> 1a111595e7bb08bf56d552501a1ceb3b43911bcf
