@@ -41,7 +41,8 @@ public class Icebox implements WebApplicationInitializer {
 		@Override
 		public void addResourceHandlers(ResourceHandlerRegistry registry) {
 			// Add the static files location
-			registry.setOrder(-1).addResourceHandler("/static/**").addResourceLocations("/");	
+			registry.setOrder(-2).addResourceHandler("/static/**").addResourceLocations("/");
+			registry.setOrder(-1).addResourceHandler("/assets/**").addResourceLocations("/assets/");
 		}
 	}
 }
