@@ -21,6 +21,15 @@ public class User {
 	private String fname;
 	private String lname;
 	private String email;
+	
+	public User() {
+		super();
+	}
+	
+	public User(int id, String username, String password, String first, String last) {
+		super();
+	}
+	
 	public int getId() {
 		return id;
 	}

@@ -20,7 +20,7 @@ public class LoginController {
 	public String goLogin(HttpSession sess) {
 		if(sess.getAttribute("user")!=null) {
 			return "redirect:home";
-		}
+		} 
 		
 		return "redirect:login";
 	}
@@ -35,4 +35,5 @@ public class LoginController {
 			return "redirect: home";
 		}
 	}
+	
 }

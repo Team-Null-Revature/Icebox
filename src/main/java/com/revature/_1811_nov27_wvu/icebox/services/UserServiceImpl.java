@@ -1,5 +1,6 @@
 package com.revature._1811_nov27_wvu.icebox.services;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,17 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void deleteUser(User u) {
 		deleteUser(u);
+	}
+
+	@Override
+	public User login(String username, String password) {
+		Set<User> userList = getUsers();
+		for(User u: userList) {
+			if(u.getUsername().equals(username) && u.getPass().equals(password)) {
+				return u;
+			}
+		}
+		return null;
 	}
 
 }
