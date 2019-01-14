@@ -7,20 +7,25 @@ import { AppComponent } from './app.component';
 import { UploadComponent } from './upload/upload.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeComponent } from './home/home.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { UserServiceService } from './shared/user-service.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     UploadComponent,
     NavBarComponent,
-    HomeComponent
+    HomeComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [UserServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

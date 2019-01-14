@@ -40,23 +40,9 @@ public class UserController {
 	
 	@RequestMapping(value="/user",method=RequestMethod.POST)
 	public User addUser(@RequestBody User u) {
+		log.trace("In user post, u:"+u);
 		us.addUser(u);
 		return u;
 	}
-	
-	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
-    public String submit(@Validated @ModelAttribute("employee")User u, BindingResult result, ModelMap model) {
-        if (result.hasErrors()) {
-            return "error";
-        }
-        model.addAttribute("username", u.getUsername());
-        model.addAttribute("pass", u.getPass());
-        model.addAttribute("fname", u.getFname());
-        model.addAttribute("lname", u.getLname());
-        model.addAttribute("email", u.getEmail());
-        log.trace("User:"+u);
-        log.trace("model:"+model);
-        return "employeeView";
-    }
 	
 }

@@ -12,7 +12,7 @@ export class UserServiceService {
   constructor(private http: HttpClient) { }
 
   sendRegistration(user:User){
-    return this.http.post('/user',user).pipe(
+    return this.http.post('/icebox/user',user).pipe(
      map(resp => resp as User)
    );
   }

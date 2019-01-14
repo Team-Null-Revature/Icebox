@@ -1,7 +1,6 @@
 <form (ngSubmit)="onSubmit()">
   <div class="form-group">
       <label for="inputUname">Username:</label>
-      <!-- <input id="inputUname" class="form-text" type="text" name="username" placeholder="JSmith360"/> --> -->
       <input id="inputUname" type="text" class="form-text"  required [(ngModel)]="user.username" name="username" 
       placeholder="JSmith360">
   </div>
