@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit{
                 console.log(resp);
             }
         );
-        this.router.navigate(['/home'])
+        this.router.navigate(['/home'])   
     }
 
 }
