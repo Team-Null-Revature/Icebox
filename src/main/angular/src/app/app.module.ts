@@ -9,7 +9,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeComponent } from './home/home.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { UserServiceService } from './shared/user-service.service';
-import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module'
 
 @NgModule({
   declarations: [

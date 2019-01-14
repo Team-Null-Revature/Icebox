@@ -18,13 +18,14 @@ import javax.persistence.Table;
 public class Folder {
 	@Id
 	@Column(name="folder_id")
-	private int id;
-	@ManyToOne
+	@SequenceGenerator(name="folderID", sequenceName="folder_seq", allocationSize=1)
+	@GeneratedValue(generator="folderID", strategy=GenerationType.SEQUENCE)
+	Integer id; //Folder's id number
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="owner")
-	private User owner;
-	private String name;
-	@ManyToOne
-	@JoinColumn(name="p_folder")
+	private User owner; //User that owns the folder
+	private String name; //Folder's name as text
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private Folder p_folder; //Folder containing this folder
 	
 	public Folder() {
