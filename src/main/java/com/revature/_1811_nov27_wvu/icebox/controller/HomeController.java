@@ -1,35 +1,27 @@
 package com.revature._1811_nov27_wvu.icebox.controller;
 
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.revature._1811_nov27_wvu.icebox.entity.User;
-import com.revature._1811_nov27_wvu.icebox.services.AddressService;
-import com.revature._1811_nov27_wvu.icebox.services.UserService;
-import com.revature._1811_nov27_wvu.icebox.entity.Address;
 
 /**
- * 
- * Test Component, to be used only for testing code. Do not map any API endpoints here.
- *
+ * Handles root static files and forwards unknown mappings to Angular.
  */
-@RestController
+@Controller
 public class HomeController {
-	@Autowired
-	AddressService as;
-	@Autowired
-	UserService us;
-  
-//	@GetMapping("/user{id}")
-//	public User getUser(@PathVariable("id") int id) {
-//		return us.getUserById(id);
-//	}
+	/**
+	 * Forwards static file requests from the root to the static files endpoint.
+	 */
+	@GetMapping("/{file:.+[\\.].+}")
+	public String forwardStaticFiles(@PathVariable String file) {
+		return "/static/" + file;
+	}
 	
-	@GetMapping("/addresses")
-	public List<Address> getAddresses() {
-		return as.getAll();
+	/**
+	 * Forwards unmapped endpoints to the index page.
+	 */
+	@GetMapping("/**")
+	public String forwardUnknownMappings() {
+		return "/static/index.html";
 	}
 }
