@@ -12,7 +12,7 @@ import com.revature._1811_nov27_wvu.icebox.entity.Folder;
 import com.revature._1811_nov27_wvu.icebox.services.FolderService;
 
 @RestController
-@RequestMapping(value="/folders")
+@RequestMapping(value="/api/folders")
 public class FolderController {
 
 	@Autowired

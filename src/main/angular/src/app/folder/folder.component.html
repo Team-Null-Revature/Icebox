@@ -1,3 +1,16 @@
+<div class="container border">
+  <app-folder *ngFor="let f of folders"></app-folder>
+</div>
+<!-- At the end of all the existing folders, make a form for creation-->
+<div class= "card">
+  <div class= "card-header">New Folder</div>
+  <div class= "card-text">Folder Title:<br>
+  <form>
+    <input type="text" name="folderName"><br>
+    <input type="submit" value="+">
+  </form>
+</div>
+</div>
 <p>
   folder works!
 </p>
