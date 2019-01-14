@@ -21,6 +21,10 @@ const routes: Routes = [
     {
         path: 'files',
         component: AllFilesComponent
+    },
+    {
+        path: 'files/:sharestr',
+        component: FileComponent
     }
 ];
 

@@ -19,7 +19,7 @@ const routes: Routes = [
         component: RegistrationComponent
     },
     {
-        path: 'file:/id',
+        path: 'file/:id',
         component: FileComponent
     },
     {

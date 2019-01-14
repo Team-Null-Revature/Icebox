@@ -22,6 +22,9 @@ export class FileComponent implements OnInit {
         this.fileService.getFile(id).subscribe(file => this.openFile = file);
      }
   }
+  share() {
+      this.fileService.shareFile(this.openFile);
+    }
 
   editFile() {
       this.router.navigate(['/files/edit', this.openFile.id]);

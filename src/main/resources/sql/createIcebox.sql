@@ -32,7 +32,7 @@ create table ib_file (
     filetype varchar(20) not null,
     added date not null,
     filesize number(20,10) not null, --this should be the size in bytes, we can calculate later
-    sharestr varchar2(20),
+    sharestr varchar2(36),
     p_folder number(10) --fk
 );
 

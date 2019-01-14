@@ -14,7 +14,6 @@ export class FileService {
   constructor(private http: HttpClient, private url: UrlService) { }
 
   getFiles(): Observable<File[]> {
-      console.log(this.appUrl);
       return this.http.get(this.appUrl, {withCredentials: false}).pipe(
           map(resp => {
               console.log(resp);
@@ -24,6 +23,10 @@ export class FileService {
   }
   getFile(id: number): Observable<File> {
       const url: string = this.appUrl + '/' + id;
+      return this.http.get(url, {withCredentials: false}).pipe(map(resp => resp as File));
+  }
+  getShareFile(sharestr: string): Observable<File> {
+    const url: string = this.appUrl + '/' + sharestr;
       return this.http.get(url, {withCredentials: false}).pipe(map(resp => resp as File));
   }
   updateFile(file: File): Observable<File> {
@@ -41,4 +44,12 @@ export class FileService {
           );
       }
   }
+  shareFile(file: File): Observable<File> {
+      const body = JSON.stringify(file);
+      const url = this.appUrl + '/share/' + file.id;
+          return this.http.put(url, body,
+             {headers: this.headers, withCredentials: false}).pipe(
+              map(resp => resp as File)
+          );
+    }
 }
