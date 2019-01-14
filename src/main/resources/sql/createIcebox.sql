@@ -39,8 +39,8 @@ create table ib_file (
 
 create table ib_comment (
     comment_id number(10) primary key,
-    senduser number(10) not null,--fk
-    recfile number(10) not null,--fk
+    user_id number(10) not null,--fk
+    file_id number(10) not null,--fk
     commentstr varchar2(1000) not null
 );
 
@@ -51,8 +51,8 @@ create table ib_tag (
 
 create table ib_file_tag (
     file_tag_id number(10) primary key,
-    recfile number(10) not null, --fk
-    tagnum number(10) not null --fk
+    file_id number(10) not null, --fk
+    tag_id number(10) not null --fk
 );
 --Sequences
 create sequence Folder_seq;
@@ -66,12 +66,12 @@ alter table ib_folder add constraint fk_fo_parent foreign key (p_folder) referen
 alter table ib_file add constraint fk_fi_folder foreign key (p_folder) references ib_folder(folder_id);
 
 --comment
-alter table ib_comment add constraint fk_c_user foreign key (senduser) references ib_user(user_id);
-alter table ib_comment add constraint fk_c_file foreign key (recfile) references ib_file(file_id);
+alter table ib_comment add constraint fk_c_user foreign key (user_id) references ib_user(user_id);
+alter table ib_comment add constraint fk_c_file foreign key (file_id) references ib_file(file_id);
 
 --file_tag
-alter table ib_file_tag add constraint fk_ft_tag foreign key (tagnum) references ib_tag(tag_id);
-alter table ib_file_tag add constraint fk_ft_file foreign key (recfile) references ib_file(file_id);
+alter table ib_file_tag add constraint fk_ft_tag foreign key (tag_id) references ib_tag(tag_id);
+alter table ib_file_tag add constraint fk_ft_file foreign key (file_id) references ib_file(file_id);
 
 --sequences
 create sequence user_id_seq;
