@@ -1,6 +1,7 @@
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-outline-success btn-sm w-100" data-toggle="modal" data-target="#uploadModal">
   Upload Files
+  <span class="badge badge-warning" *ngIf="inProgressFiles.size + stagedFiles.size > 0">{{inProgressFiles.size + stagedFiles.size}}</span>
 </button>
 
 <!-- Modal -->
@@ -8,22 +9,68 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="uploadModalTitle">Upload Files</h5>
+        <h5 class="modal-title" id="uploadModalTitle">File Upload</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="uploadFiles">Example file input</label>
-            <input type="file" class="form-control-file" id="uploadFiles">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12 px-0">
+              <input #filesInput type="file" class="form-control-file d-none" (change)="addFiles($event.target.files)" multiple>
+              <table class="table table-sm" *ngIf="stagedFiles.size > 0">
+                <thead>
+                  <tr>
+                    <th scope="col" class="border-top-0 border-bottom-0">Files</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let entry of stagedFiles | keyvalue">
+                    <td>
+                      <h6>
+                        <span aria-hidden="true" class="fas fa-file"></span>
+                        {{entry.value.name}}
+                        <span class="font-weight-normal text-muted">{{formatBytes(entry.value.size)}}</span>
+                        <span aria-hidden="true" class="fas fa-times float-right text-danger clickable" (click)="removeFile(entry.value)"></span>
+                      </h6>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="table table-sm" *ngIf="inProgressFiles.size > 0">
+                <thead>
+                  <tr>
+                    <th scope="col" class="border-top-0 border-bottom-0">Uploading</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let entry of inProgressFiles | keyvalue">
+                    <td>
+                      <h6>
+                        <span aria-hidden="true" class="fas fa-file"></span>
+                        {{entry.value.getKey().name}}
+                        <span class="font-weight-normal text-muted">{{formatBytes(entry.value.getKey().size)}}</span>
+                      </h6>
+
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" [style.width]="entry.value.getValue() + '%'" role="progressbar"></div>
+                      </div>
+                      <span class="font-weight-normal text-muted">{{entry.value.getValue()}}% done</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-        </form>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Upload</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success w-100" (click)="triggerFileDialog()">
+          <span aria-hidden="true" class="fas fa-plus"></span> Add Files
+        </button>
+        <button type="button" class="btn btn-primary" (click)="uploadFiles()">Upload</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearFiles()">Cancel</button>
       </div>
     </div>
   </div>
