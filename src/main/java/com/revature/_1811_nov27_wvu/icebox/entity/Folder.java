@@ -26,6 +26,7 @@ public class Folder {
 	private User owner; //User that owns the folder
 	private String name; //Folder's name as text
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="p_folder")
 	private Folder p_folder; //Folder containing this folder
 	
 	public Folder() {

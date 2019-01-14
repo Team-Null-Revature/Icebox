@@ -22,7 +22,7 @@ create table ib_user (
 
 create table ib_folder (
     folder_id number(10) primary key,
-    owner number(10) not null, --fk
+    owner number(10), --fk
     name varchar2(100) not null,
     p_folder number(10) --fk
 );

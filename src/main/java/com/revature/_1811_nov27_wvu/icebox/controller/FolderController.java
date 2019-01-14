@@ -18,7 +18,7 @@ public class FolderController {
 	@Autowired
 	private FolderService fs;
 	
-	@RequestMapping(method=RequestMethod.PUT)
+	@RequestMapping(method=RequestMethod.POST)
 	public Folder addFolder(@RequestBody Folder f) {
 		return fs.addFolder(f);
 	}

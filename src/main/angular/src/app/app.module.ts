@@ -10,9 +10,11 @@ import { HomeComponent } from './home/home.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { UserServiceService } from './shared/user-service.service';
 import { AppRoutingModule } from './app-routing.module'
+import { FolderComponent } from './folder/folder.component';
 
 @NgModule({
   declarations: [
+    FolderComponent,
     AppComponent,
     UploadComponent,
     NavBarComponent,
