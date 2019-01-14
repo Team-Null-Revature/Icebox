@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Observable} from 'rxjs';
-import { map } from 'rxjs/operators';
+import {FolderService} from '../shared/folder.service';
 import {Folder} from 'src/app/folder';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-folder',
@@ -10,41 +10,22 @@ import {Folder} from 'src/app/folder';
   styleUrls: ['./folder.component.css']
 })
 export class FolderComponent implements OnInit {
-  private appUrl = this.appUrl.getURL()+'/folders';
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
   public folders: Folder[];
+  public folder = new Folder;
 
   //Needs user, so add a user service too
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private foldServ: FolderService, private router: Router) { }
 
-  getFolders(): Observable<Folder[]>{
-    return this.http.get(this.appUrl, {withCredentials: true}).pipe(
-      map(resp => resp as Folder[])
-    )
+  ngOnInit() { }
+
+  onSubmit(){
+    this.foldServ.addFolder(this.folder).subscribe(
+      resp => {
+        console.log(resp);
+      }
+    );
+    this.router.navigate(['/folder'])
   }
-
-  addFolder(newFolder: Folder){
-    const body = JSON.stringify(newFolder);
-    //If a folder with this id exists, edit instead
-    //needs work, like writing update folder
-    if(newFolder.folder_id){
-      return this.http.post(this.appUrl, body,
-        {headers: this.headers, withCredentials: true}).pipe(
-          map(resp=>resp as Folder));
-    } else{
-      //Make sure to create all new folders with no id
-      //to not be caught by the if
-      return this.http.put(this.appUrl, body,
-        {headers: this.headers, withCredentials: true}).pipe(
-          map(resp => resp as Folder)
-        );
-    }
-  }
-
-  ngOnInit() {
-    this.getFolders().subscribe(
-      folders=>this.folders=folders
-      );
-    }
 
 }
