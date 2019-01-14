@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RegistrationComponent } from './registration/registration.component';
-import { HomeComponent } from './home/home.component';
 import { FileComponent } from 'src/app/files/file/file.component';
+import { AllFilesComponent } from 'src/app/files/all-files/all-files.component';
+import { HomeComponent } from '../home/home.component';
 
 const routes: Routes = [
     {
@@ -15,22 +15,16 @@ const routes: Routes = [
         component: HomeComponent
     },
     {
-        path: 'register',
-        component: RegistrationComponent
-    },
-    {
-        path: 'file:/id',
+        path: 'files/:id',
         component: FileComponent
     },
     {
-        path: 'file',
-        component: FileComponent
+        path: 'files',
+        component: AllFilesComponent
     }
-
 ];
 
 @NgModule({
-  declarations: [],
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
