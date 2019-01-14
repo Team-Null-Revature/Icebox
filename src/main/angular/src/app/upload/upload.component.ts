@@ -14,7 +14,7 @@ export class UploadComponent implements OnInit {
     inProgressFiles: Map<String, Pair<File, Number>>;
     uploadingFiles: Boolean;
 
-    constructor() { }
+    constructor(private http: HttpClient) { }
 
     ngOnInit() {
         this.stagedFiles = new Map();
@@ -24,8 +24,7 @@ export class UploadComponent implements OnInit {
 
     // Opens the file selector window
     triggerFileDialog() {
-        const input: HTMLElement = this.filesInput.nativeElement;
-        input.click();
+        (<HTMLElement>this.filesInput.nativeElement).click();
     }
 
     // Adds a file to the staged map
