@@ -18,8 +18,7 @@ export class UserServiceService {
   }
 
   sendLogin(user: User){
-      const body = 'username=${user.username}&password=${user.pass}'; 
-      return this.http.post('/icebox/API/login', body).pipe(
+      return this.http.post('/icebox/API/login', user).pipe(
         map(resp => resp as User)
     );
   }

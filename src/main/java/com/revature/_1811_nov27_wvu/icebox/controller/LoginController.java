@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -28,17 +29,17 @@ public class LoginController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value = "/API/login")
-	public String login(String username, String password, HttpSession session) {
-		log.trace("post u:" + username + " " + password);
+	public String login(@RequestBody User u, HttpSession session) {
+		log.trace("post u:" + u.getUsername() + " " + u.getPass());
 		
-		User u = us.login(username, password);
+		User uNew = us.login(u.getUsername(), u.getPass());
 		log.trace("post after: " + u);
-		if(u == null) {
+		if(uNew == null) {
 			log.trace("user not retrieved");
 			return "redirect: login";
 		} else {
-			session.setAttribute("user", u);
-			log.trace("User retrieved");
+			session.setAttribute("user", uNew);
+			log.trace("User retrieved" + uNew);
 			return "redirect: home";
 		}
 	}
