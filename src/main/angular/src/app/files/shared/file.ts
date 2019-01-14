@@ -1,4 +1,4 @@
-import { Folder } from './folder';
+import { Folder } from 'src/app/shared/folder';
 import { Tag } from './tag';
 
 export class File {

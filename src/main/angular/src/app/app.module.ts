@@ -13,6 +13,7 @@ import { UploadComponent } from './upload/upload.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeComponent } from './home/home.component';
 import { CommentComponent } from 'src/app/files/comment/comment.component';
+import { AllFilesComponent } from './files/all-files/all-files.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { CommentComponent } from 'src/app/files/comment/comment.component';
     UploadComponent,
     NavBarComponent,
     HomeComponent,
-    CommentComponent
+    CommentComponent,
+    AllFilesComponent
   ],
   imports: [
     BrowserModule,

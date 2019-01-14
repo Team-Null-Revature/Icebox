@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FileComponent } from 'src/app/files/file/file.component';
+import { AllFilesComponent } from 'src/app/files/all-files/all-files.component';
 
 const routes: Routes = [
     {
@@ -9,12 +10,12 @@ const routes: Routes = [
         pathMatch: 'full'
     },
     {
-        path: 'file:/id',
+        path: 'files:/id',
         component: FileComponent
     },
     {
-        path: 'file',
-        component: FileComponent
+        path: 'files',
+        component: AllFilesComponent
     }
 ];
 
