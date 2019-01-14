@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RegistrationComponent } from './registration/registration.component';
 import { HomeComponent } from './home/home.component';
+import { FolderComponent } from './folder/folder.component';
 import { FileComponent } from 'src/app/files/file/file.component';
 
 const routes: Routes = [
@@ -25,6 +26,10 @@ const routes: Routes = [
     {
         path: 'file',
         component: FileComponent
+    },
+    {
+      path: 'folder',
+      component: FolderComponent
     }
 
 ];

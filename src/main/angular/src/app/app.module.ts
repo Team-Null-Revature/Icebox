@@ -16,14 +16,18 @@ import { CommentComponent } from 'src/app/files/comment/comment.component';
 import { AllFilesComponent } from './files/all-files/all-files.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { UserServiceService } from './shared/user-service.service';
+import { FolderComponent } from './folder/folder.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
+    FolderComponent,
     AppComponent,
     FileComponent,
     EditFileComponent,
     TagComponent,
     UploadComponent,
+    LoginComponent,
     NavBarComponent,
     HomeComponent,
     CommentComponent,
