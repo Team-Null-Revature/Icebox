@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import { User } from '../shared/user';
+import { UserServiceService } from '../shared/user-service.service';
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-login',
@@ -8,30 +11,22 @@ import {Component, OnInit} from '@angular/core';
 
 export class LoginComponent implements OnInit{
 
-    public user: string;
-    public password: string;
+    user = new User; 
+    
 
-    constructor(user: string, pass: string){
-        this.user = user;
-        this.password = pass;
-    }
+    constructor(private uService: UserServiceService, private router: Router){}
 
     ngOnInit(){
 
     }
 
-    Login(event){
-        console.log(event);
-        event.preventDefault();
+    Login(){
+        this.uService.sendLogin(this.user).subscribe(
+            resp => {
+                console.log(resp);
+            }
+        );
+        this.router.navigate(['/home'])
     }
-/*     Login(user: string, pass:string):boolean{
-        console.log("username: " + user + " password: " + pass); 
-        if(this.user == user && this.password == pass){
-            console.log("User Successfully Logged In");
-            return this.user == user && this.password == pass
-        } else{
-            console.log("Username or password invalid");
-        }
-            
-    } */
+
 }

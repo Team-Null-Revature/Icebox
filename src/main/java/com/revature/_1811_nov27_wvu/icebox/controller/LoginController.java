@@ -15,7 +15,7 @@ import com.revature._1811_nov27_wvu.icebox.services.UserService;
 public class LoginController {
 	@Autowired
 	private UserService us;
-	
+	 
 	@RequestMapping(method = RequestMethod.GET)
 	public String goLogin(HttpSession sess) {
 		if(sess.getAttribute("user")!=null) {

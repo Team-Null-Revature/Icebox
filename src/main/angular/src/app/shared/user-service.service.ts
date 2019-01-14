@@ -16,4 +16,10 @@ export class UserServiceService {
      map(resp => resp as User)
    );
   }
+
+  sendLogin(user: User){
+      return this.http.post('/icebox/login', user).pipe(
+        map(resp => resp as User)
+    );
+  }
 }
