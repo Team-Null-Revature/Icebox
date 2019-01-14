@@ -5,20 +5,20 @@ import { HomeComponent } from './home/home.component';
 import { FileComponent } from 'src/app/files/file/file.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
-  },
-  {
-    path: 'home',
-    component: HomeComponent
-  },
-  {
-    path: 'register',
-    component: RegistrationComponent
-  },
-  {
+    {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full'
+    },
+    {
+        path: 'home',
+        component: HomeComponent
+    },
+    {
+        path: 'register',
+        component: RegistrationComponent
+    },
+    {
         path: 'file:/id',
         component: FileComponent
     },
