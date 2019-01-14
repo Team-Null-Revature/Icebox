@@ -40,7 +40,6 @@ public class UserController {
 	
 	@RequestMapping(value="/user",method=RequestMethod.POST)
 	public User addUser(@RequestBody User u) {
-		log.trace("In user post, u:"+u);
 		us.addUser(u);
 		return u;
 	}
