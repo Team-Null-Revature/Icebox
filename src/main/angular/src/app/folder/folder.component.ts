@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {FolderService} from '../shared/folder.service';
-import {Folder} from 'src/app/folder';
+import {Folder} from 'src/app/shared/folder';
 import { Router } from '@angular/router';
 
 @Component({
