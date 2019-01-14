@@ -9,30 +9,34 @@ import { UrlService } from 'src/app/url.service';
   providedIn: 'root'
 })
 export class FileService {
-    private appUrl = this.url.getUrl();
+    private appUrl = this.url.getUrl() + '/files';
     private headers = new HttpHeaders({'Content-Type': 'application/json'});
   constructor(private http: HttpClient, private url: UrlService) { }
 
   getFiles(): Observable<File[]> {
-      return this.http.get(this.appUrl, {withCredentials: true}).pipe(
-          map(resp => resp as File[])
+      console.log(this.appUrl);
+      return this.http.get(this.appUrl, {withCredentials: false}).pipe(
+          map(resp => {
+              console.log(resp);
+              return resp as File[];
+            })
       );
   }
   getFile(id: number): Observable<File> {
       const url: string = this.appUrl + '/' + id;
-      return this.http.get(url, {withCredentials: true}).pipe(map(resp => resp as File));
+      return this.http.get(url, {withCredentials: false}).pipe(map(resp => resp as File));
   }
   updateFile(file: File): Observable<File> {
       const body = JSON.stringify(file);
       if (file.id) {
           const url = this.appUrl + '/' + file.id;
           return this.http.put(url, body,
-             {headers: this.headers, withCredentials: true}).pipe(
+             {headers: this.headers, withCredentials: false}).pipe(
               map(resp => resp as File)
           );
       } else {
           return this.http.post(this.appUrl, body,
-             {headers: this.headers, withCredentials: true}).pipe(
+             {headers: this.headers, withCredentials: false}).pipe(
               map(resp => resp as File)
           );
       }

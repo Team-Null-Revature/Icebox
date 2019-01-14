@@ -5,7 +5,7 @@ export class File {
     id: number;
     filename: string;
     filetype: string;
-    added: Date = new Date();
+    added: Date;
     filesize: number;
     sharestr: string;
     p_folder: Folder;

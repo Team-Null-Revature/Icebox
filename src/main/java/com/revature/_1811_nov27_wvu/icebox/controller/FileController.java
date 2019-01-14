@@ -18,21 +18,23 @@ import com.revature._1811_nov27_wvu.icebox.services.UserService;
 @RestController
 //@RequestMapping(value="/files")
 public class FileController {
-	private Logger log = Logger.getLogger(UserController.class);
+	private Logger log = Logger.getLogger(FileController.class);
 	@Autowired
 	private FileService fs;
 	
-	@RequestMapping(value="/files",method=RequestMethod.GET)
+	@RequestMapping(value="/api/files",method=RequestMethod.GET)
 	public Set<File> getAll() {
+		log.trace("Java");
 		return fs.getAllFiles();
 	}
 	
-	@RequestMapping(value="/files/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/api/files/{id}", method=RequestMethod.GET)
 	public File getFile(@PathVariable("id") int id) {
+		log.trace("Java");
 		return fs.getFileById(id);
 	}
 	
-	@RequestMapping(value="/files",method=RequestMethod.POST)
+	@RequestMapping(value="/api/files",method=RequestMethod.POST)
 	public File addFile(@RequestBody File f) {
 		fs.addFile(f);
 		return f;
