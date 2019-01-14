@@ -15,7 +15,7 @@ const routes: Routes = [
         component: HomeComponent
     },
     {
-        path: 'files:/id',
+        path: 'files/:id',
         component: FileComponent
     },
     {
