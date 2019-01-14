@@ -14,7 +14,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeComponent } from './home/home.component';
 import { CommentComponent } from 'src/app/files/comment/comment.component';
 import { AllFilesComponent } from './files/all-files/all-files.component';
-
+import { RegistrationComponent } from './registration/registration.component';
+import { UserServiceService } from './shared/user-service.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AllFilesComponent } from './files/all-files/all-files.component';
     NavBarComponent,
     HomeComponent,
     CommentComponent,
-    AllFilesComponent
+    AllFilesComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,8 @@ import { AllFilesComponent } from './files/all-files/all-files.component';
   ],
   providers: [
       FileService,
-      UrlService
+      UrlService,
+      UserServiceService
   ],
   bootstrap: [AppComponent]
 })
