@@ -7,7 +7,6 @@ import org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.springframework.stereotype.Component;
-
 import com.revature._1811_nov27_wvu.icebox.entity.Address;
 import com.revature._1811_nov27_wvu.icebox.entity.Comment;
 import com.revature._1811_nov27_wvu.icebox.entity.File;
@@ -41,7 +40,6 @@ public class SessionFactory {
 				.addAnnotatedClass(Tag.class)
 				.addAnnotatedClass(Comment.class)
 				.addAnnotatedClass(Address.class)
-				.addAnnotatedClass(User.class)
 				.addPackage("com.revature._1811_nov27_wvu.icebox")
 				.buildSessionFactory();
 	}

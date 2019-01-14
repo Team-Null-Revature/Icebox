@@ -17,14 +17,18 @@ import { RegistrationComponent } from './registration/registration.component';
 import { UserServiceService } from './shared/user-service.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptorService } from './services/api-interceptor.service';
+import { FolderComponent } from './folder/folder.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
     declarations: [
+        FolderComponent,
         AppComponent,
         FileComponent,
         EditFileComponent,
         TagComponent,
         UploadComponent,
+        LoginComponent,
         NavBarComponent,
         HomeComponent,
         CommentComponent,
