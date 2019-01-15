@@ -20,7 +20,7 @@ public class LoginController {
 	@Autowired
 	private HttpSession session; 
 	 
-	@RequestMapping(method = RequestMethod.GET, value = "/API/login")
+	@RequestMapping(method = RequestMethod.GET, value = "/api/login")
 	public String goLogin(HttpSession sess) {
 		log.trace("get request");
 		if(sess.getAttribute("user")!=null) {
@@ -30,7 +30,7 @@ public class LoginController {
 		return null; 
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value = "/API/login")
+	@RequestMapping(method=RequestMethod.POST, value = "/api/login")
 	@ResponseBody
 	public User login(@RequestBody User u) {
 		log.trace("post u:" + u.getUsername() + " " + u.getPass());
