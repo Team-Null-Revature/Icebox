@@ -13,7 +13,6 @@ import { UploadComponent } from './upload/upload.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { UserServiceService } from './shared/user-service.service';
-
 @NgModule({
   declarations: [
     FolderComponent,
@@ -21,6 +20,7 @@ import { UserServiceService } from './shared/user-service.service';
     UploadComponent,
     NavBarComponent,
     HomeComponent,
+    LoginComponent,
     RegistrationComponent
   ],
   imports: [
