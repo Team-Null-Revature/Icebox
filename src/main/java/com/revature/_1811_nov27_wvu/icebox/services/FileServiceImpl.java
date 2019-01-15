@@ -1,6 +1,7 @@
 package com.revature._1811_nov27_wvu.icebox.services;
 
 import java.util.Set;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,13 @@ public class FileServiceImpl implements FileService {
 	@Override
 	public File addFile(File f) {
 		return fd.addFile(f);
+	}
+	
+	@Override
+	public File genShareStr(File f) {
+		f.setSharestr(UUID.randomUUID().toString());
+		fd.updateFile(f);
+		return f;
 	}
 
 }

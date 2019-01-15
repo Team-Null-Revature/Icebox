@@ -60,4 +60,12 @@ public class FileHibernate implements FileDAO {
 		s.close();
 	}
 
+	@Override
+	public File getFileBySharestr(String st) {
+		Session s = sf.getSession();
+		File f = s.get(File.class, st);
+		s.close();
+		return f;
+	}
+
 }
