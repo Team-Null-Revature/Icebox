@@ -3,15 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable, pipe, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { File } from './file';
-import { UrlService } from 'src/app/url.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FileService {
-    private appUrl = this.url.getUrl() + '/files';
+    private appUrl =  'api/files';
     private headers = new HttpHeaders({'Content-Type': 'application/json'});
-  constructor(private http: HttpClient, private url: UrlService) { }
+  constructor(private http: HttpClient) { }
 
   getFiles(): Observable<File[]> {
       return this.http.get(this.appUrl, {withCredentials: false}).pipe(

@@ -72,5 +72,4 @@ public class UserHibernate implements UserDao{
 		tx.commit();
 		s.close();
 	}
-	
 }
