@@ -42,6 +42,7 @@ DROP TABLE Ib_User CASCADE CONSTRAINTS;
    Drop Sequences
 ********************************************************************************/
 DROP SEQUENCE User_Seq;
+DROP SEQUENCE Folder_Seq;
 
 /*******************************************************************************
    Create Tables
@@ -57,7 +58,7 @@ CREATE TABLE Ib_User (
 
 CREATE TABLE Ib_Folder (
     Folder_Id number(10) PRIMARY KEY,
-    Owner number(10) NOT NULL, --fk
+    Owner number(10), --fk
     Name varchar2(100) NOT NULL,
     P_Folder number(10), --fk
     CONSTRAINT FK_Fo_Owner FOREIGN KEY (Owner) REFERENCES Ib_User(User_Id),
@@ -101,6 +102,7 @@ CREATE TABLE Ib_File_tag (
    Create Sequences
 ********************************************************************************/
 CREATE SEQUENCE User_Seq;
+CREATE SEQUENCE Folder_Seq;
 
 /*******************************************************************************
    Insert Data
