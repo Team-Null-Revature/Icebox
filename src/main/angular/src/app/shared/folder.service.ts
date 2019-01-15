@@ -14,13 +14,14 @@ export class FolderService {
 
   //Get all folders in DB
   getFolders(){
-    return this.http.get('icebox/api/folders').pipe(
+    return this.http.get('api/folders').pipe(
       map(resp => resp as Folder)
     );
   }
   //Add a new folder to the DB
   addFolder(folder : Folder){
-    return this.http.post('/icebox/api/folders', folder).pipe(
+      console.log(folder);
+    return this.http.post('api/folders', folder).pipe(
       map(resp=> resp as Folder)
     );
   }
