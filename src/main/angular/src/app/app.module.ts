@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { AppRoutingModule } from './routing/app-routing.module';
 import { AppComponent } from './app.component';
 import { FileComponent } from './files/file/file.component';
 import { FileService } from 'src/app/files/shared/file.service';
@@ -19,6 +18,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptorService } from './services/api-interceptor.service';
 import { FolderComponent } from './folder/folder.component';
 import { LoginComponent } from './login/login.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
     declarations: [
@@ -37,9 +37,9 @@ import { LoginComponent } from './login/login.component';
     ],
     imports: [
         BrowserModule,
-        AppRoutingModule,
         FormsModule,
-        HttpClientModule
+        HttpClientModule,
+        AppRoutingModule
     ],
     providers: [
         FileService,
