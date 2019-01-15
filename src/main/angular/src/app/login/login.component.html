@@ -1,17 +1,17 @@
-<router-outlet></router-outlet>
-<form>
+<form (ngSubmit)="Login()" #userForm="ngForm">
     <h1> Icebox </h1>
     <h2> Log In </h2>
-    <div class = "input">
-        <label>Username: </label>
-        <input type = "text" name = "user" placeholder="Username" [(ngModel)] = "user">
+    <div class = "form-group">
+        <label for = "inUsername">Username: </label>
+        <input id = "inUsername" class = "form-text" type = "text" name = "user" required [(ngModel)] = "user.username" placeholder="Username"/>
     </div>
-    <div class = "input">
-        <label>Password: </label>
-        <input type = "password" name = "password" placeholder="Password" [(ngModel)] = "password">
+    <div class = "form-group">
+        <label for = "inPassword">Password: </label>
+        <input id = "inPassword" class = "form-text" type = "password" name = "password" required [(ngModel)] = "user.pass" placeholder="Password"/>
     </div>
 
-    <div class = "input">
-        <input type = "submit" value = "Login" (click) = /home>
+    <div class = "form-group">
+        <input type = "submit" class = "btn btn-primary" value = "Submit"/>
     </div>
+
 </form>

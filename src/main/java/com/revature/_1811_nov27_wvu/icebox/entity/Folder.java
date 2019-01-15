@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class Folder {
 	@Id
 	@Column(name="folder_id")
-	@SequenceGenerator(name="folderID", sequenceName="folder_seq", allocationSize=1)
+	@SequenceGenerator(name="folderID", sequenceName="Folder_Seq", allocationSize=1)
 	@GeneratedValue(generator="folderID", strategy=GenerationType.SEQUENCE)
 	Integer id; //Folder's id number
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
