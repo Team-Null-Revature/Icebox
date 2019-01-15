@@ -4,6 +4,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { HomeComponent } from './home/home.component';
 import { FolderComponent } from './folder/folder.component';
 import { FileComponent } from 'src/app/files/file/file.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
     {
@@ -30,6 +31,10 @@ const routes: Routes = [
     {
       path: 'folder',
       component: FolderComponent
+    },
+    {
+      path: 'login',
+      component: LoginComponent
     }
 ];
 
