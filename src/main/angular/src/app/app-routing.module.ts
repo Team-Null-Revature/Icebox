@@ -31,7 +31,6 @@ const routes: Routes = [
       path: 'folder',
       component: FolderComponent
     }
-
 ];
 
 @NgModule({

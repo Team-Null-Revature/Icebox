@@ -8,7 +8,7 @@ drop table ib_user cascade constraints;
 drop sequence folder_seq;
 
 --dropping sequences
-drop sequence user_id_seq;
+drop sequence user_seq;
 
 -- creating tables
 create table ib_user (
@@ -74,4 +74,4 @@ alter table ib_file_tag add constraint fk_ft_tag foreign key (tag_id) references
 alter table ib_file_tag add constraint fk_ft_file foreign key (file_id) references ib_file(file_id);
 
 --sequences
-create sequence user_id_seq;
+create sequence user_seq;
