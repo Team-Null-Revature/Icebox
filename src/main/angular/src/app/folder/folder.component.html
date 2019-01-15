@@ -1,0 +1,16 @@
+<app-nav-bar></app-nav-bar>
+<div class="container border">
+  <app-folder *ngFor="let f of folders"></app-folder>
+</div>
+<!-- At the end of all the existing folders, make a form for creation-->
+<div class= "card">
+  <div class= "card-header">New Folder</div>
+  <div class= "card-text">Folder Title:<br>
+    <!--Only grabs Name for now. Id should be generated, user and parent
+    folder should be derived from session info-->
+  <form (ngSubmit)="onSubmit()" #folderForm="ngForm">
+    <input type="text" name="folderName" [(ngModel)]="folder.name">
+    <input type="submit" value="+">
+  </form>
+</div>
+</div>

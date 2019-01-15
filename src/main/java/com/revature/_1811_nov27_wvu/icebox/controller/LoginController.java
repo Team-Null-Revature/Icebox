@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.revature._1811_nov27_wvu.icebox.entity.*;
 import com.revature._1811_nov27_wvu.icebox.services.UserService;
  
@@ -48,5 +47,4 @@ public class LoginController {
 			return uNew;
 		}
 	}
-	
 }
