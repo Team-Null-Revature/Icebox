@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { HttpClient, HttpRequest, HttpEvent, HttpEventType } from '@angular/common/http';
 import { Observable, pipe } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-upload',
@@ -10,8 +10,9 @@ import { map } from 'rxjs/operators';
 })
 export class UploadComponent implements OnInit {
     @ViewChild('filesInput') filesInput: ElementRef;
+    @Input() folderId: Number;
     stagedFiles: Map<String, File>;
-    inProgressFiles: Map<String, Pair<File, Number>>;
+    inProgressFiles: Map<String, UploadStatus>;
     uploadingFiles: Boolean;
 
     constructor(private http: HttpClient) { }
@@ -45,8 +46,7 @@ export class UploadComponent implements OnInit {
     uploadFiles() {
         this.stagedFiles.forEach((v, k) => {
             if (!this.inProgressFiles.has(k)) {
-                const kp: Pair<File, Number> = new Pair(v, 0);
-                this.inProgressFiles.set(k, kp);
+                this.inProgressFiles.set(k, new UploadStatus(v, 0, 0));
                 this.stagedFiles.delete(k);
             }
         });
@@ -61,14 +61,25 @@ export class UploadComponent implements OnInit {
         const result = this.inProgressFiles.values().next();
 
         if (!result.done) {
-            const timer = setInterval(() => {
-                result.value.setValue(+result.value.getValue() + 1);
-                if (result.value.getValue() === 100) {
-                    this.inProgressFiles.delete(result.value.getKey().name);
-                    clearInterval(timer);
+            const formData: FormData = new FormData();
+            formData.append('file', result.value.getFile(), result.value.getFile().name);
+
+            const req = new HttpRequest('POST', `api/folder/${this.folderId}/file`, formData, { reportProgress: true });
+            let lastSize = 0;
+            let lastTime = Math.floor(Date.now());
+            this.http.request(req).subscribe((event) => {
+                if (event.type === HttpEventType.UploadProgress) {
+                    const currentTime = Math.floor(Date.now());
+                    result.value.setSpeed(Math.round((event.loaded - lastSize) / (currentTime - lastTime)) * 1000);
+                    result.value.setPercentComplete(Math.round(100 * event.loaded / event.total));
+                    lastTime = currentTime;
+                    lastSize = event.loaded;
+                } else if (event.type === HttpEventType.Response) {
+                    console.log(event);
+                    this.inProgressFiles.delete(result.value.getFile().name);
                     this.uploadService();
                 }
-            }, 250);
+            });
         } else {
             this.uploadingFiles = false;
         }
@@ -97,29 +108,34 @@ export class UploadComponent implements OnInit {
     }
 }
 
-// Utility tuple
-class Pair<K, V> {
-    key: K;
-    value: V;
+class UploadStatus {
+    file: File;
+    speed: Number;
+    percentComplete: Number;
 
-    constructor(key: K, value: V) {
-        this.key = key;
-        this.value = value;
+    constructor(file: File, speed: Number, percentComplete: Number) {
+        this.file = file;
+        this.speed = speed;
+        this.percentComplete = percentComplete;
     }
 
-    setKey(key: K) {
-        this.key = key;
+    setSpeed(speed: Number) {
+        this.speed = speed;
     }
 
-    setValue(value: V) {
-        this.value = value;
+    setPercentComplete(percentComplete: Number) {
+        this.percentComplete = percentComplete;
     }
 
-    getKey(): K {
-        return this.key;
+    getFile(): File {
+        return this.file;
     }
 
-    getValue(): V {
-        return this.value;
+    getSpeed(): Number {
+        return this.speed;
+    }
+
+    getPercentComplete(): Number {
+        return this.percentComplete;
     }
 }

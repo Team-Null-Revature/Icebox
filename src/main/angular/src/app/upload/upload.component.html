@@ -49,14 +49,15 @@
                     <td>
                       <h6>
                         <span aria-hidden="true" class="fas fa-file"></span>
-                        {{entry.value.getKey().name}}
-                        <span class="font-weight-normal text-muted">{{formatBytes(entry.value.getKey().size)}}</span>
+                        {{entry.value.getFile().name}}
+                        <span class="font-weight-normal text-muted">{{formatBytes(entry.value.getFile().size)}}</span>
                       </h6>
 
                       <div class="progress">
-                        <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" [style.width]="entry.value.getValue() + '%'" role="progressbar"></div>
+                        <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" [style.width]="entry.value.getPercentComplete() + '%'" role="progressbar"></div>
                       </div>
-                      <span class="font-weight-normal text-muted">{{entry.value.getValue()}}% done</span>
+                      <span class="font-weight-normal text-muted">{{entry.value.getPercentComplete()}}% done</span>
+                      <span class="font-weight-normal text-muted float-right">{{formatBytes(entry.value.getSpeed())}}/s</span>
                     </td>
                   </tr>
                 </tbody>

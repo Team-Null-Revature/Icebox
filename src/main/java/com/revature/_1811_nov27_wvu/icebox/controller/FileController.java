@@ -5,18 +5,17 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.revature._1811_nov27_wvu.icebox.entity.File;
-import com.revature._1811_nov27_wvu.icebox.entity.User;
 import com.revature._1811_nov27_wvu.icebox.services.FileService;
-import com.revature._1811_nov27_wvu.icebox.services.UserService;
 
 @RestController
-//@RequestMapping(value="/files")
 public class FileController {
 	private Logger log = Logger.getLogger(FileController.class);
 	@Autowired
@@ -34,9 +33,8 @@ public class FileController {
 		return fs.getFileById(id);
 	}
 	
-	@RequestMapping(value="/api/files",method=RequestMethod.POST)
-	public File addFile(@RequestBody File f) {
-		fs.addFile(f);
-		return f;
+	@PostMapping("/api/folder/{folderId}/file")
+	public File addFile(@PathVariable int folderId, @RequestParam MultipartFile file) {
+		return fs.uploadFile(folderId, file);
 	}
 }
