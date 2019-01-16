@@ -14,14 +14,26 @@ export class LoginComponent implements OnInit{
     
     constructor(private uService: UserServiceService, private router: Router){}
 
-    ngOnInit(){}
+    ngOnInit(){
+        this.uService.checkLogin().subscribe(
+            resp => {
+                if(resp != null){
+                    this.router.navigate(['/home']);
+                }
+            }
+        );
+    }
   
     Login(){
         this.uService.sendLogin(this.user).subscribe(
             resp => {
                 console.log(resp);
+                if(resp == null){
+                    this.router.navigate(['/login']);
+                }else{
+                    this.router.navigate(['/home']);
+                }
             }
         );
-        this.router.navigate(['/home'])   
     }
 }
