@@ -11,4 +11,5 @@ public interface FileDAO {
 	File updateFile(File f);
 	void deleteFile(File f);
 	File getFileBySharestr(String s);
+	Set<File> getAllSharedFiles();
 }
