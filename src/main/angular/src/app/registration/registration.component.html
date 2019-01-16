@@ -1,4 +1,12 @@
+<div class="page-header container">
+        <div class="col-md-7">
+        <H1>Icebox</H1>
+        </div>
+</div>
+<div class="container border">
 <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+    <p class="lead">Enter Registration Details:</p>
+	<hr class="my-4">
   <div class="form-group">
       <label for="inputUname">Username:</label>
       <input id="inputUname" type="text" class="form-text"  required [(ngModel)]="user.username" name="username" 
@@ -23,3 +31,5 @@
 </div>
   <input type="submit" class="btn btn-primary" [disabled]="!userForm.form.valid" value="submit"/>
 </form>
+</div>
+<div class="col-md-7">Already have an account? <a href="login">Login Here.</a></div> 

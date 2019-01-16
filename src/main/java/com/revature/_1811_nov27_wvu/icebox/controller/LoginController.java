@@ -24,7 +24,6 @@ public class LoginController {
 	 
 	@RequestMapping(method = RequestMethod.GET, value = "/api/login")
 	public User getLogin(HttpSession sess) {
-		log.trace("get request");
 		return (User) sess.getAttribute("user");
 	}
 	
