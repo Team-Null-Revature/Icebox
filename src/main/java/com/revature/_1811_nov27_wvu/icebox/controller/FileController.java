@@ -24,13 +24,13 @@ public class FileController {
 	
 	@RequestMapping(value="/api/files",method=RequestMethod.GET)
 	public Set<File> getAll() {
-		log.trace("Java");
+		log.trace("Get all files");
 		return fs.getAllFiles();
 	}
 	
 	@RequestMapping(value="/api/files/{id}", method=RequestMethod.GET)
 	public File getFile(@PathVariable("id") int id) {
-		log.trace("Java");
+		log.trace("Get single file");
 		return fs.getFileById(id);
 	}
 	
@@ -38,5 +38,22 @@ public class FileController {
 	public File addFile(@RequestBody File f) {
 		fs.addFile(f);
 		return f;
+	}
+	@RequestMapping(value="/api/files",method=RequestMethod.PUT)
+	public File updateFile(@RequestBody File f) {
+		fs.updateFile(f);
+		return f;
+	}
+	
+	@RequestMapping(value="/api/files/share", method=RequestMethod.PUT)
+	public File shareFile(@RequestBody File f) {
+		log.trace("Called sharing");
+		fs.genShareStr(f);
+		return f;
+	}
+	@RequestMapping(value="/api/files/shared/{sharestr}", method=RequestMethod.GET)
+	public File getFile(@PathVariable("sharestr") String s) {
+		log.trace("Java");
+		return fs.getFileByShareStr(s);
 	}
 }

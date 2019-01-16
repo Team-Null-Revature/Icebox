@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../shared/user';
 import { Observable, pipe } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { longStackSupport } from 'q';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,17 @@ export class UserServiceService {
         map(resp => resp as User)
     );
   } 
+
+  checkLogin(){
+    return this.http.get('api/login').pipe(
+      map(resp => resp as User)
+  );
+  } 
+
+  logout(){
+    return this.http.delete('api/login').pipe(
+      map(resp => resp as User)
+      );
+  }
 }
  
