@@ -10,16 +10,12 @@ import {Router} from "@angular/router";
 })
 
 export class LoginComponent implements OnInit{
-
     user = new User; 
     
-
     constructor(private uService: UserServiceService, private router: Router){}
 
-    ngOnInit(){
-
-    }
-
+    ngOnInit(){}
+  
     Login(){
         this.uService.sendLogin(this.user).subscribe(
             resp => {
@@ -28,5 +24,4 @@ export class LoginComponent implements OnInit{
         );
         this.router.navigate(['/home'])   
     }
-
 }
