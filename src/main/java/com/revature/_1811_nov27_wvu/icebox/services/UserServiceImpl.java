@@ -44,11 +44,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User login(String username, String password) {
 		Set<User> userList = getUsers();
-		log.trace(userList.toString());
-		log.trace("sent in:" + username + " " + password);
 		for(User u: userList) {
-			log.trace("sent in:" + username + " " + password);
-			log.trace("in list:" + u.getUsername() + " " + u.getPass());
 			if(u.getUsername().equals(username) && u.getPass().equals(password)) {
 				return u;
 			}

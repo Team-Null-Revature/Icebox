@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.revature._1811_nov27_wvu.icebox.entity.*;
 import com.revature._1811_nov27_wvu.icebox.services.UserService;
  
 
-@Controller
+@RestController
 public class LoginController {
 	private Logger log = Logger.getLogger(LoginController.class);
 	@Autowired
@@ -21,22 +23,14 @@ public class LoginController {
 	private HttpSession session; 
 	 
 	@RequestMapping(method = RequestMethod.GET, value = "/api/login")
-	public String goLogin(HttpSession sess) {
-		log.trace("get request");
-		if(sess.getAttribute("user")!=null) {
-			return "redirect:home";
-		} 
-		 
-		return null; 
+	public User getLogin(HttpSession sess) {
+		return (User) sess.getAttribute("user");
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value = "/api/login")
-	@ResponseBody
 	public User login(@RequestBody User u) {
 		log.trace("post u:" + u.getUsername() + " " + u.getPass());
-		
 		User uNew = us.login(u.getUsername(), u.getPass());
-		log.trace("post after: " + u);
 		if(uNew == null) {
 			log.trace("user not retrieved");
 			return uNew;
@@ -46,5 +40,11 @@ public class LoginController {
 			log.trace("session object:" + session.getAttribute("user"));
 			return uNew;
 		}
+	}
+	
+	@RequestMapping(method=RequestMethod.DELETE, value = "/api/login")
+	public void logout() {
+		session.invalidate();
+		log.trace("User logged out.");
 	}
 }
