@@ -32,4 +32,21 @@ public class FolderHibernate implements FolderDao{
 		return f;
 	}
 
+	@Override
+	public void deleteFolder(Folder f) {
+		Session s = sf.getSession();
+		Transaction tx = s.beginTransaction();
+		s.delete(f);
+		tx.commit();
+		s.close();
+	}
+
+	@Override
+	public Folder getFolderById(int i) {
+		Session s = sf.getSession();
+		Folder f = s.get(Folder.class, i);
+		s.close();
+		return f;
+	}
+
 }

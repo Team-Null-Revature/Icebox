@@ -39,4 +39,9 @@ public class FileController {
 		fs.addFile(f);
 		return f;
 	}
+	@RequestMapping(value="/api/files/{id}", method=RequestMethod.DELETE)
+	public void deleteFile(@PathVariable("id") int id) {
+		File target = fs.getFileById(id);
+		fs.deleteFile(target);
+	}
 }
