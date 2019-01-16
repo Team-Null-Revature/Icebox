@@ -2,7 +2,10 @@ package com.revature._1811_nov27_wvu.icebox.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -10,6 +13,8 @@ import javax.persistence.Table;
 public class Tag {
 	@Id
 	@Column(name="Tag_id")
+	@SequenceGenerator(name="tagSeq", sequenceName="Tag_Seq", allocationSize=1)
+	@GeneratedValue(generator="tagSeq", strategy=GenerationType.SEQUENCE)
 	private int tag_id;
 	private String name;
 	public int getTag_id() {

@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { CommentComponent } from 'src/app/files/comment/comment.component';
 import { AllFilesComponent } from './files/all-files/all-files.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { TagService } from './files/shared/tag.service';
 import { UserServiceService } from './shared/user-service.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptorService } from './services/api-interceptor.service';
@@ -48,7 +49,8 @@ import { AppRoutingModule } from './app-routing.module';
             provide: HTTP_INTERCEPTORS,
             useClass: ApiInterceptorService,
             multi: true
-        }
+        },
+        TagService
     ],
     bootstrap: [AppComponent]
 })

@@ -103,6 +103,7 @@ CREATE TABLE Ib_File_tag (
 ********************************************************************************/
 CREATE SEQUENCE User_Seq;
 CREATE SEQUENCE Folder_Seq;
+CREATE SEQUENCE Tag_Seq;
 
 /*******************************************************************************
    Insert Data

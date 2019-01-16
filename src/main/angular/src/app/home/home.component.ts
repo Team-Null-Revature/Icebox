@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Tag } from '../files/shared/tag';
+import { TagService } from '../files/shared/tag.service';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
+  tag = new Tag();
+  constructor(private tagServ: TagService) { }
 
   ngOnInit() {
   }
 
+  add_tag(){
+    this.tagServ.addTag(this.tag).subscribe(
+      resp => {
+        console.log(resp); 
+      }
+    );
+  }
 }

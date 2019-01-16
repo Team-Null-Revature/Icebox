@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { File } from '../shared/file';
+import { Tag } from '../shared/tag';
+import { TagService } from '../shared/tag.service';
+
 
 @Component({
   selector: 'app-tag',
@@ -7,9 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TagComponent implements OnInit {
 
-  constructor() { }
+  tag = new Tag();
+
+  constructor(private tagServ: TagService) { }
 
   ngOnInit() {
   }
 
+  add_tag(){
+    this.tagServ.addTag(this.tag).subscribe(
+      resp => {
+        console.log(resp); 
+      }
+    );
+  }
 }
