@@ -19,6 +19,8 @@ import { ApiInterceptorService } from './services/api-interceptor.service';
 import { FolderComponent } from './folder/folder.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
+import { DirectoryComponent } from './directory/directory.component';
+import { FolderService } from './shared/folder.service'
 
 @NgModule({
     declarations: [
@@ -33,7 +35,8 @@ import { AppRoutingModule } from './app-routing.module';
         HomeComponent,
         CommentComponent,
         AllFilesComponent,
-        RegistrationComponent
+        RegistrationComponent,
+        DirectoryComponent
     ],
     imports: [
         BrowserModule,
@@ -44,6 +47,7 @@ import { AppRoutingModule } from './app-routing.module';
     providers: [
         FileService,
         UserServiceService,
+        FolderService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: ApiInterceptorService,

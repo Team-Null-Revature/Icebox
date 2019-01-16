@@ -20,12 +20,12 @@ export class FolderComponent implements OnInit {
   ngOnInit() { }
 
   onSubmit(){
+    console.log("Submitting new folder!")
     this.foldServ.addFolder(this.folder).subscribe(
       resp => {
         console.log(resp);
       }
     );
-    this.router.navigate(['/folder'])
+    this.router.navigate(['/home'])
   }
-
 }
