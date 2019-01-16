@@ -12,6 +12,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { UserServiceService } from './shared/user-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { AddTagComponent } from './add-tag/add-tag.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AppRoutingModule } from './app-routing.module';
     UploadComponent,
     NavBarComponent,
     HomeComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    AddTagComponent
   ],
   imports: [
     BrowserModule,
