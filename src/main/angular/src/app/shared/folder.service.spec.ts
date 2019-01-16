@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { IceboxServiceService } from './icebox-service.service';
+import { FolderService } from './folder.service';
 
-describe('IceboxServiceService', () => {
+describe('FolderService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: IceboxServiceService = TestBed.get(IceboxServiceService);
+    const service: FolderService = TestBed.get(FolderService);
     expect(service).toBeTruthy();
   });
 });

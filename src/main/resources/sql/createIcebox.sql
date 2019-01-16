@@ -5,9 +5,10 @@ drop table ib_file_tag cascade constraints;
 drop table ib_file cascade constraints;
 drop table ib_folder cascade constraints;
 drop table ib_user cascade constraints;
+drop sequence folder_seq;
 
 --dropping sequences
-drop sequence user_id_seq;
+drop sequence user_seq;
 
 -- creating tables
 create table ib_user (
@@ -21,7 +22,7 @@ create table ib_user (
 
 create table ib_folder (
     folder_id number(10) primary key,
-    owner number(10) not null, --fk
+    owner number(10), --fk
     name varchar2(100) not null,
     p_folder number(10) --fk
 );
@@ -32,7 +33,7 @@ create table ib_file (
     filetype varchar(20) not null,
     added date not null,
     filesize number(20,10) not null, --this should be the size in bytes, we can calculate later
-    sharestr varchar2(20),
+    sharestr varchar2(36),
     p_folder number(10) --fk
 );
 
@@ -53,6 +54,8 @@ create table ib_file_tag (
     file_id number(10) not null, --fk
     tag_id number(10) not null --fk
 );
+--Sequences
+create sequence Folder_seq;
 
 --altering tables
 --folder
@@ -71,4 +74,4 @@ alter table ib_file_tag add constraint fk_ft_tag foreign key (tag_id) references
 alter table ib_file_tag add constraint fk_ft_file foreign key (file_id) references ib_file(file_id);
 
 --sequences
-create sequence user_id_seq;
+create sequence user_seq;

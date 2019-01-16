@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.revature._1811_nov27_wvu.icebox.entity.*;
 import com.revature._1811_nov27_wvu.icebox.services.UserService;
  
@@ -19,19 +18,19 @@ public class LoginController {
 	@Autowired
 	private UserService us;
 	@Autowired
-	private HttpSession session;
+	private HttpSession session; 
 	 
-	@RequestMapping(value = "/API/login", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET, value = "/api/login")
 	public String goLogin(HttpSession sess) {
 		log.trace("get request");
 		if(sess.getAttribute("user")!=null) {
 			return "redirect:home";
 		} 
-		
-		return null;
+		 
+		return null; 
 	}
 	
-	@RequestMapping(value = "/API/login",method=RequestMethod.POST)
+	@RequestMapping(method=RequestMethod.POST, value = "/api/login")
 	@ResponseBody
 	public User login(@RequestBody User u) {
 		log.trace("post u:" + u.getUsername() + " " + u.getPass());
@@ -41,10 +40,9 @@ public class LoginController {
 			return uNew;
 		} else {
 			session.setAttribute("user", uNew);
-			log.trace("User retrieved:" + uNew);
-			log.trace("session object:"+ session.getAttribute("user"));
+			log.trace("User retrieved" + uNew);
+			log.trace("session object:" + session.getAttribute("user"));
 			return uNew;
 		}
 	}
-	
 }
