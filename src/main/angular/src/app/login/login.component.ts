@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 
 export class LoginComponent implements OnInit{
     user = new User; 
+    incorrect: Boolean = false;
     
     constructor(private uService: UserServiceService, private router: Router){}
 
@@ -29,7 +30,8 @@ export class LoginComponent implements OnInit{
             resp => {
                 console.log(resp);
                 if(resp == null){
-                    this.router.navigate(['/login']);
+                    this.incorrect = true;
+                    //this.router.navigate(['/login']);
                 }else{
                     this.router.navigate(['/home']);
                 }
