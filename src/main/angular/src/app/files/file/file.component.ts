@@ -28,15 +28,11 @@ export class FileComponent implements OnInit {
     }
 
     share() {
-        console.log(this.openFile);
-      console.log('Share');
-      console.log(this.openFile.sharestr);
       if (this.openFile.sharestr == null) {
          this.fileService.shareFile(this.openFile).subscribe(file => {
                  this.openFile = file;
                  alert('Link created: icebox/files/shared/' + this.openFile.sharestr);
             });
-         console.log('alerting');
       } else {
         alert('Link already created: icebox/files/shared/' + this.openFile.sharestr);
       }
