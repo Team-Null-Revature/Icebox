@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import com.revature._1811_nov27_wvu.icebox.entity.File;
 
 @Component
-public class FileHibernate implements FileDAO {
+public class FileHibernate implements FileDao {
 	@Autowired
 	SessionFactory sf;
 	@Override

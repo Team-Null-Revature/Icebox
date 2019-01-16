@@ -4,7 +4,7 @@ import java.util.Set;
 
 import com.revature._1811_nov27_wvu.icebox.entity.File;
 
-public interface FileDAO {
+public interface FileDao {
 	File addFile(File f);
 	File getFileById(int i);
 	Set<File> getAllFiles();
