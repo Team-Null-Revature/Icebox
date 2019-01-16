@@ -40,9 +40,15 @@ public class FileServiceImpl implements FileService {
 	
 	@Override
 	public File genShareStr(File f) {
+		System.out.println("Creating share string");
 		f.setSharestr(UUID.randomUUID().toString());
 		fd.updateFile(f);
 		return f;
+	}
+
+	@Override
+	public File getFileByShareStr(String s) {
+		return fd.getFileBySharestr(s);
 	}
 
 }
