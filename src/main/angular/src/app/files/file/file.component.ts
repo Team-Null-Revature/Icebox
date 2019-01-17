@@ -28,13 +28,13 @@ export class FileComponent implements OnInit {
     }
 
     share() {
-      if (this.openFile.sharestr == null) {
+      if (this.openFile.share == null) {
          this.fileService.shareFile(this.openFile).subscribe(file => {
                  this.openFile = file;
-                 alert('Link created: icebox/shared/' + this.openFile.sharestr);
+                 alert('Link created: icebox/shared/' + this.openFile.share);
             });
       } else {
-        alert('Link already created: icebox/shared/' + this.openFile.sharestr);
+        alert('Link already created: icebox/shared/' + this.openFile.share);
       }
     }
 
