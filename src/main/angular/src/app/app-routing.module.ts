@@ -19,6 +19,10 @@ const routes: Routes = [
         component: HomeComponent
     },
     {
+        path: 'home/folder/:folderId',
+        component: HomeComponent
+    },
+    {
         path: 'register',
         component: RegistrationComponent
     },

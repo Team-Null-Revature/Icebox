@@ -2,12 +2,12 @@ import { Folder } from 'src/app/shared/folder';
 import { Tag } from './tag';
 
 export class File {
-    id: number;
-    filename: string;
-    filetype: string;
-    added: Date;
-    filesize: number;
-    sharestr: string;
-    p_folder: Folder;
+    id: Number;
+    name: String;
+    type: String;
+    created: Date;
+    size: Number;
+    share: String;
+    folder: Folder;
     tags: Tag[];
 }
