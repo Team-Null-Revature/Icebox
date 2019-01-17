@@ -41,6 +41,16 @@
                     <p>{{openFile.tags}}</p>
                 </div>
             </div>
+            <div class="row">
+            <!-- Tag stuff -->
+                <form (ngSubmit)="add_tag()">
+                    <div class = "form-group">
+                        <input id = "addTag" class = "form-text" type = "text" name = "tag" required [(ngModel)] = "tag.name" required placeholder="Tag Name"/>
+                        <div class="form-group"></div>
+                        <input type = "submit" class = "btn btn-primary" style = "height:50px;width:85px" value = "Add Tag"/>
+                    </div>
+              </form>
+            </div>
         </div>
         <button (click)="share()">Share</button>
     </div>

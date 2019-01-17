@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import com.revature._1811_nov27_wvu.icebox.entity.File;
 import com.revature._1811_nov27_wvu.icebox.entity.Tag;
 import com.revature._1811_nov27_wvu.icebox.services.FileService;
 import com.revature._1811_nov27_wvu.icebox.services.TagService;
@@ -39,13 +39,26 @@ public class TagController {
 	
 	//Figure out how to send file object to addtags
 	//
-	@RequestMapping(value = "/api/tag", method = RequestMethod.POST)
-	public Tag addTags(@RequestBody Tag t) {
+	@RequestMapping(value = "/api/tag/{id}", method = RequestMethod.POST)
+	public Tag addTags(@RequestBody Tag t, @PathVariable("id") int id) {
 		log.trace("tag: " + t);
-		//log.trace("file: " + id);
+		log.trace("file: " + id);
+		
+		Tag tempTag = new Tag(); 
+		File tempFile = new File();
+		log.trace("temp objects created");
+		tempTag.setName(t.getName());
+		log.trace("tempTag name: " + tempTag.getName());
+		
+		
+		log.trace("trying to get file by id");
+		tempFile = fs.getFileById(id);
+		System.out.println("file: " + tempFile.toString() + "tag: " + tempTag.toString());
+	
 		log.trace("adding tags");
+ 
 		return ts.addTag(t);
 	}
-	///file={id} , @PathVariable("id") int id
+	//, @PathVariable("id") int id 
 }
    

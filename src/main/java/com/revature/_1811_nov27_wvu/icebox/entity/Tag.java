@@ -12,13 +12,9 @@ import javax.persistence.Table;
 @Table(name = "ib_tag")
 public class Tag {
 	@Id
-<<<<<<< HEAD
 	@Column(name="Tag_id")
 	@SequenceGenerator(name="tagSeq", sequenceName="Tag_Seq", allocationSize=1)
 	@GeneratedValue(generator="tagSeq", strategy=GenerationType.SEQUENCE)
-=======
-	@Column(name = "Tag_id")
->>>>>>> 77afda697aca43bd9f310263c2441bbea11326f8
 	private int tag_id;
 	private String name;
 

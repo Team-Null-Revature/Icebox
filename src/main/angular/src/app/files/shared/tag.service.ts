@@ -9,13 +9,17 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class TagService { 
-
+  private appUrl =  'api/tag';
   constructor(private http: HttpClient) { }
 
   //add tag to DB
-  addTag(tag : Tag){
+  addTag(tag : Tag, file: File){
+    console.log("from tag.service.ts");
     console.log(tag); 
-    return this.http.post('api/tag', tag).pipe(
+    console.log(file.id);
+    const url: string = this.appUrl + '/' + file.id;
+    console.log("url" + url);
+    return this.http.post(url, tag).pipe(
       map(resp => resp as Tag)
     );
   }
