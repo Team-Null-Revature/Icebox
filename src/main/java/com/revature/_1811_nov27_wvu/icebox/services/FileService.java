@@ -11,4 +11,6 @@ public interface FileService {
 	public void deleteFile(File f);
 	public File addFile(File f);
 	public File genShareStr(File f);
+	public File getFileByShareStr(String s);
+	public Set<File> getAllSharedFiles();
 }

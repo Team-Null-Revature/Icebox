@@ -21,6 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DirectoryComponent } from './directory/directory.component';
 import { FolderService } from './shared/folder.service'
+import { AllSharedComponent } from './files/all-shared/all-shared.component';
 
 @NgModule({
     declarations: [
@@ -36,7 +37,11 @@ import { FolderService } from './shared/folder.service'
         CommentComponent,
         AllFilesComponent,
         RegistrationComponent,
+<<<<<<< HEAD
         DirectoryComponent
+=======
+        AllSharedComponent
+>>>>>>> c1b4cfd380cd1b6ac50bebb16aa203f03cf41eca
     ],
     imports: [
         BrowserModule,

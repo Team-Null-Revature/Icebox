@@ -23,14 +23,14 @@ public class FileController {
 	private FileService fs;
 	
 	@RequestMapping(value="/api/files",method=RequestMethod.GET)
-	public Set<File> getAll() {
-		log.trace("Java");
+	public Set<File> getAllFiles() {
+		log.trace("Get all files");
 		return fs.getAllFiles();
 	}
 	
 	@RequestMapping(value="/api/files/{id}", method=RequestMethod.GET)
 	public File getFile(@PathVariable("id") int id) {
-		log.trace("Java");
+		log.trace("Get single file");
 		return fs.getFileById(id);
 	}
 	
@@ -39,9 +39,34 @@ public class FileController {
 		fs.addFile(f);
 		return f;
 	}
+
 	@RequestMapping(value="/api/files/{id}", method=RequestMethod.DELETE)
 	public void deleteFile(@PathVariable("id") int id) {
 		File target = fs.getFileById(id);
 		fs.deleteFile(target);
+	}
+
+	@RequestMapping(value="/api/files",method=RequestMethod.PUT)
+	public File updateFile(@RequestBody File f) {
+		fs.updateFile(f);
+		return f;
+	}
+	
+	@RequestMapping(value="/api/files/share", method=RequestMethod.PUT)
+	public File shareFile(@RequestBody File f) {
+		log.trace("Called sharing");
+		fs.genShareStr(f);
+		return f;
+	}
+	@RequestMapping(value="/api/files/shared/{sharestr}", method=RequestMethod.GET)
+	public File getFile(@PathVariable("sharestr") String s) {
+		log.trace("Java");
+		return fs.getFileByShareStr(s);
+	}
+	@RequestMapping(value="/api/files/shared", method=RequestMethod.GET)
+	public Set<File> getFiles() {
+		log.trace("Java");
+		return fs.getAllSharedFiles();
+>>>>>>> c1b4cfd380cd1b6ac50bebb16aa203f03cf41eca
 	}
 }
