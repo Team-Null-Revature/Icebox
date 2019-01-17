@@ -2,6 +2,8 @@ package com.revature._1811_nov27_wvu.icebox.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature._1811_nov27_wvu.icebox.entity.Folder;
+import com.revature._1811_nov27_wvu.icebox.entity.User;
 import com.revature._1811_nov27_wvu.icebox.services.FolderService;
 
 @RestController
@@ -18,9 +21,13 @@ public class FolderController {
 
 	@Autowired
 	private FolderService fs;
+	@Autowired
+	private HttpSession session; 
 	
 	@RequestMapping(value="/api/folders", method=RequestMethod.POST)
 	public Folder addFolder(@RequestBody Folder f) {
+		f.setOwner((User) session.getAttribute("user"));
+		//TODO: Put parent folder here too
 		return fs.addFolder(f);
 	}
 	@RequestMapping(value="/api/folders", method=RequestMethod.GET)
