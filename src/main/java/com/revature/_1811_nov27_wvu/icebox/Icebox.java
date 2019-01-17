@@ -20,6 +20,12 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+
 public class Icebox implements WebApplicationInitializer {
 
 	@Override
@@ -30,19 +36,19 @@ public class Icebox implements WebApplicationInitializer {
 
 		// Add the annotated spring context to the current servlet context
 		servletContext.addListener(new ContextLoaderListener(ctx));
-		
+
 		// Map the dispatcher servlet to the root path
 		ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(ctx));
 		dispatcher.setLoadOnStartup(1);
 		dispatcher.addMapping("/");
 	}
-	
+
 	@EnableWebMvc
 	@Configuration
 	@EnableAspectJAutoProxy
 	@ComponentScan(basePackages = "com.revature._1811_nov27_wvu.icebox")
 	public static class SpringConfig implements WebMvcConfigurer {
-		private static final int MAX_FILE_SIZE = 500 * 1024 * 1024; //500MB
+		private static final int MAX_FILE_SIZE = 150 * 1024 * 1024; // 150MB
 
 		@Override
 		public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -50,20 +56,27 @@ public class Icebox implements WebApplicationInitializer {
 			registry.setOrder(-2).addResourceHandler("/static/**").addResourceLocations("/");
 			registry.setOrder(-1).addResourceHandler("/assets/**").addResourceLocations("/assets/");
 		}
-		
+
 		@Bean
-	    public CommonsMultipartResolver multipartResolver() {
-	        CommonsMultipartResolver cmr = new CommonsMultipartResolver();
-	        cmr.setMaxUploadSize(MAX_FILE_SIZE * 5);
-	        cmr.setMaxUploadSizePerFile(MAX_FILE_SIZE);
-	        return cmr;
-	    }
-		
+		public CommonsMultipartResolver multipartResolver() {
+			CommonsMultipartResolver cmr = new CommonsMultipartResolver();
+			cmr.setMaxUploadSize(MAX_FILE_SIZE * 5);
+			cmr.setMaxUploadSizePerFile(MAX_FILE_SIZE);
+			return cmr;
+		}
+
 		@Bean
-	    @Scope("prototype")
-	    public Logger produceLogger(InjectionPoint injectionPoint) {
-	        Class<?> classOnWired = injectionPoint.getMember().getDeclaringClass();
-	        return Logger.getLogger(classOnWired);
-	    }
+		public AmazonS3 s3Client() {
+			return AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(
+					new BasicAWSCredentials(System.getenv("s3user"), System.getenv("s3pass"))))
+					.withRegion(Regions.US_EAST_1).build();
+		}
+
+		@Bean
+		@Scope("prototype")
+		public Logger produceLogger(InjectionPoint injectionPoint) {
+			Class<?> classOnWired = injectionPoint.getMember().getDeclaringClass();
+			return Logger.getLogger(classOnWired);
+		}
 	}
 }

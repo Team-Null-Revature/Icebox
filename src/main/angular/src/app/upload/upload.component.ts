@@ -33,13 +33,11 @@ export class UploadComponent implements OnInit {
         Array.from(files).forEach((f: File) => {
             this.stagedFiles.set(f.name, f);
         });
-        console.log(this.stagedFiles);
     }
 
     // Removes a file from the staged map
     removeFile(file: File) {
         this.stagedFiles.delete(file.name);
-        console.log('Removing: ' + file.name);
     }
 
     // Move files from the staged to the inProgress map and start the upload service
@@ -75,7 +73,6 @@ export class UploadComponent implements OnInit {
                     lastTime = currentTime;
                     lastSize = event.loaded;
                 } else if (event.type === HttpEventType.Response) {
-                    console.log(event);
                     this.inProgressFiles.delete(result.value.getFile().name);
                     this.uploadService();
                 }
@@ -91,7 +88,6 @@ export class UploadComponent implements OnInit {
         this.stagedFiles.clear();
         // Clear the uploadFiles element
         this.filesInput.nativeElement.value = '';
-        console.log('Files Cleared!');
     }
 
     // Formats bytes into a more human readable format
