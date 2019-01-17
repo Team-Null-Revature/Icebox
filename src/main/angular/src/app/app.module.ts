@@ -20,6 +20,7 @@ import { FolderComponent } from './folder/folder.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AllSharedComponent } from './files/all-shared/all-shared.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -46,6 +47,7 @@ import { AllSharedComponent } from './files/all-shared/all-shared.component';
     providers: [
         FileService,
         UserServiceService,
+        DatePipe,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: ApiInterceptorService,
