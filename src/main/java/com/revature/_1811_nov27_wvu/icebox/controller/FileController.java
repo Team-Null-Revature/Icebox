@@ -67,6 +67,5 @@ public class FileController {
 	public Set<File> getFiles() {
 		log.trace("Java");
 		return fs.getAllSharedFiles();
->>>>>>> c1b4cfd380cd1b6ac50bebb16aa203f03cf41eca
 	}
 }
