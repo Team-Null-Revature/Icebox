@@ -65,7 +65,7 @@ public class FileHibernate implements FileDao {
 	@Override
 	public File getFileBySharestr(String st) {
 		Session s = sf.getSession();
-		Query<File> q = s.createQuery("FROM File where sharestr=:str", File.class);
+		Query<File> q = s.createQuery("FROM File where share=:str", File.class);
 		q.setParameter("str", st);
 		return q.uniqueResult();
 	}
@@ -73,7 +73,7 @@ public class FileHibernate implements FileDao {
 	@Override
 	public Set<File> getAllSharedFiles() {
 		Session s = sf.getSession();
-		Query<File> q = s.createQuery("FROM File where sharestr is not null", File.class);
+		Query<File> q = s.createQuery("FROM File where share is not null", File.class);
 		List<File> shareList = q.getResultList();
 		Set<File> shareSet = new HashSet<File>(shareList);
 		return shareSet;
