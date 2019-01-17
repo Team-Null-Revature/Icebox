@@ -23,7 +23,7 @@ public class FileController {
 	private FileService fs;
 	
 	@RequestMapping(value="/api/files",method=RequestMethod.GET)
-	public Set<File> getAll() {
+	public Set<File> getAllFiles() {
 		log.trace("Get all files");
 		return fs.getAllFiles();
 	}
@@ -55,5 +55,10 @@ public class FileController {
 	public File getFile(@PathVariable("sharestr") String s) {
 		log.trace("Java");
 		return fs.getFileByShareStr(s);
+	}
+	@RequestMapping(value="/api/files/shared", method=RequestMethod.GET)
+	public Set<File> getFiles() {
+		log.trace("Java");
+		return fs.getAllSharedFiles();
 	}
 }

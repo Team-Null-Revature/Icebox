@@ -51,4 +51,9 @@ public class FileServiceImpl implements FileService {
 		return fd.getFileBySharestr(s);
 	}
 
+	@Override
+	public Set<File> getAllSharedFiles() {
+		return fd.getAllSharedFiles();
+	}
+
 }
