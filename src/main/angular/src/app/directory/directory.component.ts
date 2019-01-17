@@ -35,7 +35,7 @@ export class DirectoryComponent implements OnInit {
     console.log("Called delete on folder");
     this.folderService.deleteFolder(id).subscribe();
     this.folders= this.folders.filter(f => f.folder_id !== id);
-    window.location.reload();
+    //window.location.reload();
   }
   removeFile(id:number){
     console.log("Called delete on file");
