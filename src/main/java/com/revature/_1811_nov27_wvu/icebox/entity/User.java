@@ -9,63 +9,75 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ib_user")
+@Table(name = "ib_user")
 public class User {
 	@Id
-	@Column(name="user_id")
-	@SequenceGenerator(name="userSeq", sequenceName="User_Seq", allocationSize=1)
-	@GeneratedValue(generator="userSeq", strategy=GenerationType.SEQUENCE)
+	@Column(name = "user_id")
+	@SequenceGenerator(name = "userSeq", sequenceName = "User_Seq", allocationSize = 1)
+	@GeneratedValue(generator = "userSeq", strategy = GenerationType.SEQUENCE)
 	private int id;
 	private String username;
 	private String pass;
 	private String fname;
 	private String lname;
 	private String email;
-	
+
 	public User() {
 		super();
 	}
-	
+
 	public User(int id, String username, String password, String first, String last) {
 		super();
 	}
-	
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 	public String getPass() {
 		return pass;
 	}
+
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
+
 	public String getFname() {
 		return fname;
 	}
+
 	public void setFname(String fname) {
 		this.fname = fname;
 	}
+
 	public String getLname() {
 		return lname;
 	}
+
 	public void setLname(String lname) {
 		this.lname = lname;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -78,6 +90,7 @@ public class User {
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -116,11 +129,11 @@ public class User {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", pass=" + pass + ", fname=" + fname + ", lname=" + lname
 				+ ", email=" + email + "]";
 	}
-	
-	
+
 }

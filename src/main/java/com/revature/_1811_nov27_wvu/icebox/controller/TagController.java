@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import com.revature._1811_nov27_wvu.icebox.entity.Tag;
+import com.revature._1811_nov27_wvu.icebox.services.FileService;
 import com.revature._1811_nov27_wvu.icebox.services.TagService;
 
 @RestController
@@ -22,6 +23,7 @@ public class TagController {
 	
 	@Autowired
 	private TagService ts; 
+	private FileService fs; 
 	
 	@RequestMapping(value = "/api/tag", method = RequestMethod.GET)
 	public Set<Tag> getAllTags(){
@@ -35,11 +37,15 @@ public class TagController {
 		return ts.getTagById(id);
 	}
 	
+	//Figure out how to send file object to addtags
+	//
 	@RequestMapping(value = "/api/tag", method = RequestMethod.POST)
 	public Tag addTags(@RequestBody Tag t) {
+		log.trace("tag: " + t);
+		//log.trace("file: " + id);
 		log.trace("adding tags");
 		return ts.addTag(t);
 	}
-	
+	///file={id} , @PathVariable("id") int id
 }
    

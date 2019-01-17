@@ -1,4 +1,4 @@
-
+<!-- Add the angular router -->
 <router-outlet></router-outlet>
 
 <!-- Add the top navigation bar -->
@@ -10,7 +10,7 @@
     <!-- Column for the file and folder table -->
     <div class="col-md-8 px-0">
       <!-- Table for files and folders -->
-      <table class="table table-hover"> 
+      <table class="table table-hover">
         <thead class="thead-dark">
           <tr>
             <th scope="col" class="border-top-0">Name</th>
@@ -49,12 +49,13 @@
             </th>
             <th scope="col" class="border-top-0 th-md-btn">
               <!-- Import the upload button -->
-              <app-upload></app-upload>
+              <app-upload [folderId]="folderId"></app-upload>
             </th>
           </tr>
         </thead>
       </table>
       <div class="card">
+<<<<<<< HEAD
         <div class="card-body">
           <p>File info goes here.</p>
         </div>
@@ -67,6 +68,9 @@
             <input type = "submit" class = "btn btn-primary" style = "height:50px;width:85px" value = "Add Tag"/>
           </div>
         </form>
+=======
+        <div class="card-body"><p>File info goes here.</p></div>
+>>>>>>> 77afda697aca43bd9f310263c2441bbea11326f8
       </div>
     </div>
   </div>

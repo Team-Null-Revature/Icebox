@@ -18,23 +18,23 @@ export class FileComponent implements OnInit {
 
   ngOnInit() {
       const id = +this.route.snapshot.paramMap.get('id');
-      const share = +this.route.snapshot.paramMap.get('sharestr');
-      if (id) {
+      const share = this.route.snapshot.paramMap.get('sharestr');
+      if (id !== 0) {
         this.fileService.getFile(id).subscribe(file => this.openFile = file);
      }
-     if (share) {
-         this.fileService.getFile(share).subscribe(file => this.openFile = file);
+     if (share !== null) {
+        this.fileService.getShareFile(share).subscribe(file => this.openFile = file);
      }
     }
 
     share() {
-      if (this.openFile.sharestr == null) {
+      if (this.openFile.share == null) {
          this.fileService.shareFile(this.openFile).subscribe(file => {
                  this.openFile = file;
-                 alert('Link created: icebox/files/shared/' + this.openFile.sharestr);
+                 alert('Link created: icebox/shared/' + this.openFile.share);
             });
       } else {
-        alert('Link already created: icebox/files/shared/' + this.openFile.sharestr);
+        alert('Link already created: icebox/shared/' + this.openFile.share);
       }
     }
 

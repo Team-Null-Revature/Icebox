@@ -4,11 +4,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.stereotype.Component;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.revature._1811_nov27_wvu.icebox.entity.Tag;
+import com.revature._1811_nov27_wvu.icebox.controller.TagController;
+import com.revature._1811_nov27_wvu.icebox.entity.File;
 
 import java.util.List;
 
@@ -17,6 +20,9 @@ public class TagHibernate implements TagDAO{
 	@Autowired
 	SessionFactory sf; 
 	
+	private Logger log = Logger.getLogger(TagHibernate.class);
+	
+	
 	@Override
 	public Tag addTag(Tag t) {
 		Session s = sf.getSession();
@@ -24,6 +30,7 @@ public class TagHibernate implements TagDAO{
 		s.save(t);
 		tx.commit();
 		s.close();
+		log.trace("tag:" + t);
 		return t;
 	}
 

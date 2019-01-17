@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.revature._1811_nov27_wvu.icebox.dao.TagDAO;
+import com.revature._1811_nov27_wvu.icebox.entity.File;
 import com.revature._1811_nov27_wvu.icebox.entity.Tag;
 
 @Service

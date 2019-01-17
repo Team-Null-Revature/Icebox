@@ -20,6 +20,7 @@ import { ApiInterceptorService } from './services/api-interceptor.service';
 import { FolderComponent } from './folder/folder.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AllSharedComponent } from './files/all-shared/all-shared.component';
 
 @NgModule({
     declarations: [
@@ -34,7 +35,8 @@ import { AppRoutingModule } from './app-routing.module';
         HomeComponent,
         CommentComponent,
         AllFilesComponent,
-        RegistrationComponent
+        RegistrationComponent,
+        AllSharedComponent
     ],
     imports: [
         BrowserModule,

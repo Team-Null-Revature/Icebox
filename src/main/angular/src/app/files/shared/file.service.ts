@@ -14,11 +14,7 @@ export class FileService {
 
   getFiles(): Observable<File[]> {
       return this.http.get(this.appUrl, {withCredentials: false}).pipe(
-          map(resp => {
-              console.log(resp);
-              return resp as File[];
-            })
-      );
+          map(resp => resp as File[]));
   }
   getFile(id: number): Observable<File> {
       const url: string = this.appUrl + '/' + id;
@@ -27,6 +23,10 @@ export class FileService {
   getShareFile(sharestr: string): Observable<File> {
     const url: string = this.appUrl + '/shared/' + sharestr;
       return this.http.get(url, {withCredentials: false}).pipe(map(resp => resp as File));
+  }
+  getAllShared(): Observable<File[]> {
+    const url: string = this.appUrl + '/shared';
+    return this.http.get(url, {withCredentials: false}).pipe(map(resp => resp as File[]));
   }
   updateFile(file: File): Observable<File> {
       const body = JSON.stringify(file);
@@ -46,7 +46,6 @@ export class FileService {
   shareFile(file: File): Observable<File> {
       const body = JSON.stringify(file);
       const url = this.appUrl + '/share';
-      console.log('doing request');
       return this.http.put(url, body,
              {headers: this.headers, withCredentials: false}).pipe(
               map(resp => resp as File)

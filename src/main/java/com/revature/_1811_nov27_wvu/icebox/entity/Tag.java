@@ -9,26 +9,35 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ib_tag")
+@Table(name = "ib_tag")
 public class Tag {
 	@Id
+<<<<<<< HEAD
 	@Column(name="Tag_id")
 	@SequenceGenerator(name="tagSeq", sequenceName="Tag_Seq", allocationSize=1)
 	@GeneratedValue(generator="tagSeq", strategy=GenerationType.SEQUENCE)
+=======
+	@Column(name = "Tag_id")
+>>>>>>> 77afda697aca43bd9f310263c2441bbea11326f8
 	private int tag_id;
 	private String name;
+
 	public int getTag_id() {
 		return tag_id;
 	}
+
 	public void setTag_id(int tag_id) {
 		this.tag_id = tag_id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -37,6 +46,7 @@ public class Tag {
 		result = prime * result + tag_id;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -55,10 +65,10 @@ public class Tag {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Tag [tag_id=" + tag_id + ", name=" + name + "]";
 	}
-	
-	
+
 }
