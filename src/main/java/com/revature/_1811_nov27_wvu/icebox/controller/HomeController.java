@@ -16,7 +16,7 @@ public class HomeController {
 	public String forwardStaticFiles(@PathVariable String file) {
 		return "/static/" + file;
 	}
-	
+
 	/**
 	 * Forwards unmapped endpoints to the index page.
 	 */

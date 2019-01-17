@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { FolderComponent } from './folder/folder.component';
 import { FileComponent } from 'src/app/files/file/file.component';
 import { AllFilesComponent } from 'src/app/files/all-files/all-files.component';
+import { AllSharedComponent } from 'src/app/files/all-shared/all-shared.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
@@ -34,8 +35,12 @@ const routes: Routes = [
         component: AllFilesComponent
     },
     {
-        path: 'files/:sharestr',
+        path: 'shared/:sharestr',
         component: FileComponent
+    },
+    {
+        path: 'shared',
+        component: AllSharedComponent
     },
     {
       path: 'folder',

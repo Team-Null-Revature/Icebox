@@ -85,4 +85,13 @@ public class FileServiceImpl implements FileService {
 		return f;
 	}
 
+	@Override
+	public File getFileByShareStr(String s) {
+		return fd.getFileBySharestr(s);
+	}
+
+	@Override
+	public Set<File> getAllSharedFiles() {
+		return fd.getAllSharedFiles();
+	}
 }

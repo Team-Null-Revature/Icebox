@@ -14,14 +14,21 @@ export class RegistrationComponent implements OnInit {
   constructor(private uService: UserServiceService, private router: Router) {}
 
   ngOnInit() {
+    this.uService.checkLogin().subscribe(
+      resp => {
+          if(resp != null){
+              this.router.navigate(['/home']);
+          }
+      }
+  );
   }
 
   onSubmit() {
     this.uService.sendRegistration(this.user).subscribe(
       resp => {
         console.log(resp);
+        this.router.navigate(['/login']);
       }
     );
-    this.router.navigate(['/home']);
   }
 }

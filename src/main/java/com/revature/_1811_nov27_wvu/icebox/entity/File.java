@@ -17,26 +17,26 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Ib_File")
+@Table(name = "Ib_File")
 public class File {
 	@Id
-	@Column(name="File_Id")
-	@SequenceGenerator(name="fileSeq", sequenceName="File_Seq", allocationSize=1)
-	@GeneratedValue(generator="fileSeq", strategy=GenerationType.SEQUENCE)
+	@Column(name = "File_Id")
+	@SequenceGenerator(name = "fileSeq", sequenceName = "File_Seq", allocationSize = 1)
+	@GeneratedValue(generator = "fileSeq", strategy = GenerationType.SEQUENCE)
 	private int id;
-	@Column(name="fSize")
+	@Column(name = "fSize")
 	private long size;
 	private Date created;
 	private String name, type;
-	@Column(name="fShare")
+	@Column(name = "fShare")
 	private String share;
-	
+
 	@ManyToOne
-	@JoinColumn(name="folder")
+	@JoinColumn(name = "folder")
 	private Folder folder;
-	
-	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(name="ib_file_tag", joinColumns=@JoinColumn(name="file_id"), inverseJoinColumns=@JoinColumn(name="tag_id"))
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "ib_file_tag", joinColumns = @JoinColumn(name = "file_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
 	private Set<Tag> tags;
 
 	public int getId() {

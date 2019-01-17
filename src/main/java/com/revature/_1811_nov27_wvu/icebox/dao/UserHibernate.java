@@ -11,12 +11,11 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
 import com.revature._1811_nov27_wvu.icebox.entity.User;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserHibernate implements UserDao{
+public class UserHibernate implements UserDao {
 	private Logger log = Logger.getLogger(UserHibernate.class);
 	@Autowired
 	private SessionFactory sf;
@@ -26,7 +25,7 @@ public class UserHibernate implements UserDao{
 		Session s = sf.getSession();
 		log.trace("About to add user");
 		Transaction tx = s.beginTransaction();
-		log.trace("made transaction:"+tx);
+		log.trace("made transaction:" + tx);
 		s.save(u);
 		tx.commit();
 		s.close();
@@ -35,7 +34,7 @@ public class UserHibernate implements UserDao{
 
 	@Override
 	public User getUserById(int i) {
-		log.trace("inGet"+sf);
+		log.trace("inGet" + sf);
 		Session s = sf.getSession();
 		log.trace("after");
 		User u = s.get(User.class, i);
@@ -51,7 +50,7 @@ public class UserHibernate implements UserDao{
 		List<User> userList = q.getResultList();
 		s.close();
 		return new HashSet<User>(userList);
-		
+
 	}
 
 	@Override
