@@ -42,6 +42,7 @@ DROP TABLE Ib_User CASCADE CONSTRAINTS;
    Drop Sequences
 ********************************************************************************/
 DROP SEQUENCE User_Seq;
+DROP SEQUENCE File_Seq;
 DROP SEQUENCE Folder_Seq;
 
 /*******************************************************************************
@@ -67,13 +68,13 @@ CREATE TABLE Ib_Folder (
 
 CREATE TABLE Ib_File (
     File_Id NUMBER(10) PRIMARY KEY,
-    FileName VARCHAR2(100) NOT NULL,
-    FileType VARCHAR2(20) NOT NULL,
-    Added DATE NOT NULL,
-    FileSize NUMBER(20,10) NOT NULL, --this should be the size in bytes, we can calculate later
-    ShareStr VARCHAR2(36),
-    P_Folder NUMBER(10), --fk
-    CONSTRAINT FK_FI_folder FOREIGN KEY (P_Folder) REFERENCES Ib_Folder(folder_id)
+    Name VARCHAR2(100) NOT NULL,
+    Type VARCHAR2(100) NOT NULL,
+    Created DATE NOT NULL,
+    fSize NUMBER(20,10) NOT NULL,
+    fShare VARCHAR2(36),
+    Folder NUMBER(10), --fk
+    CONSTRAINT FK_FI_folder FOREIGN KEY (Folder) REFERENCES Ib_Folder(Folder_Id)
 );
 
 CREATE TABLE Ib_Comment (
@@ -81,8 +82,8 @@ CREATE TABLE Ib_Comment (
     User_Id NUMBER(10) NOT NULL,--fk
     File_Id NUMBER(10) NOT NULL,--fk
     CommentStr VARCHAR2(1000) NOT NULL,
-    CONSTRAINT FK_C_User FOREIGN KEY (User_Id) REFERENCES Ib_User(user_id),
-    CONSTRAINT FK_C_File FOREIGN KEY (File_Id) REFERENCES Ib_File(file_id)
+    CONSTRAINT FK_C_User FOREIGN KEY (User_Id) REFERENCES Ib_User(User_Id),
+    CONSTRAINT FK_C_File FOREIGN KEY (File_Id) REFERENCES Ib_File(File_Id)
 );
 
 CREATE TABLE Ib_Tag (
@@ -94,14 +95,15 @@ CREATE TABLE Ib_File_tag (
     File_Tag_Id NUMBER(10) PRIMARY KEY,
     File_Id NUMBER(10) NOT NULL, --fk
     Tag_Id NUMBER(10) NOT NULL, --fk
-    CONSTRAINT FK_FT_Tag FOREIGN KEY (Tag_Id) REFERENCES Ib_Tag(tag_id),
-    CONSTRAINT FK_FT_Tile FOREIGN KEY (File_Id) REFERENCES Ib_File(file_id)
+    CONSTRAINT FK_FT_Tag FOREIGN KEY (Tag_Id) REFERENCES Ib_Tag(Tag_Id),
+    CONSTRAINT FK_FT_Tile FOREIGN KEY (File_Id) REFERENCES Ib_File(File_Id)
 );
 
 /*******************************************************************************
    Create Sequences
 ********************************************************************************/
 CREATE SEQUENCE User_Seq;
+CREATE SEQUENCE File_Seq;
 CREATE SEQUENCE Folder_Seq;
 
 /*******************************************************************************
@@ -121,5 +123,6 @@ VALUES (User_Seq.nextVal, 'derrekrueger','supersecure','Derrek','Rueger','laston
 INSERT INTO Ib_Folder (Folder_Id, Owner, Name)
 VALUES (Folder_Seq.nextVal, 1, 'tbroot');
 
-INSERT INTO Ib_File (File_Id,FileName,FileType,Added,FileSize,P_Folder)
-VALUES (1,'tbrooottest','txt','01-Jan-2019',20,1);
+INSERT INTO Ib_File (File_Id,Name,Type,Created,fSize,Folder)
+VALUES (File_Seq.nextVal,'tbrooottest','txt','01-Jan-2019',20,1);
+

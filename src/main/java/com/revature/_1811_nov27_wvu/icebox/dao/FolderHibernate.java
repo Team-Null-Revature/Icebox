@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
 import com.revature._1811_nov27_wvu.icebox.entity.Folder;
 
 @Component
-public class FolderHibernate implements FolderDao{
+public class FolderHibernate implements FolderDao {
 	@Autowired
-	SessionFactory sf; 
-	
+	SessionFactory sf;
+
 	@Override
 	public Folder addFolder(Folder f) {
 		Session s = sf.getSession();

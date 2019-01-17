@@ -12,7 +12,7 @@ import com.revature._1811_nov27_wvu.icebox.entity.Address;
 public class AddressDao {
 	@Autowired
 	SessionFactory sf;
-	
+
 	public List<Address> getAll() {
 		Session s = sf.getSession();
 		List<Address> a = s.createQuery("From Address", Address.class).list();
