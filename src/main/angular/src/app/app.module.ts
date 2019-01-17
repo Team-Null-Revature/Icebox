@@ -37,11 +37,8 @@ import { AllSharedComponent } from './files/all-shared/all-shared.component';
         CommentComponent,
         AllFilesComponent,
         RegistrationComponent,
-<<<<<<< HEAD
-        DirectoryComponent
-=======
+        DirectoryComponent,
         AllSharedComponent
->>>>>>> c1b4cfd380cd1b6ac50bebb16aa203f03cf41eca
     ],
     imports: [
         BrowserModule,
