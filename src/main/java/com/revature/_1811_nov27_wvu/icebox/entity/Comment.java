@@ -8,42 +8,51 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ib_comment")
+@Table(name = "ib_comment")
 public class Comment {
 	@Id
-	@Column(name="comment_id")
+	@Column(name = "comment_id")
 	private int id;
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	private User sender;
 	@ManyToOne
-	@JoinColumn(name="file_id")
+	@JoinColumn(name = "file_id")
 	private File file;
 	private String comment;
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public User getSender() {
 		return sender;
 	}
+
 	public void setSender(User sender) {
 		this.sender = sender;
 	}
+
 	public File getFile() {
 		return file;
 	}
+
 	public void setFile(File file) {
 		this.file = file;
 	}
+
 	public String getComment() {
 		return comment;
 	}
+
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -54,6 +63,7 @@ public class Comment {
 		result = prime * result + ((sender == null) ? 0 : sender.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -82,10 +92,10 @@ public class Comment {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Comment [id=" + id + ", sender=" + sender + ", file=" + file + ", comment=" + comment + "]";
 	}
-	
-	
+
 }

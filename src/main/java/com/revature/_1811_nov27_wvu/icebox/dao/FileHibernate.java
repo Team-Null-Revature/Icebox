@@ -13,9 +13,10 @@ import org.springframework.stereotype.Component;
 import com.revature._1811_nov27_wvu.icebox.entity.File;
 
 @Component
-public class FileHibernate implements FileDAO {
+public class FileHibernate implements FileDao {
 	@Autowired
 	SessionFactory sf;
+
 	@Override
 	public File addFile(File f) {
 		Session s = sf.getSession();
@@ -64,7 +65,7 @@ public class FileHibernate implements FileDAO {
 	@Override
 	public File getFileBySharestr(String st) {
 		Session s = sf.getSession();
-		Query<File> q = s.createQuery("FROM File where sharestr=:str", File.class);
+		Query<File> q = s.createQuery("FROM File where share=:str", File.class);
 		q.setParameter("str", st);
 		return q.uniqueResult();
 	}
@@ -72,12 +73,10 @@ public class FileHibernate implements FileDAO {
 	@Override
 	public Set<File> getAllSharedFiles() {
 		Session s = sf.getSession();
-		Query<File> q = s.createQuery("FROM File where sharestr is not null", File.class);
+		Query<File> q = s.createQuery("FROM File where share is not null", File.class);
 		List<File> shareList = q.getResultList();
 		Set<File> shareSet = new HashSet<File>(shareList);
 		return shareSet;
 	}
-	
-	
 
 }

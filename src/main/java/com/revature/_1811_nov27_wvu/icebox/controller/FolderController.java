@@ -13,7 +13,7 @@ import com.revature._1811_nov27_wvu.icebox.entity.Folder;
 import com.revature._1811_nov27_wvu.icebox.services.FolderService;
 
 @RestController
-//@RequestMapping(value="/api/folders")
+@RequestMapping(value = "/api/folders")
 public class FolderController {
 
 	@Autowired
@@ -25,6 +25,14 @@ public class FolderController {
 	}
 	@RequestMapping(value="/api/folders", method=RequestMethod.GET)
 	public List<Folder> getFolders(){
+
+	@RequestMapping(method = RequestMethod.POST)
+	public Folder addFolder(@RequestBody Folder f) {
+		return fs.addFolder(f);
+	}
+
+	@RequestMapping(method = RequestMethod.GET)
+	public List<Folder> getFolders() {
 		return fs.getFolders();
 	}
 	@RequestMapping(value="/api/folders/{id}", method=RequestMethod.DELETE)
