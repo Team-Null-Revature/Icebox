@@ -51,4 +51,10 @@ export class FileService {
               map(resp => resp as File)
              );
     }
+
+    //Remove a file from the DB
+deleteFile(id:number){
+    console.log("Deleting file with ID "+id);
+    return this.http.delete('api/files/'+id);
+  }    
 }
