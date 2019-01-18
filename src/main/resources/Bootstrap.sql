@@ -92,9 +92,10 @@ CREATE TABLE Ib_Tag (
     Name VARCHAR2(20) NOT NULL
 );
 
-CREATE TABLE Ib_File_tag (
+CREATE TABLE Ib_File_Tag (
     File_Id NUMBER(10) NOT NULL, --fk
     Tag_Id NUMBER(10) NOT NULL, --fk
+    CONSTRAINT PK_FT PRIMARY KEY (File_Id, Tag_Id),
     CONSTRAINT FK_FT_Tag FOREIGN KEY (Tag_Id) REFERENCES Ib_Tag(Tag_Id),
     CONSTRAINT FK_FT_Tile FOREIGN KEY (File_Id) REFERENCES Ib_File(File_Id)
 );
@@ -131,23 +132,14 @@ VALUES (User_Seq.nextVal, 'derrekrueger','supersecure','Derrek','Rueger','laston
 INSERT INTO Ib_Folder (Folder_Id, Owner, Name)
 VALUES (Folder_Seq.nextVal, 5, 'derrekrueger');
 
-
-INSERT INTO Ib_File (File_Id,Name,Type,Created,fSize,Folder)
-VALUES (File_Seq.nextVal,'tbrooottest','txt','01-Jan-2019',20,1);
-
 INSERT INTO Ib_Folder (Folder_Id, Owner, Name,p_folder)
 VALUES (Folder_Seq.nextVal, 1, 'naame',1);
 
 INSERT INTO Ib_File (File_Id,Name,Type,Created,fSize,Folder)
+VALUES (File_Seq.nextVal,'tbrooottest','txt','01-Jan-2019',20,1);
+
+INSERT INTO Ib_File (File_Id,Name,Type,Created,fSize,Folder)
 VALUES (File_Seq.nextVal,'SuccessFile','pdf','01-Jan-2019',20,2);
-
-INSERT INTO Ib_Tag (Tag_Id,Name)
-VALUES (Tag_Seq.nextVal,'thisTag');
-
-INSERT INTO Ib_File_Tag (File_Tag_Id,File_Id,Tag_Id)
-VALUES (1,1,1);
-
-
 
 INSERT INTO Ib_File (File_Id,Name,Type,Created,fSize,Folder)
 VALUES (File_Seq.nextVal,'testFile','pdf','02-Jan-2019',20,1);
@@ -155,12 +147,14 @@ VALUES (File_Seq.nextVal,'testFile','pdf','02-Jan-2019',20,1);
 INSERT INTO Ib_Tag (Tag_Id,Name)
 VALUES (Tag_Seq.nextVal,'thatTag');
 
-INSERT INTO Ib_File_Tag (File_Tag_Id,File_Id,Tag_Id)
-VALUES (2,2,2);
+INSERT INTO Ib_Tag (Tag_Id,Name)
+VALUES (Tag_Seq.nextVal,'thisTag');
 
-INSERT INTO Ib_File_Tag (File_Tag_Id,File_Id,Tag_Id)
-VALUES (3,1,2);
+INSERT INTO Ib_File_Tag (File_Id,Tag_Id)
+VALUES (1,1);
 
+INSERT INTO Ib_File_Tag (File_Id,Tag_Id)
+VALUES (1,2);
 
 commit;
 
