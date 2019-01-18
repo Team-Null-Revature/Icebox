@@ -23,6 +23,7 @@ public class TagController {
 	
 	@Autowired
 	private TagService ts; 
+	@Autowired
 	private FileService fs; 
 	
 	@RequestMapping(value = "/api/tag", method = RequestMethod.GET)
@@ -44,20 +45,18 @@ public class TagController {
 		log.trace("tag: " + t);
 		log.trace("file: " + id);
 		
-		Tag tempTag = new Tag(); 
-		File tempFile = new File();
-		log.trace("temp objects created");
-		tempTag.setName(t.getName());
-		log.trace("tempTag name: " + tempTag.getName());
-		
 		
 		log.trace("trying to get file by id");
-		tempFile = fs.getFileById(id);
-		System.out.println("file: " + tempFile.toString() + "tag: " + tempTag.toString());
-	
+		File tempFile = fs.getFileById(id);
+		System.out.println("file: " + tempFile.toString());
 		log.trace("adding tags");
- 
-		return ts.addTag(t);
+		ts.addTag(t);
+		log.trace("tag2: " + t);
+		tempFile.getTags().add(t);
+		System.out.println("file: " + tempFile.toString());
+		fs.updateFile(tempFile);
+		
+		return t;
 	}
 	//, @PathVariable("id") int id 
 }

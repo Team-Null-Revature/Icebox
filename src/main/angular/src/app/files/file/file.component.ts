@@ -59,6 +59,7 @@ export class FileComponent implements OnInit {
         console.log(resp); 
       }
     );
+    window.location.reload();
   }
 
 }
