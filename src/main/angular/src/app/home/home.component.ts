@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UserServiceService } from '../shared/user-service.service';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,17 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class HomeComponent implements OnInit {
   folderId: Number;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private uService: UserServiceService,private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
+    console.log("Making home");
+    this.uService.checkLogin().subscribe(
+      resp => {
+          if(resp == null){
+              this.router.navigate(['/login']);
+          }
+      }
+    );
     this.route.paramMap.subscribe(params => (this.folderId = +params.get('folderId')));
   }
 }

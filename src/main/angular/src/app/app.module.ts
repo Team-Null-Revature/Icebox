@@ -56,7 +56,8 @@ import { DatePipe } from '@angular/common';
             provide: HTTP_INTERCEPTORS,
             useClass: ApiInterceptorService,
             multi: true
-        }
+        },
+        DirectoryComponent
     ],
     bootstrap: [AppComponent]
 })

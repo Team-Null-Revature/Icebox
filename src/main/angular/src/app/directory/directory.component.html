@@ -6,11 +6,14 @@
         <th scope="col" class="border-top-0">Size</th>
         <th scope="col" class="border-top-0">Actions</th>
       </tr>
+      <!-- <td>
+        <button class="btn btn-secondary" id="backButton"> Back </button>
+      </td> --> <!--Maybe impliment this later-->
     </thead>
     <tbody>
       <!-- Display all folders -->
       <tr *ngFor="let f of folders">
-        <th scope="row"><span class="fa fa-folder-open" aria-hidden="true"></span>  {{f.name}}</th>
+        <th scope="row" (dblclick)="enterFolder(f.id)"><span class="fa fa-folder-open" aria-hidden="true"></span>  {{f.name}}</th>
         <td>--</td> <!--Modified not implemented for folders-->
         <td>--</td> <!--File size not implemented for folders-->
         <td>
@@ -18,11 +21,11 @@
         </td>
       </tr>
 
-      <br><br><br>
       <!--Files display here-->
       <!--<app-all-files></app-all-files>-->
       <tr *ngFor="let fi of files">
-        <th scope="row"><span class="fa fa-file-archive-o" aria-hidden="true"></span> {{fi.name}}</th>
+
+        <th scope="row"><span class="fa fa-file-archive-o" aria-hidden="true" ></span> {{fi.name}}</th>
         <td>{{fi.created | date:'medium'}}</td>
         <td>{{fi.size}}</td>
         <td>

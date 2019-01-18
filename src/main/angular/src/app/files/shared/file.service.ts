@@ -48,11 +48,18 @@ export class FileService {
       return this.http.post(this.appUrl, body, { headers: this.headers, withCredentials: false }).pipe(map(resp => resp as FileCustom));
     }
   }
+
     // Remove a file from the DB
     deleteFile(id: number) {
         console.log('Deleting file with ID ' + id);
         return this.http.delete('api/files/' + id);
     }
+
+  getFilesByFolder(fId: Number): Observable<FileCustom[]> {
+    return this.http.get('api/files/folder=' + fId).pipe(
+        map(resp => resp as FileCustom[])
+      );
+  }
 
   shareFile(file: FileCustom): Observable<FileCustom> {
     const body = JSON.stringify(file);
@@ -119,5 +126,11 @@ export class FileService {
   // Observable for file upload events
   onFileUploaded(): Observable<FileCustom> {
     return this.fileUploaded;
+  }
+  // get all files from search
+  getSearch(s: String): Observable<FileCustom[]> {
+    return this.http.get('api/files/search/' + s).pipe(
+        map(resp => resp as FileCustom[])
+      );
   }
 }

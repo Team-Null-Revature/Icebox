@@ -4,13 +4,14 @@ import { Folder } from './folder';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FolderService {
   private folder: Folder;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private route: ActivatedRoute) { }
 
   //Get all folders in DB
   getFolders(): Observable<Folder[]>{
@@ -19,9 +20,9 @@ export class FolderService {
     );
   }
   //Add a new folder to the DB
-  addFolder(folder : Folder){
-      console.log(folder);
-    return this.http.post('api/folders', folder).pipe(
+  addFolder(folder : Folder, id: Number){
+    console.log(folder);
+    return this.http.post('api/folders/'+id, folder).pipe(
       map(resp=> resp as Folder)
     );
   }
@@ -29,6 +30,18 @@ export class FolderService {
   deleteFolder(id:number){
     console.log("Deleting folder with ID "+id);
     return this.http.delete('api/folders/'+id);
+  }
+  //Get the root folder
+  getRoot(): Observable<Folder>{
+    return this.http.get('api/folders/root').pipe(
+      map(resp => resp as Folder)
+    );
+  }
+  //Get all folders in current Folder
+  getFolderContent(fl:Number): Observable<Folder[]>{
+    return this.http.get('api/folder='+fl).pipe(
+      map(resp => resp as Folder[])
+    );
   }
 }
 
