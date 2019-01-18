@@ -128,4 +128,10 @@ deleteFile(id:number){
   onFileUploaded(): Observable<FileCustom> {
     return this.fileUploaded;
   }
+  // get all files from search
+  getSearch(s: String): Observable<FileCustom[]> {
+    return this.http.get('api/files/search/'+s).pipe(
+        map(resp => resp as FileCustom[])
+      );
+  }
 }

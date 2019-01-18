@@ -142,25 +142,25 @@ VALUES (Folder_Seq.nextVal, 1, 'naame',1);
 INSERT INTO Ib_File (File_Id,Name,Type,Created,fSize,Folder)
 VALUES (File_Seq.nextVal,'SuccessFile','pdf','01-Jan-2019',20,2);
 
---INSERT INTO Ib_Tag (Tag_Id,Name)
---VALUES (Tag_Seq.nextVal,'thisTag');
---
---INSERT INTO Ib_File_Tag (File_Tag_Id,File_Id,Tag_Id)
---VALUES (1,1,1);
---
---
---
---INSERT INTO Ib_File (File_Id,Name,Type,Created,fSize,Folder)
---VALUES (File_Seq.nextVal,'testFile','pdf','02-Jan-2019',20,1);
---
---INSERT INTO Ib_Tag (Tag_Id,Name)
---VALUES (Tag_Seq.nextVal,'thisTag');
---
---INSERT INTO Ib_File_Tag (File_Tag_Id,File_Id,Tag_Id)
---VALUES (2,2,2);
---
---INSERT INTO Ib_File_Tag (File_Tag_Id,File_Id,Tag_Id)
---VALUES (3,1,2);
+INSERT INTO Ib_Tag (Tag_Id,Name)
+VALUES (Tag_Seq.nextVal,'thisTag');
+
+INSERT INTO Ib_File_Tag (File_Tag_Id,File_Id,Tag_Id)
+VALUES (1,1,1);
+
+
+
+INSERT INTO Ib_File (File_Id,Name,Type,Created,fSize,Folder)
+VALUES (File_Seq.nextVal,'testFile','pdf','02-Jan-2019',20,1);
+
+INSERT INTO Ib_Tag (Tag_Id,Name)
+VALUES (Tag_Seq.nextVal,'thatTag');
+
+INSERT INTO Ib_File_Tag (File_Tag_Id,File_Id,Tag_Id)
+VALUES (2,2,2);
+
+INSERT INTO Ib_File_Tag (File_Tag_Id,File_Id,Tag_Id)
+VALUES (3,1,2);
 
 
 commit;

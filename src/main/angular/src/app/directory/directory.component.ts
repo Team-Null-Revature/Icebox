@@ -68,7 +68,9 @@ export class DirectoryComponent implements OnInit {
     })
   }
   fetchSearchResults(s : String){
-      
+    this.fileService.getSearch(s).subscribe(files => {
+      this.files = files;
+    })
   }
 
 
