@@ -33,8 +33,11 @@ export class HomeComponent implements OnInit {
           }
       }
     );
-    this.route.paramMap.subscribe(params => (this.folderId = +params.get('folderId')));
-    this.route.paramMap.subscribe(params => (this.fileId = +params.get('fileId')));
+    this.route.paramMap.subscribe(params => {
+        if (params.get('id')) {
+           this.fileId = +params.get('id');
+        }
+    });
 
 
     this.route.paramMap.subscribe(params => {

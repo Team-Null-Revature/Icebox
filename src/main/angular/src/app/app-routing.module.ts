@@ -23,7 +23,7 @@ const routes: Routes = [
         component: HomeComponent
     },
     {
-        path: 'home/folder/:folderId/file/:fileId',
+        path: 'home/folder/:folderId/file/:id',
         component: HomeComponent
     },
     {

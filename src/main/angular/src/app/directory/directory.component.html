@@ -25,7 +25,7 @@
       <!--<app-all-files></app-all-files>-->
       <tr *ngFor="let fi of files">
 
-        <th scope="row"><span class="fa fa-file-archive-o" aria-hidden="true" ></span> {{fi.name}}</th>
+        <th scope="row" (dblclick)="enterFile(fi.folder.id , fi.id)"><span class="fa fa-file-archive-o" aria-hidden="true" ></span> {{fi.name}}</th>
         <td>{{fi.created | date:'medium'}}</td>
         <td>{{fi.size}}</td>
         <td>
