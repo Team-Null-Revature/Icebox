@@ -55,9 +55,21 @@ public class TagController {
 		tempFile.getTags().add(t);
 		System.out.println("file: " + tempFile.toString());
 		fs.updateFile(tempFile);
-		
+		 
 		return t;
 	}
+	
+	@RequestMapping(value = "/api/tag/{id}", method = RequestMethod.DELETE)
+	public void deleteTags(@RequestBody Tag t, @PathVariable("id") int id) {
+		File tempFile = fs.getFileById(id);
+		
+		tempFile.getTags().remove(t);
+		ts.deleteTag(t);
+		log.trace("file: " + tempFile.toString());
+		fs.updateFile(tempFile);
+		log.trace("file after" + tempFile.toString());
+	}
+	
 	//, @PathVariable("id") int id 
 }
    

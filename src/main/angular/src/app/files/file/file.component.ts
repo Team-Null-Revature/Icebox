@@ -47,8 +47,6 @@ export class FileComponent implements OnInit {
       this.router.navigate(['/files/edit', this.openFile.id]);
   }
 
-
-  
   add_tag(){
     console.log("from file.component.ts");
     console.log(this.tag);
@@ -57,6 +55,16 @@ export class FileComponent implements OnInit {
     this.tagServ.addTag(this.tag, this.openFile).subscribe(
       resp => {
         console.log(resp); 
+      }
+    );
+    window.location.reload();
+  }
+
+  delete_tag(){
+    console.log("from file.component.ts"); 
+    this.tagServ.deleteTag(this.tag, this.openFile).subscribe(
+      resp => {
+        console.log(resp);
       }
     );
     window.location.reload();
