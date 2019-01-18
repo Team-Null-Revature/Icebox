@@ -52,6 +52,12 @@ export class FileService {
              );
     }
 
+    getFilesByFolder(fId: Number): Observable<File[]> {
+        return this.http.get('api/files/folder='+fId).pipe(
+            map(resp => resp as File[])
+          );
+    }
+
     //Remove a file from the DB
 deleteFile(id:number){
     console.log("Deleting file with ID "+id);

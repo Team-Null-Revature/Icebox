@@ -30,5 +30,17 @@ export class FolderService {
     console.log("Deleting folder with ID "+id);
     return this.http.delete('api/folders/'+id);
   }
+  //Get the root folder
+  getRoot(): Observable<Folder>{
+    return this.http.get('api/folders/root').pipe(
+      map(resp => resp as Folder)
+    );
+  }
+  //Get all folders in current Folder
+  getFolderContent(fl:Number): Observable<Folder[]>{
+    return this.http.get('api/folder='+fl).pipe(
+      map(resp => resp as Folder[])
+    );
+  }
 }
 

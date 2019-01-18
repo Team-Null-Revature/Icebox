@@ -94,4 +94,9 @@ public class FileServiceImpl implements FileService {
 	public Set<File> getAllSharedFiles() {
 		return fd.getAllSharedFiles();
 	}
+	
+	@Override
+	public Set<File> getFilesByFolder(int i){
+		return fd.getFilesByFolder(i);
+	}
 }

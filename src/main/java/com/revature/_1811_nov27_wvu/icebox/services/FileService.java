@@ -27,4 +27,6 @@ public interface FileService {
 	public File getFileByShareStr(String s);
 
 	public Set<File> getAllSharedFiles();
+	
+	public Set<File> getFilesByFolder(int i);
 }

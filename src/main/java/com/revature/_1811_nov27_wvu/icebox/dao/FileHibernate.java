@@ -78,5 +78,14 @@ public class FileHibernate implements FileDao {
 		Set<File> shareSet = new HashSet<File>(shareList);
 		return shareSet;
 	}
+	
+	@Override
+	public Set<File> getFilesByFolder(int i){
+		Session s = sf.getSession();
+		Query<File> q = s.createQuery("FROM File where folder.id=:id", File.class);
+		q.setParameter("id", i);
+		Set<File> shareSet = new HashSet<File>(q.getResultList());
+		return shareSet;
+	}
 
 }

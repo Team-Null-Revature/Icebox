@@ -18,4 +18,6 @@ public interface FileDao {
 	File getFileBySharestr(String s);
 
 	Set<File> getAllSharedFiles();
+	
+	Set<File> getFilesByFolder(int i);
 }

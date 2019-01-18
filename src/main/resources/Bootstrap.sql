@@ -126,3 +126,5 @@ VALUES (Folder_Seq.nextVal, 1, 'tbroot');
 INSERT INTO Ib_File (File_Id,Name,Type,Created,fSize,Folder)
 VALUES (File_Seq.nextVal,'tbrooottest','txt','01-Jan-2019',20,1);
 
+
+commit;

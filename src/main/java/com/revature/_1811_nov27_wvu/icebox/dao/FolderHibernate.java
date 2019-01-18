@@ -1,18 +1,24 @@
 package com.revature._1811_nov27_wvu.icebox.dao;
 
 import java.util.List;
+import org.apache.log4j.Logger;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.revature._1811_nov27_wvu.icebox.entity.Folder;
+import com.revature._1811_nov27_wvu.icebox.entity.User;
 
 @Component
 public class FolderHibernate implements FolderDao {
 	@Autowired
 	SessionFactory sf;
+	
+	@Autowired
+	Logger log;
 
 	@Override
 	public Folder addFolder(Folder f) {
@@ -47,6 +53,23 @@ public class FolderHibernate implements FolderDao {
 		Folder f = s.get(Folder.class, i);
 		s.close();
 		return f;
+	}
+	
+	@Override
+	public Folder getRoot(User u) {
+		Session s = sf.getSession();
+		log.trace("Root user:"+u);
+		Query<Folder> q = s.createQuery("FROM Folder where owner.id=:uid and p_folder is null", Folder.class);
+		q.setParameter("uid", u.getId());
+		return q.uniqueResult();
+	}
+	
+	@Override
+	public List<Folder> getContents(int i){
+		Session s = sf.getSession();
+		Query<Folder> q = s.createQuery("FROM Folder where p_folder.id = :id", Folder.class);
+		q.setParameter("id", i);
+		return q.getResultList();
 	}
 
 }
