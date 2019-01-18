@@ -1,7 +1,7 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { User } from '../shared/user';
-import { UserServiceService } from '../shared/user-service.service';
-import {Router} from '@angular/router';
+import { User } from '../shared/models/user.model';
+import { UserServiceService } from '../shared/services/user.service';
 
 @Component({
   selector: 'app-registration',
@@ -9,26 +9,23 @@ import {Router} from '@angular/router';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+  user: User;
 
-  user = new User;
   constructor(private uService: UserServiceService, private router: Router) {}
 
   ngOnInit() {
-    this.uService.checkLogin().subscribe(
-      resp => {
-          if(resp != null){
-              this.router.navigate(['/home']);
-          }
+    this.user = new User();
+    this.uService.checkLogin().subscribe(resp => {
+      if (resp != null) {
+        this.router.navigate(['/home']);
       }
-  );
+    });
   }
 
   onSubmit() {
-    this.uService.sendRegistration(this.user).subscribe(
-      resp => {
-        console.log(resp);
-        this.router.navigate(['/login']);
-      }
-    );
+    this.uService.sendRegistration(this.user).subscribe(resp => {
+      console.log(resp);
+      this.router.navigate(['/login']);
+    });
   }
 }
