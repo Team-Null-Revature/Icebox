@@ -8,20 +8,18 @@
     </tr>
     <!-- <td>
         <button class="btn btn-secondary" id="backButton"> Back </button>
-      </td> -->
-    <!--Maybe impliment this later-->
-  </thead>
-  <tbody>
-    <!-- Display all folders -->
-    <tr *ngFor="let f of folders">
-      <th scope="row" (dblclick)="enterFolder(f.id)"><span class="fa fa-folder-open" aria-hidden="true"></span> {{ f.name }}</th>
-      <td>--</td>
-      <!--Modified not implemented for folders-->
-      <td>--</td>
-      <!--File size not implemented for folders-->
-      <td><button class="btn btn-danger" (click)="removeFolder(f.id)">X</button></td>
-    </tr>
-
+      </td> --> <!--Maybe impliment this later-->
+    </thead>
+    <tbody>
+      <!-- Display all folders -->
+      <tr *ngFor="let f of folders" (dblclick)="enterFolder(f.id)">
+        <th scope="row" ><span class="fa fa-folder-open" aria-hidden="true"></span>  {{f.name}}</th>
+        <td>--</td> <!--Modified not implemented for folders-->
+        <td>--</td> <!--File size not implemented for folders-->
+        <td>
+          <button class="btn btn-danger" (click)="removeFolder(f.id)"> X </button>
+        </td>
+      </tr>
     <!--Files display here-->
     <!--<app-all-files></app-all-files>-->
     <tr *ngFor="let fi of files">
