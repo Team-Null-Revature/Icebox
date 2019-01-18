@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.SdkClientException;
 import com.revature._1811_nov27_wvu.icebox.entity.File;
+import com.revature._1811_nov27_wvu.icebox.entity.User;
 
 public interface FileService {
 	public Set<File> getAllFiles();
@@ -29,4 +30,6 @@ public interface FileService {
 	public Set<File> getAllSharedFiles();
 	
 	public Set<File> getFilesByFolder(int i);
+
+	public Set<File> getFileBySearch(String s, User u);
 }

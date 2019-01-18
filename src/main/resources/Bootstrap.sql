@@ -44,6 +44,7 @@ DROP TABLE Ib_User CASCADE CONSTRAINTS;
 DROP SEQUENCE User_Seq;
 DROP SEQUENCE File_Seq;
 DROP SEQUENCE Folder_Seq;
+DROP SEQUENCE Tag_Seq;
 
 /*******************************************************************************
    Create Tables
@@ -105,6 +106,7 @@ CREATE TABLE Ib_File_tag (
 CREATE SEQUENCE User_Seq;
 CREATE SEQUENCE File_Seq;
 CREATE SEQUENCE Folder_Seq;
+CREATE SEQUENCE Tag_Seq;
 
 /*******************************************************************************
    Insert Data
@@ -140,4 +142,26 @@ VALUES (Folder_Seq.nextVal, 1, 'naame',1);
 INSERT INTO Ib_File (File_Id,Name,Type,Created,fSize,Folder)
 VALUES (File_Seq.nextVal,'SuccessFile','pdf','01-Jan-2019',20,2);
 
+--INSERT INTO Ib_Tag (Tag_Id,Name)
+--VALUES (Tag_Seq.nextVal,'thisTag');
+--
+--INSERT INTO Ib_File_Tag (File_Tag_Id,File_Id,Tag_Id)
+--VALUES (1,1,1);
+--
+--
+--
+--INSERT INTO Ib_File (File_Id,Name,Type,Created,fSize,Folder)
+--VALUES (File_Seq.nextVal,'testFile','pdf','02-Jan-2019',20,1);
+--
+--INSERT INTO Ib_Tag (Tag_Id,Name)
+--VALUES (Tag_Seq.nextVal,'thisTag');
+--
+--INSERT INTO Ib_File_Tag (File_Tag_Id,File_Id,Tag_Id)
+--VALUES (2,2,2);
+--
+--INSERT INTO Ib_File_Tag (File_Tag_Id,File_Id,Tag_Id)
+--VALUES (3,1,2);
+
+
 commit;
+

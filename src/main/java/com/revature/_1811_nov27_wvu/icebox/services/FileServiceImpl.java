@@ -17,6 +17,7 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.revature._1811_nov27_wvu.icebox.dao.FileDao;
 import com.revature._1811_nov27_wvu.icebox.entity.File;
 import com.revature._1811_nov27_wvu.icebox.entity.Folder;
+import com.revature._1811_nov27_wvu.icebox.entity.User;
 
 @Service
 public class FileServiceImpl implements FileService {
@@ -98,5 +99,12 @@ public class FileServiceImpl implements FileService {
 	@Override
 	public Set<File> getFilesByFolder(int i){
 		return fd.getFilesByFolder(i);
+	}
+
+	public Set<File> getFileBySearch(String s, User u){
+		Set<File> fSet = fd.getFilesByName(s, u);
+		Set<File> tSet = fd.getFilesByTag(s, u);
+		if(tSet != null) fSet.addAll(tSet);
+		return fSet;
 	}
 }

@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -11,11 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.revature._1811_nov27_wvu.icebox.entity.File;
+import com.revature._1811_nov27_wvu.icebox.entity.Tag;
+import com.revature._1811_nov27_wvu.icebox.entity.User;
 
 @Component
 public class FileHibernate implements FileDao {
 	@Autowired
 	SessionFactory sf;
+//	@Autowired
+//	private Logger log;
 
 	@Override
 	public File addFile(File f) {
@@ -84,6 +89,29 @@ public class FileHibernate implements FileDao {
 		Session s = sf.getSession();
 		Query<File> q = s.createQuery("FROM File where folder.id=:id", File.class);
 		q.setParameter("id", i);
+		Set<File> shareSet = new HashSet<File>(q.getResultList());
+		return shareSet;
+	}
+
+	public Set<File> getFilesByTag(String st, User u){
+		Session s = sf.getSession();
+		
+		Query<Tag> t = s.createQuery("FROM Tag where name=:tn", Tag.class);
+		t.setParameter("tn", st);
+		if(t.uniqueResult() == null) return null;
+		
+		Query<File> q = s.createQuery("FROM File where folder.owner.id=:ownId and :tg = some elements(tags)", File.class);
+		q.setParameter("tg", t.uniqueResult().getTag_id());
+		q.setParameter("ownId", u.getId());
+		Set<File> fileSet = new HashSet<File>(q.getResultList());
+		return fileSet;
+	}
+	
+	public Set<File> getFilesByName(String st, User u){
+		Session s = sf.getSession();
+		Query<File> q = s.createQuery("FROM File where folder.owner.id=:ownId and name=:nm", File.class);
+		q.setParameter("nm", st);
+		q.setParameter("ownId", u.getId());
 		Set<File> shareSet = new HashSet<File>(q.getResultList());
 		return shareSet;
 	}
