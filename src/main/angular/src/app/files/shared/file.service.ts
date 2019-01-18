@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpRequest, HttpEventType } from '@angular/common/http';
 import { Observable, pipe, of, Observer, observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Tag } from '../shared/tag';
+import { TagService } from './tag.service';
 import { File as FileCustom} from './file';
 import { UploadStatus } from 'src/app/shared/uploadStatus.model';
 

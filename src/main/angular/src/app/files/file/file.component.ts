@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { FileService } from 'src/app/files/shared/file.service';
 import { File } from 'src/app/files/shared/file';
+import { Tag } from '../shared/tag';
+import { TagService } from '../shared/tag.service';
 
 @Component({
   selector: 'app-file',
@@ -11,10 +13,13 @@ import { File } from 'src/app/files/shared/file';
 })
 export class FileComponent implements OnInit {
     @Input() openFile: File;
+
+    tag = new Tag();
   constructor(
       private fileService: FileService,
       private router: Router,
       private route: ActivatedRoute,
+      private tagServ: TagService,
       private datePipe: DatePipe
   ) { }
   ngOnInit() {
@@ -41,5 +46,18 @@ export class FileComponent implements OnInit {
 
   editFile() {
       this.router.navigate(['/files/edit', this.openFile.id]);
+  }
+
+  add_tag(){
+    console.log("from file.component.ts");
+    console.log(this.tag);
+    console.log(this.openFile);
+    
+    this.tagServ.addTag(this.tag, this.openFile).subscribe(
+      resp => {
+        console.log(resp); 
+      }
+    );
+    window.location.reload();
   }
 }

@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { CommentComponent } from 'src/app/files/comment/comment.component';
 import { AllFilesComponent } from './files/all-files/all-files.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { TagService } from './files/shared/tag.service';
 import { UserServiceService } from './shared/user-service.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptorService } from './services/api-interceptor.service';
@@ -52,12 +53,13 @@ import { DatePipe } from '@angular/common';
         UserServiceService,
         FolderService,
         DatePipe,
+        TagService,
+        DirectoryComponent,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: ApiInterceptorService,
             multi: true
-        },
-        DirectoryComponent
+        }
     ],
     bootstrap: [AppComponent]
 })

@@ -11,6 +11,7 @@ import { DirectoryComponent } from '../directory/directory.component';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
   folderId: Number;
 
   constructor(
@@ -51,4 +52,5 @@ export class HomeComponent implements OnInit {
       //this.directory.reload();
     });
   }
+
 }
