@@ -20,11 +20,19 @@ public class FolderHibernate implements FolderDao {
 	@Autowired
 	Logger log;
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public Folder addFolder(Folder f) {
 		Session s = sf.getSession();
 		Transaction tx = s.beginTransaction();
 		s.save(f);
+		if(f.getP_folder() != null) {
+			Query query = s.createQuery("update Folder set owner = :own where id = :id");
+			query.setParameter("own", f.getP_folder().getOwner());
+			query.setParameter("id", f.getId());
+			query.executeUpdate();
+		}
+		
 		tx.commit();
 		s.close();
 		return f;

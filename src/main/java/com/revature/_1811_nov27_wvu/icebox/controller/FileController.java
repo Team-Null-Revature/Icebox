@@ -60,11 +60,11 @@ public class FileController {
 		return s3Client.listBuckets();
 	}
 
-//	@RequestMapping(value = "/api/files", method = RequestMethod.PUT)
-//	public File updateFile(@RequestBody File f) {
-//		fs.updateFile(f);
-//		return f;
-//	}
+	@RequestMapping(value = "/api/files", method = RequestMethod.PUT)
+	public File updateFile(@RequestBody File f) {
+		fs.updateFile(f);
+		return f;
+	}
 
 	@RequestMapping(value = "/api/files/share", method = RequestMethod.PUT)
 	public File shareFile(@RequestBody File f) {
