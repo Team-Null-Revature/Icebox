@@ -47,6 +47,14 @@ export class FileService {
     } else {
       return this.http.post(this.appUrl, body, { headers: this.headers, withCredentials: false }).pipe(map(resp => resp as FileCustom));
     }
+  }
+
+  getFilesByFolder(fId: Number): Observable<FileCustom[]> {
+    return this.http.get('api/files/folder='+fId).pipe(
+        map(resp => resp as FileCustom[])
+      );
+  }
+    
 
     //Remove a file from the DB
 deleteFile(id:number){
@@ -119,5 +127,11 @@ deleteFile(id:number){
   // Observable for file upload events
   onFileUploaded(): Observable<FileCustom> {
     return this.fileUploaded;
+  }
+  // get all files from search
+  getSearch(s: String): Observable<FileCustom[]> {
+    return this.http.get('api/files/search/'+s).pipe(
+        map(resp => resp as FileCustom[])
+      );
   }
 }

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {FolderService} from '../shared/folder.service';
 import {Folder} from 'src/app/shared/folder';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { DirectoryComponent } from '../directory/directory.component';
 
 @Component({
   selector: 'app-folder',
@@ -15,17 +16,45 @@ export class FolderComponent implements OnInit {
   public folder = new Folder;
 
   //Needs user, so add a user service too
-  constructor(private http: HttpClient, private foldServ: FolderService, private router: Router) { }
+  constructor(
+    private http: HttpClient, 
+    private foldServ: FolderService, 
+    private router: Router,
+    private route: ActivatedRoute,
+    private directory: DirectoryComponent
+    ) { }
 
   ngOnInit() { }
 
   onSubmit(){
     console.log("Submitting new folder!")
-    this.foldServ.addFolder(this.folder).subscribe(
-      resp => {
-        console.log(resp);
+    console.log("variable:");
+    this.route.params.subscribe(params => {
+      let pId = +params['folderId'];
+      if(!(pId > 0)){ //checking if it's not a number in the only way that i found to work
+        this.attachToRoot();
       }
-    );
-    this.router.navigate(['/home'])
+      else{
+        this.foldServ.addFolder(this.folder,+params['folderId']).subscribe(
+          resp => {
+            console.log(resp);
+            this.directory.reload();
+          }
+        );
+      }
+    });
+    
+  }
+
+  attachToRoot(){
+    console.log("Initializing Directory")
+    this.foldServ.getRoot().subscribe(root => {
+      this.foldServ.addFolder(this.folder,root.id).subscribe(
+        resp => {
+          console.log(resp);
+          this.directory.reload();
+        }
+      );
+    })
   }
 }

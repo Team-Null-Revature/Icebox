@@ -23,6 +23,14 @@ const routes: Routes = [
         component: HomeComponent
     },
     {
+        path: 'home/search/:searchStr',
+        component: HomeComponent
+    },
+    {
+        path: 'home/search',
+        redirectTo: '/home'
+    },
+    {
         path: 'register',
         component: RegistrationComponent
     },
@@ -41,10 +49,6 @@ const routes: Routes = [
     {
         path: 'shared',
         component: AllSharedComponent
-    },
-    {
-      path: 'folder',
-      component: FolderComponent
     },
     {
       path: 'login',

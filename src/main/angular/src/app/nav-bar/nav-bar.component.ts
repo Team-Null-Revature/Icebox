@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
+  private searchSt = new String;
 
   constructor(private uService: UserServiceService, private router: Router) { }
 
@@ -19,6 +20,10 @@ export class NavBarComponent implements OnInit {
     this.uService.logout().subscribe(resp => {
       this.router.navigate(['/login']);
   });
+  }
+
+  search(){
+    this.router.navigate(['/home/search/'+this.searchSt]);
   }
 
 }
