@@ -23,15 +23,6 @@ public class FolderController {
 	private FolderService fs;
 	@Autowired
 	private HttpSession session; 
-	
-	@RequestMapping(value="/api/folders", method=RequestMethod.POST)
-	public Folder addFolder(@RequestBody Folder f) {
-		f.setOwner((User) session.getAttribute("user"));
-		//TODO: Put parent folder here too
-		return fs.addFolder(f);
-	}
-	@RequestMapping(value="/api/folders", method=RequestMethod.GET)
-	public List<Folder> getFolders(){
 
 	@RequestMapping(method = RequestMethod.POST)
 	public Folder addFolder(@RequestBody Folder f) {

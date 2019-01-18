@@ -19,28 +19,28 @@ export class DirectoryComponent implements OnInit {
   constructor(private folderService: FolderService, private router: Router, private fileService: FileService) { }
 
   ngOnInit() {
-    //get all folders
-    console.log("Initializing Directory")
+    // get all folders
+    console.log('Initializing Directory');
     this.folderService.getFolders().subscribe(folders => {
-      this.folders=folders;
+      this.folders = folders;
       console.log(this.folders);
-    })
-    //get all files
+    });
+    // get all files
     this.fileService.getFiles().subscribe(files => {
-      this.files=files;
+      this.files = files;
       console.log(this.files);
     });
   }
-  removeFolder(id:number){
-    console.log("Called delete on folder");
+  removeFolder(id: number) {
+    console.log('Called delete on folder');
     this.folderService.deleteFolder(id).subscribe();
-    this.folders= this.folders.filter(f => f.folder_id !== id);
-    //window.location.reload();
+    this.folders = this.folders.filter(f => f.folder_id !== id);
+    // window.location.reload();
   }
-  removeFile(id:number){
-    console.log("Called delete on file");
+  removeFile(id: number) {
+    console.log('Called delete on file');
     this.fileService.deleteFile(id).subscribe();
-    this.files= this.files.filter(fi => fi.id !== id);
-    //window.location.reload();
+    this.files = this.files.filter(fi => fi.id !== id);
+    // window.location.reload();
   }
 }

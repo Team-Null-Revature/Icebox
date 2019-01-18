@@ -22,9 +22,9 @@
       <!--Files display here-->
       <!--<app-all-files></app-all-files>-->
       <tr *ngFor="let fi of files">
-        <th scope="row"><span class="fa fa-file-archive-o" aria-hidden="true"></span> {{fi.filename}}</th>
-        <td>{{fi.added}}</td>
-        <td>{{fi.filesize}}</td>
+        <th scope="row"><span class="fa fa-file-archive-o" aria-hidden="true"></span> {{fi.name}}</th>
+        <td>{{fi.created | date:'medium'}}</td>
+        <td>{{fi.size}}</td>
         <td>
             <button class="btn btn-danger" (click)="removeFile(fi.id)"> X </button>
         </td>

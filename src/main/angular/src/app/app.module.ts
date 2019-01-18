@@ -20,7 +20,7 @@ import { FolderComponent } from './folder/folder.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DirectoryComponent } from './directory/directory.component';
-import { FolderService } from './shared/folder.service'
+import { FolderService } from './shared/folder.service';
 import { AllSharedComponent } from './files/all-shared/all-shared.component';
 import { DatePipe } from '@angular/common';
 
