@@ -35,20 +35,12 @@ export class HomeComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       if(params.get('folderId')){
         this.folderId = +params.get('folderId');
-        this.reloadWhenDone();
       }else{
         this.folderServ.getRoot().subscribe(root => {
           this.folderId=root.id;
-          this.reloadWhenDone();
         })
       }
       
-    });
-  }
-
-  reloadWhenDone(){
-    this.fileServ.onFileUploaded().subscribe(file =>{
-      //this.directory.reload();
     });
   }
 }
