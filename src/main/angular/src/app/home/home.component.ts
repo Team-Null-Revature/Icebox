@@ -33,10 +33,10 @@ export class HomeComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       if (params.get('folderId')) {
         this.folderId = +params.get('folderId');
-      }else{
+      } else {
         this.folderServ.getRoot().subscribe(root => {
-          this.folderId=root.id;
-        })
+          this.folderId = root.id;
+        });
       }
     });
   }
