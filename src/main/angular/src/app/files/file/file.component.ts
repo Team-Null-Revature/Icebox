@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { DatePipe } from '@angular/common';
 import { FileService } from 'src/app/files/shared/file.service';
 import { File } from 'src/app/files/shared/file';
 import { Tag } from '../shared/tag';
@@ -18,9 +19,9 @@ export class FileComponent implements OnInit {
       private fileService: FileService,
       private router: Router,
       private route: ActivatedRoute,
-      private tagServ: TagService
+      private tagServ: TagService,
+      private datePipe: DatePipe
   ) { }
-
   ngOnInit() {
       const id = +this.route.snapshot.paramMap.get('id');
       const share = this.route.snapshot.paramMap.get('sharestr');
@@ -47,8 +48,6 @@ export class FileComponent implements OnInit {
       this.router.navigate(['/files/edit', this.openFile.id]);
   }
 
-
-  
   add_tag(){
     console.log("from file.component.ts");
     console.log(this.tag);
@@ -61,5 +60,4 @@ export class FileComponent implements OnInit {
     );
     window.location.reload();
   }
-
 }

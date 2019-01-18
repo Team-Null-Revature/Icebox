@@ -20,7 +20,10 @@ import { ApiInterceptorService } from './services/api-interceptor.service';
 import { FolderComponent } from './folder/folder.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
+import { DirectoryComponent } from './directory/directory.component';
+import { FolderService } from './shared/folder.service'
 import { AllSharedComponent } from './files/all-shared/all-shared.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -36,6 +39,7 @@ import { AllSharedComponent } from './files/all-shared/all-shared.component';
         CommentComponent,
         AllFilesComponent,
         RegistrationComponent,
+        DirectoryComponent,
         AllSharedComponent
     ],
     imports: [
@@ -47,12 +51,15 @@ import { AllSharedComponent } from './files/all-shared/all-shared.component';
     providers: [
         FileService,
         UserServiceService,
+        FolderService,
+        DatePipe,
+        TagService,
+        DirectoryComponent,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: ApiInterceptorService,
             multi: true
-        },
-        TagService
+        }
     ],
     bootstrap: [AppComponent]
 })

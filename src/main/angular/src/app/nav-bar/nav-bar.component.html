@@ -7,8 +7,8 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav mr-auto mt-2 mt-lg-0">
     </div>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <form class="form-inline my-2 my-lg-0" (ngSubmit)="search()">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" [(ngModel)]="searchSt" name="searchIn"  aria-label="Search">
     </form>
     <div class="navbar-nav">
       <div class="nav-item dropdown">
