@@ -1,0 +1,36 @@
+<table class="table table-hover"> 
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col" class="border-top-0">Name</th>
+        <th scope="col" class="border-top-0">Modified</th>
+        <th scope="col" class="border-top-0">Size</th>
+        <th scope="col" class="border-top-0">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Display all folders -->
+      <tr *ngFor="let f of folders">
+        <th scope="row"><span class="fa fa-folder-open" aria-hidden="true"></span>  {{f.name}}</th>
+        <td>--</td> <!--Modified not implemented for folders-->
+        <td>--</td> <!--File size not implemented for folders-->
+        <td>
+          <button class="btn btn-danger" (click)="removeFolder(f.id)"> X </button>
+        </td>
+      </tr>
+
+      <br><br><br>
+      <!--Files display here-->
+      <!--<app-all-files></app-all-files>-->
+      <tr *ngFor="let fi of files">
+        <th scope="row"><span class="fa fa-file-archive-o" aria-hidden="true"></span> {{fi.filename}}</th>
+        <td>{{fi.added}}</td>
+        <td>{{fi.filesize}}</td>
+        <td>
+            <button class="btn btn-danger" (click)="removeFile(fi.id)"> X </button>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  

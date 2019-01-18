@@ -47,7 +47,13 @@ export class FileService {
     } else {
       return this.http.post(this.appUrl, body, { headers: this.headers, withCredentials: false }).pipe(map(resp => resp as FileCustom));
     }
-  }
+
+    //Remove a file from the DB
+deleteFile(id:number){
+    console.log("Deleting file with ID "+id);
+    return this.http.delete('api/files/'+id);
+  }    
+    
   shareFile(file: FileCustom): Observable<FileCustom> {
     const body = JSON.stringify(file);
     const url = this.appUrl + '/share';

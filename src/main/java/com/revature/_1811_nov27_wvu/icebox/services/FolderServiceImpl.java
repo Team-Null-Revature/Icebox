@@ -23,4 +23,16 @@ public class FolderServiceImpl implements FolderService {
 		return fd.getFolders();
 	}
 
+
+	@Override
+	public void deleteFolder(Folder f) {
+		fd.deleteFolder(f);
+	}
+
+
+	@Override
+	public Folder getFolderById(int i) {
+		return fd.getFolderById(i);
+	}
+
 }

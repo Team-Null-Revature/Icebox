@@ -49,6 +49,12 @@ public class FileController {
 		return fs.uploadFile(folderId, file);
 	}
 
+	@RequestMapping(value="/api/files/{id}", method=RequestMethod.DELETE)
+	public void deleteFile(@PathVariable("id") int id) {
+		File target = fs.getFileById(id);
+		fs.deleteFile(target);
+	}
+
 	@GetMapping("/api/file/buckets")
 	public List<Bucket> getBuckets() {
 		return s3Client.listBuckets();

@@ -121,7 +121,7 @@ INSERT INTO Ib_User(User_id,Username,Pass,FName,LName,Email)
 VALUES (User_Seq.nextVal, 'derrekrueger','supersecure','Derrek','Rueger','lastone@ta.org');
 
 INSERT INTO Ib_Folder (Folder_Id, Owner, Name)
-VALUES (1, 1, 'tbroot');
+VALUES (Folder_Seq.nextVal, 1, 'tbroot');
 
 INSERT INTO Ib_File (File_Id,Name,Type,Created,fSize,Folder)
 VALUES (File_Seq.nextVal,'tbrooottest','txt','01-Jan-2019',20,1);

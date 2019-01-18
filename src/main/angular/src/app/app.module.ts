@@ -19,6 +19,8 @@ import { ApiInterceptorService } from './services/api-interceptor.service';
 import { FolderComponent } from './folder/folder.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
+import { DirectoryComponent } from './directory/directory.component';
+import { FolderService } from './shared/folder.service'
 import { AllSharedComponent } from './files/all-shared/all-shared.component';
 import { DatePipe } from '@angular/common';
 
@@ -36,6 +38,7 @@ import { DatePipe } from '@angular/common';
         CommentComponent,
         AllFilesComponent,
         RegistrationComponent,
+        DirectoryComponent,
         AllSharedComponent
     ],
     imports: [
@@ -47,6 +50,7 @@ import { DatePipe } from '@angular/common';
     providers: [
         FileService,
         UserServiceService,
+        FolderService,
         DatePipe,
         {
             provide: HTTP_INTERCEPTORS,
