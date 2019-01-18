@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { DatePipe } from '@angular/common';
 import { FileService } from 'src/app/files/shared/file.service';
 import { File } from 'src/app/files/shared/file';
 
@@ -13,9 +14,9 @@ export class FileComponent implements OnInit {
   constructor(
       private fileService: FileService,
       private router: Router,
-      private route: ActivatedRoute
+      private route: ActivatedRoute,
+      private datePipe: DatePipe
   ) { }
-
   ngOnInit() {
       const id = +this.route.snapshot.paramMap.get('id');
       const share = this.route.snapshot.paramMap.get('sharestr');
@@ -41,5 +42,4 @@ export class FileComponent implements OnInit {
   editFile() {
       this.router.navigate(['/files/edit', this.openFile.id]);
   }
-
 }
