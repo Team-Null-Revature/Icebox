@@ -48,6 +48,8 @@ public class FolderHibernate implements FolderDao {
 
 	@Override
 	public void deleteFolder(Folder f) {
+		f.setOwner(null);
+		f.setP_folder(null);
 		Session s = sf.getSession();
 		Transaction tx = s.beginTransaction();
 		s.delete(f);

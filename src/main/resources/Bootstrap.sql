@@ -63,7 +63,7 @@ CREATE TABLE Ib_Folder (
     Name VARCHAR2(100) NOT NULL,
     P_Folder NUMBER(10), --fk
     CONSTRAINT FK_Fo_Owner FOREIGN KEY (Owner) REFERENCES Ib_User(User_Id),
-    CONSTRAINT FK_Fo_Parent FOREIGN KEY (P_Folder) REFERENCES Ib_Folder(Folder_Id)
+    CONSTRAINT FK_Fo_Parent FOREIGN KEY (P_Folder) REFERENCES Ib_Folder(Folder_Id) ON DELETE CASCADE
 );
 
 CREATE TABLE Ib_File (
@@ -74,7 +74,7 @@ CREATE TABLE Ib_File (
     fSize NUMBER(20,10) NOT NULL,
     fShare VARCHAR2(36),
     Folder NUMBER(10), --fk
-    CONSTRAINT FK_FI_folder FOREIGN KEY (Folder) REFERENCES Ib_Folder(Folder_Id)
+    CONSTRAINT FK_FI_folder FOREIGN KEY (Folder) REFERENCES Ib_Folder(Folder_Id) ON DELETE CASCADE
 );
 
 CREATE TABLE Ib_Comment (
