@@ -1,5 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { FileService } from '../shared/services/file.service';
+import { UploadStatus } from '../shared/models/uploadStatus.model';
 import { HttpClient, HttpRequest, HttpEventType } from '@angular/common/http';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 
 @Component({
   selector: 'app-upload',
@@ -14,12 +16,13 @@ export class UploadComponent implements OnInit {
   stagedFiles: Map<String, File>;
   inProgressFiles: Map<String, UploadStatus>;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private fileService: FileService) { }
 
   ngOnInit() {
     this.uploadingFiles = false;
     this.stagedFiles = new Map();
     this.inProgressFiles = new Map();
+    this.fileService.onFileUploaded().subscribe(f => this.inProgressFiles.delete(f.name));
   }
 
   // Opens the file selector window
@@ -41,42 +44,10 @@ export class UploadComponent implements OnInit {
   uploadFiles() {
     this.stagedFiles.forEach((v, k) => {
       if (!this.inProgressFiles.has(k)) {
-        this.inProgressFiles.set(k, new UploadStatus(v, 0, 0));
+        this.inProgressFiles.set(k, this.fileService.uploadFile(this.folderId, v));
         this.stagedFiles.delete(k);
       }
     });
-    if (!this.uploadingFiles) {
-      this.uploadService();
-      this.uploadingFiles = true;
-    }
-  }
-
-  // Upload one file at a time from the inProgress map
-  uploadService() {
-    const result = this.inProgressFiles.values().next();
-
-    if (!result.done) {
-      const formData: FormData = new FormData();
-      formData.append('file', result.value.getFile(), result.value.getFile().name);
-
-      const req = new HttpRequest('POST', `api/folder/${this.folderId}/file`, formData, { reportProgress: true });
-      let lastSize = 0;
-      let lastTime = Math.floor(Date.now());
-      this.http.request(req).subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress) {
-          const currentTime = Math.floor(Date.now());
-          result.value.setSpeed(Math.round((event.loaded - lastSize) / (currentTime - lastTime)) * 1000);
-          result.value.setPercentComplete(Math.round((100 * event.loaded) / event.total));
-          lastTime = currentTime;
-          lastSize = event.loaded;
-        } else if (event.type === HttpEventType.Response) {
-          this.inProgressFiles.delete(result.value.getFile().name);
-          this.uploadService();
-        }
-      });
-    } else {
-      this.uploadingFiles = false;
-    }
   }
 
   // Removes all of the files in the staged map as well as in the input element
@@ -98,37 +69,5 @@ export class UploadComponent implements OnInit {
         i = Math.floor(Math.log(bytes) / Math.log(k));
       return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
     }
-  }
-}
-
-class UploadStatus {
-  file: File;
-  speed: Number;
-  percentComplete: Number;
-
-  constructor(file: File, speed: Number, percentComplete: Number) {
-    this.file = file;
-    this.speed = speed;
-    this.percentComplete = percentComplete;
-  }
-
-  setSpeed(speed: Number) {
-    this.speed = speed;
-  }
-
-  setPercentComplete(percentComplete: Number) {
-    this.percentComplete = percentComplete;
-  }
-
-  getFile(): File {
-    return this.file;
-  }
-
-  getSpeed(): Number {
-    return this.speed;
-  }
-
-  getPercentComplete(): Number {
-    return this.percentComplete;
   }
 }

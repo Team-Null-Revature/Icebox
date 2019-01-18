@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FileService } from 'src/app/files/shared/file.service';
-import { File } from 'src/app/files/shared/file';
-import { Tag } from '../shared/tag';
-import { TagService } from '../shared/tag.service';
+import { FileService } from 'src/app/shared/services/file.service';
+import { File } from 'src/app/shared/models/file.model';
+import { Tag } from 'src/app/shared/models/tag.model';
+import { TagService } from 'src/app/shared/services/tag.service';
 
 @Component({
   selector: 'app-file',
@@ -21,7 +21,7 @@ export class FileComponent implements OnInit {
       private tagServ: TagService
   ) { }
 
-  ngOnInit() {
+  ngOnInit() { 
       const id = +this.route.snapshot.paramMap.get('id');
       const share = this.route.snapshot.paramMap.get('sharestr');
       if (id !== 0) {
@@ -60,14 +60,14 @@ export class FileComponent implements OnInit {
     window.location.reload();
   }
 
-  delete_tag(){
-    console.log("from file.component.ts"); 
-    this.tagServ.deleteTag(this.tag, this.openFile).subscribe(
-      resp => {
-        console.log(resp);
-      }
-    );
-    window.location.reload();
-  }
+  // delete_tag(){
+  //   console.log("from file.component.ts"); 
+  //   this.tagServ.deleteTag(this.tag, this.openFile).subscribe(
+  //     resp => {
+  //       console.log(resp);
+  //     }
+  //   );
+  //   window.location.reload();
+  // }
 
 }

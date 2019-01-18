@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +23,7 @@ import com.amazonaws.SdkClientException;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.Bucket;
 import com.revature._1811_nov27_wvu.icebox.entity.File;
+import com.revature._1811_nov27_wvu.icebox.entity.User;
 import com.revature._1811_nov27_wvu.icebox.services.FileService;
 
 @RestController
@@ -31,6 +34,8 @@ public class FileController {
 	private FileService fs;
 	@Autowired
 	private AmazonS3 s3Client;
+	@Autowired
+	private HttpSession session;
 
 	@RequestMapping(value = "/api/files", method = RequestMethod.GET)
 	public Set<File> getAllFiles() {
@@ -47,6 +52,12 @@ public class FileController {
 	@PostMapping("/api/folder/{folderId}/file")
 	public File addFile(@PathVariable int folderId, @RequestParam MultipartFile file) throws AmazonServiceException, SdkClientException, IOException {
 		return fs.uploadFile(folderId, file);
+	}
+
+	@RequestMapping(value="/api/files/{id}", method=RequestMethod.DELETE)
+	public void deleteFile(@PathVariable("id") int id) {
+		File target = fs.getFileById(id);
+		fs.deleteFile(target);
 	}
 
 	@GetMapping("/api/file/buckets")
@@ -77,5 +88,16 @@ public class FileController {
 	public Set<File> getFiles() {
 		log.trace("Java");
 		return fs.getAllSharedFiles();
+	}
+	
+	@RequestMapping(value="/api/files/folder={id}")
+	public Set<File> getFileByFolder(@PathVariable("id") int id){
+		return fs.getFilesByFolder(id);
+	}
+
+	@RequestMapping(value ="/api/files/search/{searchStr}", method = RequestMethod.GET)
+	public Set<File> searchFiles(@PathVariable("searchStr") String s) {
+		log.trace("Searching for "+s);
+		return fs.getFileBySearch(s,(User)session.getAttribute("user"));
 	}
 }

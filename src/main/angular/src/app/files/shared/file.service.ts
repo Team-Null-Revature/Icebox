@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import {Observable, pipe, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { File } from './file';
-import { Tag } from '../shared/tag';
-import { TagService } from './tag.service';
+import { File } from 'src/app/shared/models/file.model';
+
 
 @Injectable({
   providedIn: 'root'
