@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserServiceService } from '../shared/user-service.service';
+import { FolderService } from '../shared/folder.service';
+import { FileService } from '../files/shared/file.service';
+import { DirectoryComponent } from '../directory/directory.component';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +13,14 @@ import { UserServiceService } from '../shared/user-service.service';
 export class HomeComponent implements OnInit {
   folderId: Number;
 
-  constructor(private uService: UserServiceService,private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private uService: UserServiceService,
+    private router: Router, 
+    private route: ActivatedRoute,
+    private folderServ: FolderService,
+    private fileServ: FileService,
+    private directory: DirectoryComponent
+    ) {}
 
   ngOnInit() {
     console.log("Making home");
@@ -21,6 +31,24 @@ export class HomeComponent implements OnInit {
           }
       }
     );
-    this.route.paramMap.subscribe(params => (this.folderId = +params.get('folderId')));
+
+    this.route.paramMap.subscribe(params => {
+      if(params.get('folderId')){
+        this.folderId = +params.get('folderId');
+        this.reloadWhenDone();
+      }else{
+        this.folderServ.getRoot().subscribe(root => {
+          this.folderId=root.id;
+          this.reloadWhenDone();
+        })
+      }
+      
+    });
+  }
+
+  reloadWhenDone(){
+    this.fileServ.onFileUploaded().subscribe(file =>{
+      //this.directory.reload();
+    });
   }
 }
