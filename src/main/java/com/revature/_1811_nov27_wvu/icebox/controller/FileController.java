@@ -55,7 +55,6 @@ public class FileController {
 		fs.deleteFile(target);
 	}
 
-	@RequestMapping(value="/api/files",method=RequestMethod.PUT)
 	@GetMapping("/api/file/buckets")
 	public List<Bucket> getBuckets() {
 		return s3Client.listBuckets();
