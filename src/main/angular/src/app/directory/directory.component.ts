@@ -56,7 +56,8 @@ export class DirectoryComponent implements OnInit {
   }
   fetchFileContents(rf: Number){
     this.fileService.getFilesByFolder(rf).subscribe(files => {
-      this.files=files;
+      //this.files=files;
+      this.files = files;
       console.log("File contents:");
       console.log(this.files);
     })

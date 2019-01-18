@@ -126,5 +126,10 @@ VALUES (Folder_Seq.nextVal, 1, 'tbroot');
 INSERT INTO Ib_File (File_Id,Name,Type,Created,fSize,Folder)
 VALUES (File_Seq.nextVal,'tbrooottest','txt','01-Jan-2019',20,1);
 
+INSERT INTO Ib_Folder (Folder_Id, Owner, Name,p_folder)
+VALUES (Folder_Seq.nextVal, 1, 'naame',1);
+
+INSERT INTO Ib_File (File_Id,Name,Type,Created,fSize,Folder)
+VALUES (File_Seq.nextVal,'SuccessFile','pdf','01-Jan-2019',20,2);
 
 commit;
