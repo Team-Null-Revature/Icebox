@@ -93,7 +93,6 @@ CREATE TABLE Ib_Tag (
 );
 
 CREATE TABLE Ib_File_tag (
-    File_Tag_Id NUMBER(10) PRIMARY KEY,
     File_Id NUMBER(10) NOT NULL, --fk
     Tag_Id NUMBER(10) NOT NULL, --fk
     CONSTRAINT FK_FT_Tag FOREIGN KEY (Tag_Id) REFERENCES Ib_Tag(Tag_Id),

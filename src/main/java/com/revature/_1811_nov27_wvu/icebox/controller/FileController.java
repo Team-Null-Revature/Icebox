@@ -63,7 +63,7 @@ public class FileController {
 	@GetMapping("/api/file/buckets")
 	public List<Bucket> getBuckets() {
 		return s3Client.listBuckets();
-	}
+	} 
 
 	@RequestMapping(value = "/api/files", method = RequestMethod.PUT)
 	public File updateFile(@RequestBody File f) {

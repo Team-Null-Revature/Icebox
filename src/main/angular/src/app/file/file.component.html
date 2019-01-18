@@ -1,0 +1,57 @@
+<div class="container border" *ngIf="openFile">
+  <div class="row">
+    <div class="col-sm">
+      <div class="row">
+        <div class="col"><h5>Name:</h5></div>
+        <div class="col">
+          <p>{{ openFile.name }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col"><h5>Type:</h5></div>
+        <div class="col">
+          <p>{{ openFile.type }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col"><h5>Date added:</h5></div>
+        <div class="col">
+          <p>{{ openFile.created | date: 'medium' }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col"><h5>File size</h5></div>
+        <div class="col">
+          <p>{{ openFile.size }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col"><h5>Tags:</h5></div>
+        <div class="col">
+          <span class="badge badge-pill badge-primary" *ngFor="let t of openFile.tags" style="margin-left: 5px">{{ t.name }}</span>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Tag stuff-->
+        <form (ngSubmit)="add_tag()">
+          <div class="form-group">
+            <input
+              id="addTag"
+              class="form-text"
+              type="text"
+              name="tag"
+              required
+              [(ngModel)]="tag.name"
+              required
+              placeholder="Tag Name"
+              style="margin-left: 565px"
+            />
+            <div class="form-group"></div>
+            <input type="submit" class="btn btn-primary" style="height:50px;width:85px" value="Add Tag" style="margin-left: 565px" />
+          </div>
+        </form>
+      </div>
+    </div>
+    <button (click)="share()">Share</button>
+  </div>
+</div>
