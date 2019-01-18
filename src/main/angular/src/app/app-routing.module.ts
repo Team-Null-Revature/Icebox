@@ -23,6 +23,10 @@ const routes: Routes = [
         component: HomeComponent
     },
     {
+        path: 'home/folder/:folderId/file/:fileId',
+        component: HomeComponent
+    },
+    {
         path: 'home/search/:searchStr',
         component: HomeComponent
     },

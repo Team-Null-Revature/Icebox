@@ -9,18 +9,20 @@ import { UserServiceService } from '../shared/user-service.service';
 })
 export class HomeComponent implements OnInit {
   folderId: Number;
+  fileId: number;
 
-  constructor(private uService: UserServiceService,private router: Router, private route: ActivatedRoute) {}
+  constructor(private uService: UserServiceService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    console.log("Making home");
+    console.log('Making home');
     this.uService.checkLogin().subscribe(
       resp => {
-          if(resp == null){
+          if (resp == null) {
               this.router.navigate(['/login']);
           }
       }
     );
     this.route.paramMap.subscribe(params => (this.folderId = +params.get('folderId')));
+    this.route.paramMap.subscribe(params => (this.fileId = +params.get('fileId')));
   }
 }
