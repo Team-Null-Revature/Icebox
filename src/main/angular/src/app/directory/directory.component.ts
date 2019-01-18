@@ -19,7 +19,12 @@ export class DirectoryComponent implements OnInit {
   public file = new File;
   public searchStr = new String;
 
-  constructor(private folderService: FolderService, private router: Router, private fileService: FileService, private route: ActivatedRoute) { }
+  constructor(
+    private folderService: FolderService, 
+    private router: Router, 
+    private fileService: FileService, 
+    private route: ActivatedRoute
+    ) { }
 
   ngOnInit() {
     this.checkFolder();

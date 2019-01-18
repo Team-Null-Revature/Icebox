@@ -51,10 +51,6 @@ const routes: Routes = [
         component: AllSharedComponent
     },
     {
-      path: 'folder',
-      component: FolderComponent
-    },
-    {
       path: 'login',
       component: LoginComponent
     }

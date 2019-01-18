@@ -6,6 +6,9 @@
         <th scope="col" class="border-top-0">Size</th>
         <th scope="col" class="border-top-0">Actions</th>
       </tr>
+      <!-- <td>
+        <button class="btn btn-secondary" id="backButton"> Back </button>
+      </td> --> <!--Maybe impliment this later-->
     </thead>
     <tbody>
       <!-- Display all folders -->
@@ -22,7 +25,7 @@
       <!--<app-all-files></app-all-files>-->
       <tr *ngFor="let fi of files">
         <th scope="row"><span class="fa fa-file-archive-o" aria-hidden="true" ></span> {{fi.name}}</th>
-        <td>{{fi.created}}</td>
+        <td>{{fi.created | date:'medium'}}</td>
         <td>{{fi.size}}</td>
         <td>
             <button class="btn btn-danger" (click)="removeFile(fi.id)"> X </button>
