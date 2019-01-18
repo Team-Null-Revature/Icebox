@@ -22,6 +22,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { DirectoryComponent } from './directory/directory.component';
 import { FolderService } from './shared/folder.service'
 import { AllSharedComponent } from './files/all-shared/all-shared.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -50,6 +51,7 @@ import { AllSharedComponent } from './files/all-shared/all-shared.component';
         FileService,
         UserServiceService,
         FolderService,
+        DatePipe,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: ApiInterceptorService,
