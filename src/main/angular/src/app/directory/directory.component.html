@@ -12,8 +12,8 @@
     </thead>
     <tbody>
       <!-- Display all folders -->
-      <tr *ngFor="let f of folders">
-        <th scope="row" (dblclick)="enterFolder(f.id)"><span class="fa fa-folder-open" aria-hidden="true"></span>  {{f.name}}</th>
+      <tr *ngFor="let f of folders" (dblclick)="enterFolder(f.id)">
+        <th scope="row" ><span class="fa fa-folder-open" aria-hidden="true"></span>  {{f.name}}</th>
         <td>--</td> <!--Modified not implemented for folders-->
         <td>--</td> <!--File size not implemented for folders-->
         <td>
