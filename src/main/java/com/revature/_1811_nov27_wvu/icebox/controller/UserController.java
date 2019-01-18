@@ -9,13 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature._1811_nov27_wvu.icebox.entity.Folder;
 import com.revature._1811_nov27_wvu.icebox.entity.User;
+import com.revature._1811_nov27_wvu.icebox.services.FolderService;
 import com.revature._1811_nov27_wvu.icebox.services.UserService;
 
 @RestController
 public class UserController {
 	@Autowired
 	private UserService us;
+	@Autowired
+	private FolderService fs;
 
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	public Set<User> getAll() {
@@ -30,6 +34,10 @@ public class UserController {
 	@RequestMapping(value = "/user", method = RequestMethod.POST)
 	public User addUser(@RequestBody User u) {
 		us.addUser(u);
+		Folder folder = new Folder();
+		folder.setName(u.getUsername());
+		folder.setOwner(u);
+		fs.addFolder(folder);
 		return u;
 	}
 

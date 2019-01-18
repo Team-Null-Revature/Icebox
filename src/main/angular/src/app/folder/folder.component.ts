@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {FolderService} from '../shared/folder.service';
 import {Folder} from 'src/app/shared/folder';
 import { Router, ActivatedRoute } from '@angular/router';
+import { DirectoryComponent } from '../directory/directory.component';
 
 @Component({
   selector: 'app-folder',
@@ -15,7 +16,13 @@ export class FolderComponent implements OnInit {
   public folder = new Folder;
 
   //Needs user, so add a user service too
-  constructor(private http: HttpClient, private foldServ: FolderService, private router: Router,private route: ActivatedRoute) { }
+  constructor(
+    private http: HttpClient, 
+    private foldServ: FolderService, 
+    private router: Router,
+    private route: ActivatedRoute,
+    private directory: DirectoryComponent
+    ) { }
 
   ngOnInit() { }
 
@@ -31,12 +38,12 @@ export class FolderComponent implements OnInit {
         this.foldServ.addFolder(this.folder,+params['folderId']).subscribe(
           resp => {
             console.log(resp);
+            this.directory.reload();
           }
         );
       }
     });
     
-    //this.router.navigate(['/home'])
   }
 
   attachToRoot(){
@@ -45,6 +52,7 @@ export class FolderComponent implements OnInit {
       this.foldServ.addFolder(this.folder,root.id).subscribe(
         resp => {
           console.log(resp);
+          this.directory.reload();
         }
       );
     })

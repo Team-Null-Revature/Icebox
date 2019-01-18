@@ -111,17 +111,25 @@ CREATE SEQUENCE Folder_Seq;
 ********************************************************************************/
 INSERT INTO Ib_User(User_id,Username,Pass,FName,LName,Email)
 VALUES (User_Seq.nextVal,'tylerbade','secure','Tyler','Bade','throwaway@ta.org');
+INSERT INTO Ib_Folder (Folder_Id, Owner, Name)      --every user needs to have a root folder now
+VALUES (Folder_Seq.nextVal, 1, 'tylerbade');
 INSERT INTO Ib_User(User_id,Username,Pass,FName,LName,Email)
 VALUES (User_Seq.nextVal,'mateuszwiater','secure2','Mateusz','Wiater','throw2@ta.org');
+INSERT INTO Ib_Folder (Folder_Id, Owner, Name)
+VALUES (Folder_Seq.nextVal, 2, 'mateuszwaiter');
 INSERT INTO Ib_User(User_id,Username,Pass,FName,LName,Email)
 VALUES (User_Seq.nextVal, 'chrispham','alsosecure','Chris','Pham','another@ta.org');
+INSERT INTO Ib_Folder (Folder_Id, Owner, Name)
+VALUES (Folder_Seq.nextVal, 3, 'chrispham');
 INSERT INTO Ib_User(User_id,Username,Pass,FName,LName,Email)
 VALUES (User_Seq.nextVal, 'daviddonnely','verysecure','David','Donnely','onemore@ta.org');
+INSERT INTO Ib_Folder (Folder_Id, Owner, Name)
+VALUES (Folder_Seq.nextVal, 4, 'daviddonnely');
 INSERT INTO Ib_User(User_id,Username,Pass,FName,LName,Email)
 VALUES (User_Seq.nextVal, 'derrekrueger','supersecure','Derrek','Rueger','lastone@ta.org');
-
 INSERT INTO Ib_Folder (Folder_Id, Owner, Name)
-VALUES (Folder_Seq.nextVal, 1, 'tbroot');
+VALUES (Folder_Seq.nextVal, 5, 'derrekrueger');
+
 
 INSERT INTO Ib_File (File_Id,Name,Type,Created,fSize,Folder)
 VALUES (File_Seq.nextVal,'tbrooottest','txt','01-Jan-2019',20,1);

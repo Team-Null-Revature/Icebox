@@ -17,6 +17,7 @@ export class DirectoryComponent implements OnInit {
   public folder = new Folder;
   public files: File[];
   public file = new File;
+  public searchStr = new String;
 
   constructor(private folderService: FolderService, private router: Router, private fileService: FileService, private route: ActivatedRoute) { }
 
@@ -26,13 +27,19 @@ export class DirectoryComponent implements OnInit {
 
   checkFolder(){
     this.route.params.subscribe(params => {
-      this.rootId = +params['folderId'];
-      console.log("RootId:"+this.rootId);
-      if(!(this.rootId > 0)){
-        this.fetchRoot();
-      }else{
-        this.fetchFolderContents(this.rootId);
-        this.fetchFileContents(this.rootId);
+      if(params['searchStr'] != null){
+        console.log("Search found:"+params['searchStr']);
+        this.fetchSearchResults(params['searchStr']);
+      }
+      else{
+        this.rootId = +params['folderId'];
+        console.log("RootId:"+this.rootId);
+        if(!(this.rootId > 0)){
+          this.fetchRoot();
+        }else{
+          this.fetchFolderContents(this.rootId);
+          this.fetchFileContents(this.rootId);
+        }
       }
    });
   }
@@ -45,7 +52,6 @@ export class DirectoryComponent implements OnInit {
       this.fetchFileContents(this.rootId);
     })
   }
-
 
   fetchFolderContents(rf: Number){
     this.folderService.getFolderContent(rf).subscribe(folders => {
@@ -61,23 +67,28 @@ export class DirectoryComponent implements OnInit {
       console.log(this.files);
     })
   }
+  fetchSearchResults(s : String){
+      
+  }
 
 
   removeFolder(id:number){
     console.log("Called delete on folder");
     this.folderService.deleteFolder(id).subscribe();
     this.folders= this.folders.filter(f => f.id !== id);
-    //window.location.reload();
   }
   removeFile(id:number){
     console.log("Called delete on file");
     this.fileService.deleteFile(id).subscribe();
     this.files= this.files.filter(fi => fi.id !== id);
-    //window.location.reload();
   }
 
   enterFolder(id:number){
     console.log("Entering folder " + id);
     this.router.navigate(['/home/folder/'+id]);
+  }
+
+  reload(){
+    window.location.reload();
   }
 }
