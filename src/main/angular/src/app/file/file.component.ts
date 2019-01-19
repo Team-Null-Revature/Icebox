@@ -12,44 +12,40 @@ import { FileService } from '../shared/services/file.service';
   styleUrls: ['./file.component.css']
 })
 export class FileComponent implements OnInit {
-  @Input() openFile: File;
+  @Input() selectedFile: File;
   tag: Tag;
 
-  constructor(private fileService: FileService, private router: Router, private route: ActivatedRoute, private tagServ: TagService) { }
+  constructor(private fileService: FileService, private router: Router, private route: ActivatedRoute, private tagServ: TagService) {}
 
   ngOnInit() {
     this.tag = new Tag();
-    const id = +this.route.snapshot.paramMap.get('id');
     const share = this.route.snapshot.paramMap.get('sharestr');
-    if (id !== 0) {
-      this.fileService.getFile(id).subscribe(file => (this.openFile = file));
-    }
     if (share !== null) {
-      this.fileService.getShareFile(share).subscribe(file => (this.openFile = file));
+      this.fileService.getShareFile(share).subscribe(file => (this.selectedFile = file));
     }
   }
 
   share() {
-    if (this.openFile.share == null) {
-      this.fileService.shareFile(this.openFile).subscribe(file => {
-        this.openFile = file;
-        alert('Link created: icebox/shared/' + this.openFile.share);
+    if (this.selectedFile.share == null) {
+      this.fileService.shareFile(this.selectedFile).subscribe(file => {
+        this.selectedFile = file;
+        alert('Link created: icebox/shared/' + this.selectedFile.share);
       });
     } else {
-      alert('Link already created: icebox/shared/' + this.openFile.share);
+      alert('Link already created: icebox/shared/' + this.selectedFile.share);
     }
   }
 
   editFile() {
-    this.router.navigate(['/files/edit', this.openFile.id]);
+    this.router.navigate(['/files/edit', this.selectedFile.id]);
   }
 
   add_tag() {
     console.log('from file.component.ts');
     console.log(this.tag);
-    console.log(this.openFile);
+    console.log(this.selectedFile);
 
-    this.tagServ.addTag(this.tag, this.openFile).subscribe(resp => {
+    this.tagServ.addTag(this.tag, this.selectedFile).subscribe(resp => {
       console.log(resp);
     });
     window.location.reload();

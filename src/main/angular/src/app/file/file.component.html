@@ -1,30 +1,36 @@
-<div class="container border" *ngIf="openFile">
-  <div class="row">
-    <div class="col-sm">
-      <div class="row">
-        <div class="col"><h5>Name:</h5></div>
-        <div class="col">
-          <p>{{ openFile.name }}</p>
+<div class="card" *ngIf="selectedFile">
+  <h5 class="card-header">{{ selectedFile.name }}</h5>
+  <div class="card-body">
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+    <dl class="row">
+      <dt class="col-sm-4">Type:</dt>
+      <dd class="col-sm-8">{{ selectedFile.type }}</dd>
+
+      <dt class="col-sm-4">Created:</dt>
+      <dd class="col-sm-8">{{ selectedFile.created | date: 'medium' }}</dd>
+
+      <dt class="col-sm-4">Size:</dt>
+      <dd class="col-sm-8">{{ selectedFile.size | bytes }}</dd>
+
+      <dt class="col-sm-5">Tags:</dt>
+      <dd class="col-sm-8">
+        <span class="badge badge-pill badge-primary" *ngFor="let t of selectedFile.tags" style="margin-left: 5px">{{ t.name }}</span>
+      </dd>
+    </dl>
+    <div class="row">
+      <form (ngSubmit)="add_tag()" class="w-100">
+        <div class="input-group mb-3">
+          <input id="addTag" name="tag" type="text" class="form-control" required [(ngModel)]="tag.name" required placeholder="Tag Name" />
+          <div class="input-group-append"><button class="btn btn-primary" type="submit">Add Tag</button></div>
         </div>
+      </form>
+    </div>
+    <div class="row">
+      <div class="col pl-0 pr-1">
+        <app-download [file]="selectedFile"></app-download>
       </div>
-      <div class="row">
-        <div class="col"><h5>Type:</h5></div>
-        <div class="col">
-          <p>{{ openFile.type }}</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col"><h5>Date added:</h5></div>
-        <div class="col">
-          <p>{{ openFile.created | date: 'medium' }}</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col"><h5>File size</h5></div>
-        <div class="col">
-          <p>{{ openFile.size }}</p>
-        </div>
-      </div>
+<<<<<<< HEAD
       <div class="row">
         <div class="col"><h5>Tags:</h5></div>
         <div class="col">
@@ -50,8 +56,14 @@
             <input type="submit" class="btn btn-primary" style="height:50px;width:85px" value="Add Tag" />
           </div>
         </form>
+=======
+      <div class="col px-1">
+        <button class="btn btn-success w-100 h-100" (click)="share()">Share</button>
+      </div>
+      <div class="col pl-1 pr-0">
+        <button class="btn btn-danger w-100 h-100">Delete</button>
+>>>>>>> 201ac84b2e5cbb9b22fdde0798fafa38c673df7a
       </div>
     </div>
-    <button (click)="share()">Share</button>
   </div>
 </div>

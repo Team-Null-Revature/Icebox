@@ -1,6 +1,7 @@
 package com.revature._1811_nov27_wvu.icebox.services;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Date;
 import java.util.Set;
 import java.util.UUID;
@@ -106,5 +107,10 @@ public class FileServiceImpl implements FileService {
 		Set<File> tSet = fd.getFilesByTag(s, u);
 		if(tSet != null) fSet.addAll(tSet);
 		return fSet;
+	}
+
+	@Override
+	public InputStream downloadFile(File f) {
+		return s3Client.getObject("icebox1", f.getId() + "").getObjectContent();
 	}
 }

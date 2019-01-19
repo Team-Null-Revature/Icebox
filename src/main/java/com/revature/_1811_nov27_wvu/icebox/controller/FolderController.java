@@ -22,9 +22,15 @@ public class FolderController {
 	@Autowired
 	private FolderService fs;
 	@Autowired
-	private HttpSession session; 
+	private HttpSession session;
 	@Autowired
 	private Logger log;
+
+
+	@RequestMapping(method = RequestMethod.POST)
+	public Folder addFolder(@RequestBody Folder f) {
+		return fs.addFolder(f);
+	}
 	
 	@RequestMapping(value="/api/folders/{id}", method=RequestMethod.POST)
 	public Folder addFolder(@RequestBody Folder f, @PathVariable("id") int id) {
