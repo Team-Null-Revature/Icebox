@@ -1,4 +1,4 @@
-<table class="table table-hover"> 
+<table id="content" class="table table-hover"> 
     <thead class="thead-dark">
       <tr>
         <th scope="col" class="border-top-0">Name</th>
@@ -13,10 +13,13 @@
     <tbody>
       <!-- Display all folders -->
       <tr *ngFor="let f of folders">
-        <th scope="row" (dblclick)="enterFolder(f.id)"><span class="fa fa-folder-open" aria-hidden="true"></span>  {{f.name}}</th>
+        <th id="folderName" scope="row" (dblclick)="enterFolder(f.id)"><span class="fa fa-folder-open" aria-hidden="true"></span>  {{f.name}}</th>
         <td>--</td> <!--Modified not implemented for folders-->
         <td>--</td> <!--File size not implemented for folders-->
         <td>
+          <!--Rename Button (secondary)-->
+          <button class="btn btn-secondary" (click)="newFolderName(f.id)">Rename</button>
+          <!--Delete Folder Button (danger)-->
           <button class="btn btn-danger" (click)="removeFolder(f.id)"> X </button>
         </td>
       </tr>
@@ -24,10 +27,13 @@
       <!--Files display here-->
       <!--<app-all-files></app-all-files>-->
       <tr *ngFor="let fi of files">
-        <th scope="row"><span class="fa fa-file-archive-o" aria-hidden="true" ></span> {{fi.name}}</th>
+        <th id="fileName" scope="row"><span class="fa fa-file" aria-hidden="true" ></span> {{fi.name}}</th>
         <td>{{fi.created | date:'medium'}}</td>
         <td>{{fi.size}}</td>
         <td>
+            <!--Rename Button (secondary)-->
+            <button class="btn btn-secondary" (click)="newFileName(fi.id)">Rename</button> <!--Open form or text area-->
+            <!--Delete File Button-->
             <button class="btn btn-danger" (click)="removeFile(fi.id)"> X </button>
         </td>
       </tr>

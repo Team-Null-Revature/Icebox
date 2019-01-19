@@ -4,3 +4,9 @@
     padding-bottom: 9px !important;
   }
 }
+
+#content{
+  background-image: url(https://stablekernel.com/wp-content/uploads/2018/10/shutterstock_654920956.jpg);
+  opacity: .2;
+  background-repeat: no-repeat;
+}
