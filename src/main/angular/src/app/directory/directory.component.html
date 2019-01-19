@@ -26,7 +26,7 @@
     <tr *ngFor="let fi of files">
       <th scope="row" (dblclick)="enterFile(fi.folder.id , fi.id)"><span class="fa fa-file-archive-o" aria-hidden="true"></span> {{ fi.name }}</th>
       <td>{{ fi.created | date: 'medium' }}</td>
-      <td>{{ fi.size }}</td>
+      <td>{{ fi.size | bytes }}</td>
       <td><button class="btn btn-danger" (click)="removeFile(fi.id)">X</button></td>
     </tr>
   </tbody>

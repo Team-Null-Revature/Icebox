@@ -3,6 +3,7 @@ import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { TagComponent } from './tag/tag.component';
+import { BytesPipe } from './shared/pipes/bytes.pipe';
 import { FileComponent } from './file/file.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -27,6 +28,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { ApiInterceptorService } from './shared/services/api-interceptor.service';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +45,8 @@ import { ApiInterceptorService } from './shared/services/api-interceptor.service
     EditFileComponent,
     DirectoryComponent,
     AllSharedComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    BytesPipe
   ],
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [
