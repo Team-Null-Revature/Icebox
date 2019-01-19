@@ -26,4 +26,8 @@ export class NavBarComponent implements OnInit {
   search() {
     this.router.navigate(['/home/search/' + this.searchSt]);
   }
+  deleteUser(){
+    console.log("deleting user");
+    this.uService.
+  }
 }

@@ -40,5 +40,15 @@ public class UserController {
 		fs.addFolder(folder);
 		return u;
 	}
+	
+	@RequestMapping(value ="/user/{id}", method = RequestMethod.DELETE)
+	public User deleteUser(@PathVariable("id") int id) {
+		User u; 
+		Folder f;
+		u = us.getUserById(id);
+		us.deleteUser(u);
+		
+		return null;
+	}
 
 }

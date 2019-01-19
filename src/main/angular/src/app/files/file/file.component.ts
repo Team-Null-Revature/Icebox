@@ -14,6 +14,7 @@ export class FileComponent implements OnInit {
     @Input() openFile: File;
 
     tag = new Tag();
+    file = new File();
   constructor(
       private fileService: FileService,
       private router: Router,
@@ -21,7 +22,7 @@ export class FileComponent implements OnInit {
       private tagServ: TagService
   ) { }
 
-  ngOnInit() { 
+  ngOnInit() {
       const id = +this.route.snapshot.paramMap.get('id');
       const share = this.route.snapshot.paramMap.get('sharestr');
       if (id !== 0) {
@@ -51,7 +52,6 @@ export class FileComponent implements OnInit {
     console.log("from file.component.ts");
     console.log(this.tag);
     console.log(this.openFile);
-    
     this.tagServ.addTag(this.tag, this.openFile).subscribe(
       resp => {
         console.log(resp); 
@@ -60,14 +60,9 @@ export class FileComponent implements OnInit {
     window.location.reload();
   }
 
-  // delete_tag(){
-  //   console.log("from file.component.ts"); 
-  //   this.tagServ.deleteTag(this.tag, this.openFile).subscribe(
-  //     resp => {
-  //       console.log(resp);
-  //     }
-  //   );
-  //   window.location.reload();
-  // }
+  delete_tag(file: File){
+    console.log("in delete_tag")
+    window.location.reload();
+  }
 
 }

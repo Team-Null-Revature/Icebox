@@ -28,7 +28,8 @@
       <div class="row">
         <div class="col"><h5>Tags:</h5></div>
         <div class="col">
-          <span class="badge badge-pill badge-primary" *ngFor="let t of openFile.tags" style="margin-left: 5px">{{ t.name }}</span>
+          <span class="badge badge-pill badge-primary" *ngFor="let t of openFile.tags" style="margin-left: 5px" ng-click="delete_tag()">{{ t.name }} </span>
+          <!-- <button  (click)= "delete_tag()" class="badge badge-primary" *ngFor="let t of openFile.tags" style="margin-left: 5px">{{ t.name }} </button> -->
         </div>
       </div>
       <div class="row">
@@ -44,10 +45,9 @@
               [(ngModel)]="tag.name"
               required
               placeholder="Tag Name"
-              style="margin-left: 565px"
             />
             <div class="form-group"></div>
-            <input type="submit" class="btn btn-primary" style="height:50px;width:85px" value="Add Tag" style="margin-left: 565px" />
+            <input type="submit" class="btn btn-primary" style="height:50px;width:85px" value="Add Tag" />
           </div>
         </form>
       </div>
