@@ -17,6 +17,7 @@ import { FileService } from './shared/services/file.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { CommentComponent } from './comment/comment.component';
 import { FolderService } from './shared/services/folder.service';
+import { DownloadComponent } from './download/download.component';
 import { UserServiceService } from './shared/services/user.service';
 import { EditFileComponent } from './edit-file/edit-file.component';
 import { AllFilesComponent } from './all-files/all-files.component';
@@ -37,6 +38,7 @@ import { ApiInterceptorService } from './shared/services/api-interceptor.service
     FolderComponent,
     CommentComponent,
     AllFilesComponent,
+    DownloadComponent,
     EditFileComponent,
     DirectoryComponent,
     AllSharedComponent,

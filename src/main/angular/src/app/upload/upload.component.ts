@@ -1,6 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { FileService } from '../shared/services/file.service';
 import { UploadStatus } from '../shared/models/uploadStatus.model';
-import { HttpClient, HttpRequest, HttpEventType } from '@angular/common/http';
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 
 @Component({
