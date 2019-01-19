@@ -26,20 +26,31 @@ export class DirectoryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+
+    // get all folders
+    console.log('Initializing Directory');
+    this.folderService.getFolders().subscribe(folders => {
+      this.folders = folders;
+      console.log(this.folders);
+    });
+    // get all files
+    this.fileService.getFiles().subscribe(files => {
+      this.files = files;
     this.folder = new Folder();
     this.file = new File();
     this.searchStr = '';
     this.checkFolder();
-  }
+  });
+}
 
   checkFolder() {
     this.route.params.subscribe(params => {
       if (params['searchStr'] != null) {
-        console.log('Search found:' + params['searchStr']);
+        console.log('Search found: ' + params['searchStr']);
         this.fetchSearchResults(params['searchStr']);
       } else {
         this.rootId = +params['folderId'];
-        console.log('RootId:' + this.rootId);
+        console.log('RootId: ' + this.rootId);
         if (!(this.rootId > 0)) {
           this.fetchRoot();
         } else {
@@ -73,26 +84,39 @@ export class DirectoryComponent implements OnInit {
       console.log(this.files);
     });
   }
+
+  removeFolder(id: number) {
+    console.log('Called delete on folder');
+    this.folderService.deleteFolder(id).subscribe();
+    this.folders = this.folders.filter(f => f.id !== id);
+    // window.location.reload();
+  }
+
   fetchSearchResults(s: String) {
     this.fileService.getSearch(s).subscribe(files => {
       this.files = files;
     });
   }
 
-  removeFolder(id: number) {
-    console.log('Called delete on folder');
-    this.folderService.deleteFolder(id).subscribe();
-    this.folders = this.folders.filter(f => f.id !== id);
-  }
   removeFile(id: number) {
     console.log('Called delete on file');
     this.fileService.deleteFile(id).subscribe();
+
+    this.files = this.files.filter(fi => fi.id !== id);
+    // window.location.reload();
+
     this.files = this.files.filter(fi => fi.id !== id);
   }
 
   enterFolder(id: number) {
     console.log('Entering folder ' + id);
     this.router.navigate(['/home/folder/' + id]);
+  }
+
+  enterFile(foid: number, fiid: number) {
+    console.log('Entering file ' + fiid);
+    this.router.navigate(['/home/folder/' + foid + '/file/' + fiid]);
+    this.reload();
   }
 
   reload() {
