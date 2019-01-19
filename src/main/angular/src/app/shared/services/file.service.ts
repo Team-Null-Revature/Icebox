@@ -50,8 +50,10 @@ export class FileService {
   }
 
   getFilesByFolder(fId: Number): Observable<FileCustom[]> {
-    return this.http.get('api/files/folder=' + fId).pipe(map(resp => resp as FileCustom[]));
-  }
+    return this.http.get('api/files/folder=' + fId).pipe(
+        map(resp => resp as FileCustom[])
+      );
+    }
 
   // Remove a file from the DB
   deleteFile(id: number) {
@@ -127,6 +129,8 @@ export class FileService {
   }
   // get all files from search
   getSearch(s: String): Observable<FileCustom[]> {
-    return this.http.get('api/files/search/' + s).pipe(map(resp => resp as FileCustom[]));
+    return this.http.get('api/files/search/' + s).pipe(
+        map(resp => resp as FileCustom[])
+      );
   }
 }

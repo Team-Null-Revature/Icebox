@@ -12,6 +12,8 @@ import { DirectoryComponent } from '../directory/directory.component';
 })
 export class HomeComponent implements OnInit {
   folderId: Number;
+  fileId: number;
+
 
   constructor(
     private uService: UserServiceService,
@@ -24,10 +26,17 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     console.log('Making home');
-    this.uService.checkLogin().subscribe(resp => {
-      if (resp == null) {
-        this.router.navigate(['/login']);
+    this.uService.checkLogin().subscribe(
+      resp => {
+          if (resp == null) {
+              this.router.navigate(['/login']);
+          }
       }
+    );
+    this.route.paramMap.subscribe(params => {
+        if (params.get('id')) {
+           this.fileId = +params.get('id');
+        }
     });
 
     this.route.paramMap.subscribe(params => {
