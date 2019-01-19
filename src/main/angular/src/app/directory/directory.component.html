@@ -1,19 +1,19 @@
-<table id="content" class="table table-hover"> 
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col" class="border-top-0">Name</th>
-        <th scope="col" class="border-top-0">Modified</th>
-        <th scope="col" class="border-top-0">Size</th>
-        <th scope="col" class="border-top-0">Actions</th>
-      </tr>
-      <!-- <td>
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" class="border-top-0">Name</th>
+      <th scope="col" class="border-top-0">Modified</th>
+      <th scope="col" class="border-top-0">Size</th>
+      <th scope="col" class="border-top-0">Actions</th>
+    </tr>
+    <!-- <td>
         <button class="btn btn-secondary" id="backButton"> Back </button>
       </td> --> <!--Maybe impliment this later-->
     </thead>
     <tbody>
       <!-- Display all folders -->
-      <tr *ngFor="let f of folders">
-        <th id="folderName" scope="row" (dblclick)="enterFolder(f.id)"><span class="fa fa-folder-open" aria-hidden="true"></span>  {{f.name}}</th>
+      <tr *ngFor="let f of folders" (dblclick)="enterFolder(f.id)">
+        <td><i class="fas fa-folder-open"></i>  {{f.name}}</td>
         <td>--</td> <!--Modified not implemented for folders-->
         <td>--</td> <!--File size not implemented for folders-->
         <td>
@@ -24,21 +24,20 @@
         </td>
       </tr>
 
-      <!--Files display here-->
-      <!--<app-all-files></app-all-files>-->
-      <tr *ngFor="let fi of files">
-        <th id="fileName" scope="row"><span class="fa fa-file" aria-hidden="true" ></span> {{fi.name}}</th>
-        <td>{{fi.created | date:'medium'}}</td>
-        <td>{{fi.size}}</td>
-        <td>
-            <!--Rename Button (secondary)-->
-            <button class="btn btn-secondary" (click)="newFileName(fi.id)">Rename</button> <!--Open form or text area-->
-            <!--Delete File Button-->
-            <button class="btn btn-danger" (click)="removeFile(fi.id)"> X </button>
+    <!--Files display here-->
+    <tr *ngFor="let f of files" (click)="selectFile(f)">
+      <td class="text-wrap" style="width: 6rem;" (dblclick)="enterFile(f.folder.id , f.id)"><i class="fas fa-file"></i>
+        {{ f.name }}
+      </td>
+      <td>{{ f.created | date: 'medium' }}</td>
+      <td>{{ f.size | bytes }}</td>
+      <td>
+          <!--Rename Button (secondary)-->
+          <button class="btn btn-secondary" (click)="newFileName(fi.id)">Rename</button> <!--Open form or text area-->
+          <!--Delete File Button-->
+          <button class="btn btn-danger" (click)="removeFile(f.id)">X</button>
         </td>
-      </tr>
+    </tr>
+  </tbody>
+</table>
 
-    </tbody>
-  </table>
-
-  

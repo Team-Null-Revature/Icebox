@@ -8,19 +8,19 @@
   <!-- Make a row -->
   <div class="row">
     <!-- Column for the file and folder table -->
-    <div class="col-md-8 px-0">
+    <div class="col-lg-8 px-0">
       <!-- Table for files and folders -->
-      <app-directory id="content"></app-directory>
+      <app-directory id="content" (selectedFile)="onFileSelected($event)"></app-directory>
     </div>
     <!-- Column for the currently selected file info -->
-    <div class="col-md-4 px-0">
+    <div class="col-lg-4 px-0">
       <!-- Table for the create folder and upload buttons -->
       <table class="table">
         <thead class="thead-dark">
           <tr>
             <th scope="col" class="border-top-0 th-md-btn">
+              <!-- Import the new folder button -->
               <app-folder></app-folder>
-              <!-- <button type="button" class="btn btn-outline-primary btn-sm w-100">New Folder</button> -->
             </th>
             <th scope="col" class="border-top-0 th-md-btn">
               <!-- Import the upload button -->
@@ -29,11 +29,8 @@
           </tr>
         </thead>
       </table>
-      <div class="card">
-        <div class="card-body">
-          <p>File info goes here.</p>
-        </div>
-      </div>
+      <!-- Display the selected file -->
+      <app-file [selectedFile]="selectedFile"></app-file>
     </div>
   </div>
 </div>
