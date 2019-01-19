@@ -1,6 +1,7 @@
 package com.revature._1811_nov27_wvu.icebox.services;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Set;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -24,6 +25,8 @@ public interface FileService {
 	public File genShareStr(File f);
 
 	public File uploadFile(int folderId, MultipartFile file) throws AmazonServiceException, SdkClientException, IOException;
+	
+	public InputStream downloadFile(File f);
 
 	public File getFileByShareStr(String s);
 

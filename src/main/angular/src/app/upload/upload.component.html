@@ -26,7 +26,7 @@
                   <tr *ngFor="let entry of (stagedFiles | keyvalue)">
                     <td>
                       <h6>
-                        <span aria-hidden="true" class="fas fa-file"></span> {{ entry.value.name }} <span class="font-weight-normal text-muted">{{ formatBytes(entry.value.size) }}</span>
+                        <span aria-hidden="true" class="fas fa-file"></span> {{ entry.value.name }} <span class="font-weight-normal text-muted">{{ entry.value.size | bytes }}</span>
                         <span aria-hidden="true" class="fas fa-times float-right text-danger clickable" (click)="removeFile(entry.value)"></span>
                       </h6>
                     </td>
@@ -44,14 +44,14 @@
                     <td>
                       <h6>
                         <span aria-hidden="true" class="fas fa-file"></span> {{ entry.value.getFile().name }}
-                        <span class="font-weight-normal text-muted">{{ formatBytes(entry.value.getFile().size) }}</span>
+                        <span class="font-weight-normal text-muted">{{ entry.value.getFile().size | bytes }}</span>
                       </h6>
 
                       <div class="progress">
                         <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" [style.width]="entry.value.getPercentComplete() + '%'" role="progressbar"></div>
                       </div>
                       <span class="font-weight-normal text-muted">{{ entry.value.getPercentComplete() }}% done</span>
-                      <span class="font-weight-normal text-muted float-right">{{ formatBytes(entry.value.getSpeed()) }}/s</span>
+                      <span class="font-weight-normal text-muted float-right">{{ entry.value.getSpeed() | bytes }}/s</span>
                     </td>
                   </tr>
                 </tbody>

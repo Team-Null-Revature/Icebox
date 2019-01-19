@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { File } from '../shared/models/file.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FileService } from '../shared/services/file.service';
 import { FolderService } from '../shared/services/folder.service';
 import { UserServiceService } from '../shared/services/user.service';
 import { DirectoryComponent } from '../directory/directory.component';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +15,7 @@ import { DirectoryComponent } from '../directory/directory.component';
 export class HomeComponent implements OnInit {
   folderId: Number;
   fileId: number;
-
+  selectedFile: File;
 
   constructor(
     private uService: UserServiceService,
@@ -34,8 +36,8 @@ export class HomeComponent implements OnInit {
       }
     );
     this.route.paramMap.subscribe(params => {
-        if (params.get('id')) {
-           this.fileId = +params.get('id');
+      if (params.get('id')) {
+        this.fileServ.getFile(+params.get('id')).subscribe(f => this.selectedFile = f);
         }
     });
 
@@ -48,5 +50,12 @@ export class HomeComponent implements OnInit {
         });
       }
     });
+  }
+
+  // Set the file that was selected as the selected file
+  onFileSelected(file: File) {
+    this.selectedFile = file;
+    // Change the URL to reflect the selected file
+    this.router.navigate([`/home/folder/${this.folderId}/file/${file.id}`]);
   }
 }

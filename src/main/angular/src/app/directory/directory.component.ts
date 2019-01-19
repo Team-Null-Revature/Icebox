@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { File } from '../shared/models/file.model';
 import { Folder } from '../shared/models/folder.model';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -11,11 +11,11 @@ import { FolderService } from '../shared/services/folder.service';
   styleUrls: ['./directory.component.css']
 })
 export class DirectoryComponent implements OnInit {
+  @Output() selectedFile = new EventEmitter<File>();
   public folders: Folder[];
   public rootId: Number;
   public folder: Folder;
   public files: File[];
-  public file: File;
   public searchStr: String;
 
   constructor(
@@ -26,7 +26,6 @@ export class DirectoryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
     // get all folders
     console.log('Initializing Directory');
     this.folderService.getFolders().subscribe(folders => {
@@ -37,7 +36,6 @@ export class DirectoryComponent implements OnInit {
     this.fileService.getFiles().subscribe(files => {
       this.files = files;
     this.folder = new Folder();
-    this.file = new File();
     this.searchStr = '';
     this.checkFolder();
   });
@@ -103,9 +101,6 @@ export class DirectoryComponent implements OnInit {
     this.fileService.deleteFile(id).subscribe();
 
     this.files = this.files.filter(fi => fi.id !== id);
-    // window.location.reload();
-
-    this.files = this.files.filter(fi => fi.id !== id);
   }
 
   enterFolder(id: number) {
@@ -121,5 +116,11 @@ export class DirectoryComponent implements OnInit {
 
   reload() {
     window.location.reload();
+  }
+
+  selectFile(file: File) {
+    this.selectedFile.emit(file);
+    console.log('Select File');
+    console.log(file);
   }
 }

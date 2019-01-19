@@ -13,7 +13,7 @@
     <tbody>
       <!-- Display all folders -->
       <tr *ngFor="let f of folders" (dblclick)="enterFolder(f.id)">
-        <th scope="row" ><span class="fa fa-folder-open" aria-hidden="true"></span>  {{f.name}}</th>
+        <td><i class="fas fa-folder-open"></i>  {{f.name}}</td>
         <td>--</td> <!--Modified not implemented for folders-->
         <td>--</td> <!--File size not implemented for folders-->
         <td>
@@ -22,12 +22,13 @@
       </tr>
 
     <!--Files display here-->
-    <!--<app-all-files></app-all-files>-->
-    <tr *ngFor="let fi of files">
-      <th scope="row" (dblclick)="enterFile(fi.folder.id , fi.id)"><span class="fa fa-file-archive-o" aria-hidden="true"></span> {{ fi.name }}</th>
-      <td>{{ fi.created | date: 'medium' }}</td>
-      <td>{{ fi.size }}</td>
-      <td><button class="btn btn-danger" (click)="removeFile(fi.id)">X</button></td>
+    <tr *ngFor="let f of files" (click)="selectFile(f)">
+      <td class="text-wrap" style="width: 6rem;" (dblclick)="enterFile(f.folder.id , f.id)"><i class="fas fa-file"></i>
+        {{ f.name }}
+      </td>
+      <td>{{ f.created | date: 'medium' }}</td>
+      <td>{{ f.size | bytes }}</td>
+      <td><button class="btn btn-danger" (click)="removeFile(f.id)">X</button></td>
     </tr>
   </tbody>
 </table>
