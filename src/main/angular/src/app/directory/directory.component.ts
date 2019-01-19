@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FolderService} from '../shared/folder.service';
-import {Folder} from 'src/app/shared/folder';
+import { File } from '../shared/models/file.model';
+import { Folder } from '../shared/models/folder.model';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FileService } from 'src/app/files/shared/file.service';
-import { File } from 'src/app/files/shared/file';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
+import { FileService } from '../shared/services/file.service';
+import { FolderService } from '../shared/services/folder.service';
 
 @Component({
   selector: 'app-directory',
@@ -14,9 +13,9 @@ import { routerNgProbeToken } from '@angular/router/src/router_module';
 export class DirectoryComponent implements OnInit {
   public folders: Folder[];
   public rootId: Number;
-  public folder = new Folder;
+  public folder: Folder;
   public files: File[];
-  public file = new File;
+  public file: File;
   public searchStr: String;
 
   constructor(
@@ -24,7 +23,7 @@ export class DirectoryComponent implements OnInit {
     private router: Router,
     private fileService: FileService,
     private route: ActivatedRoute
-    ) { }
+  ) {}
 
   ngOnInit() {
 
@@ -37,6 +36,9 @@ export class DirectoryComponent implements OnInit {
     // get all files
     this.fileService.getFiles().subscribe(files => {
       this.files = files;
+    this.folder = new Folder();
+    this.file = new File();
+    this.searchStr = '';
     this.checkFolder();
   });
 }
@@ -56,7 +58,7 @@ export class DirectoryComponent implements OnInit {
           this.fetchFileContents(this.rootId);
         }
       }
-   });
+    });
   }
 
   fetchRoot() {

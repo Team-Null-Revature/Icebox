@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpRequest, HttpEventType } from '@angular/common/http';
 import { Observable, pipe, of, Observer, observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { File as FileCustom} from './file';
-import { UploadStatus } from 'src/app/shared/uploadStatus.model';
+import { UploadStatus } from '../models/uploadStatus.model';
+import { File as FileCustom } from '../models/file.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class FileService {
     this.appUrl = 'api/files';
     this.inProgressFiles = new Map();
     this.headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    this.fileUploaded = new Observable(observer => this.fileUploadedObserver = observer);
+    this.fileUploaded = new Observable(observer => (this.fileUploadedObserver = observer));
   }
 
   getFiles(): Observable<FileCustom[]> {
@@ -49,16 +49,16 @@ export class FileService {
     }
   }
 
-    // Remove a file from the DB
-    deleteFile(id: number) {
-        console.log('Deleting file with ID ' + id);
-        return this.http.delete('api/files/' + id);
-    }
-
   getFilesByFolder(fId: Number): Observable<FileCustom[]> {
     return this.http.get('api/files/folder=' + fId).pipe(
         map(resp => resp as FileCustom[])
       );
+    }
+
+  // Remove a file from the DB
+  deleteFile(id: number) {
+    console.log('Deleting file with ID ' + id);
+    return this.http.delete('api/files/' + id);
   }
 
   shareFile(file: FileCustom): Observable<FileCustom> {
