@@ -34,6 +34,10 @@ const routes: Routes = [
         redirectTo: '/home'
     },
     {
+        path: 'home/shared/:sharestr',
+        component: HomeComponent
+    },
+    {
         path: 'register',
         component: RegistrationComponent
     },

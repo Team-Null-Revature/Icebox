@@ -100,12 +100,6 @@ export class DirectoryComponent implements OnInit {
     this.router.navigate(['/home/folder/' + id]);
   }
 
-  enterFile(foid: number, fiid: number) {
-    console.log('Entering file ' + fiid);
-    this.router.navigate(['/home/folder/' + foid + '/file/' + fiid]);
-    this.reload();
-  }
-
   reload() {
     window.location.reload();
   }
