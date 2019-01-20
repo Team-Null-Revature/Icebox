@@ -63,7 +63,7 @@ CREATE TABLE Ib_Folder (
     Owner NUMBER(10), --fk
     Name VARCHAR2(100) NOT NULL,
     P_Folder NUMBER(10), --fk
-    CONSTRAINT FK_Fo_Owner FOREIGN KEY (Owner) REFERENCES Ib_User(User_Id),
+    CONSTRAINT FK_Fo_Owner FOREIGN KEY (Owner) REFERENCES Ib_User(User_Id) ON DELETE CASCADE,
     CONSTRAINT FK_Fo_Parent FOREIGN KEY (P_Folder) REFERENCES Ib_Folder(Folder_Id) ON DELETE CASCADE
 );
 
