@@ -22,8 +22,10 @@ export class TagService {
   }
 
   deleteTag(tag: Tag, file: File){
-    const url: string = this.appUrl + '/' + file.id;
-
+    console.log('in tag service delete');
+    console.log('tag: ' + tag.id);
+    console.log('file: ' + file.id);
+    const url: string = 'api/file=' + file.id + "/tag=" + tag.id;
       return this.http.delete(url);
   }
 }

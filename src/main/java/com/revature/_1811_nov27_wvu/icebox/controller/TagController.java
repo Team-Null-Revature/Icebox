@@ -59,12 +59,19 @@ public class TagController {
 		return t;
 	}
 	
-	@RequestMapping(value = "/api/tag/{id}", method = RequestMethod.DELETE)
-	public void deleteTags(@RequestBody Tag t, @PathVariable("id") int id) {
-		File tempFile = fs.getFileById(id);
+	@RequestMapping(value = "/api/file={fid}/tag={tid}", method = RequestMethod.DELETE)
+	public void deleteTags(@PathVariable("fid") int fid, @PathVariable("tid") int tid) {
+		log.trace("in deleteTags in ");
 		
-		tempFile.getTags().remove(t);
-		ts.deleteTag(t);
+		Tag tempTag = ts.getTagById(tid);
+		
+		log.trace("tag in back: " + tempTag.toString());
+		
+		File tempFile = fs.getFileById(fid);
+		
+		log.trace("file in back: " + tempFile.toString());
+		tempFile.getTags().remove(tempTag);
+		ts.deleteTag(tempTag);
 		log.trace("file: " + tempFile.toString());
 		fs.updateFile(tempFile);
 		log.trace("file after" + tempFile.toString());

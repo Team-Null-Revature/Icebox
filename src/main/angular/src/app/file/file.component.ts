@@ -47,16 +47,20 @@ export class FileComponent implements OnInit {
 
     this.tagServ.addTag(this.tag, this.selectedFile).subscribe(resp => {
       console.log(resp);
+      this.selectedFile.tags.push(resp);
     });
-    window.location.reload();
   }
 
-  delete_tag(){
+  delete_tag(tag: Tag){
     console.log('in delete tag');
+    console.log('tag: ' + tag.id);
+    console.log(tag);
+    
+    console.log('file: ' + this.selectedFile.id);
 
-    this.tagServ.deleteTag(this.tag, this.selectedFile).subscribe(resp => {
+    this.tagServ.deleteTag(tag, this.selectedFile).subscribe(resp => {
       console.log(resp);
+      this.selectedFile.tags = this.selectedFile.tags.filter(t => t.id != tag.id);
     });
-    window.location.reload();
   }
 }
