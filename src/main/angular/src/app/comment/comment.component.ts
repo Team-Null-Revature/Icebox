@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CommentService } from '../shared/services/comment.service';
+import { File } from '../shared/models/file.model';
 
 @Component({
   selector: 'app-comment',
@@ -9,6 +10,7 @@ import { CommentService } from '../shared/services/comment.service';
 export class CommentComponent implements OnInit {
   private comments : Comment[];
   private comment;
+  @Input() selectedFile : File;
   constructor(private commentService: CommentService) {}
 
   ngOnInit() {
@@ -17,7 +19,7 @@ export class CommentComponent implements OnInit {
   }
 
   populateComments(){
-    this.commentService.getComments(2).subscribe(comments => {
+    this.commentService.getComments(this.selectedFile.id).subscribe(comments => {
       console.log("Comments:");
       console.log(comments);
       this.comments = comments;
@@ -26,7 +28,7 @@ export class CommentComponent implements OnInit {
 
   addComment(){
     this.comment.comment = "Added comment";
-    this.commentService.addComment(2,this.comment).subscribe(comment =>{
+    this.commentService.addComment(this.selectedFile.id,this.comment).subscribe(comment =>{
       this.comment = comment;
     });
 

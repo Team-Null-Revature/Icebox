@@ -1,3 +1,17 @@
 <p>
-  Comments Here.
+  Comments
 </p>
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" class="border-top-0">Sender</th>
+      <th scope="col" class="border-top-0">Message</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of comments">
+      <td>{{c.sender.username}}</td>
+      <td>{{c.comment}}</td>
+    </tr>
+  </tbody>
+</table>
