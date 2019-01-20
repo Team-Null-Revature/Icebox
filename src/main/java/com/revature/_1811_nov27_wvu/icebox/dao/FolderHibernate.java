@@ -82,4 +82,14 @@ public class FolderHibernate implements FolderDao {
 		return q.getResultList();
 	}
 
+	@Override
+	public Folder updateFolder(Folder f) {
+		Session s = sf.getSession();
+		Transaction tx = s.beginTransaction();
+		s.update(f);
+		tx.commit();
+		s.close();
+		return f;
+	}
+
 }
