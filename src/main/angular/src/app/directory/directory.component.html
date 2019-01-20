@@ -23,7 +23,7 @@
 
     <!--Files display here-->
     <tr *ngFor="let f of files" (click)="selectFile(f)">
-      <td class="text-wrap" style="width: 6rem;"><i class="fas fa-file"></i>
+      <td><i class="fas fa-file"></i>
         {{ f.name }}
       </td>
       <td>{{ f.created | date: 'medium' }}</td>
