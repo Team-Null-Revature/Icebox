@@ -101,7 +101,7 @@ public class FileHibernate implements FileDao {
 		if(t.uniqueResult() == null) return null;
 		
 		Query<File> q = s.createQuery("FROM File where folder.owner.id=:ownId and :tg = some elements(tags)", File.class);
-		q.setParameter("tg", t.uniqueResult().getTag_id());
+		q.setParameter("tg", t.uniqueResult().getId());
 		q.setParameter("ownId", u.getId());
 		Set<File> fileSet = new HashSet<File>(q.getResultList());
 		return fileSet;
