@@ -8,9 +8,11 @@ import { CommentService } from '../shared/services/comment.service';
 })
 export class CommentComponent implements OnInit {
   private comments : Comment[];
+  private comment;
   constructor(private commentService: CommentService) {}
 
   ngOnInit() {
+    this.comment = new Comment;
     this.populateComments();
   }
 
@@ -20,5 +22,13 @@ export class CommentComponent implements OnInit {
       console.log(comments);
       this.comments = comments;
     });
+  }
+
+  addComment(){
+    this.comment.comment = "Added comment";
+    this.commentService.addComment(2,this.comment).subscribe(comment =>{
+      this.comment = comment;
+    });
+
   }
 }
