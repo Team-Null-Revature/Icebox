@@ -15,15 +15,15 @@ public class Tag {
 	@Column(name="Tag_id")
 	@SequenceGenerator(name="tagSeq", sequenceName="Tag_Seq", allocationSize=1)
 	@GeneratedValue(generator="tagSeq", strategy=GenerationType.SEQUENCE)
-	private int tag_id;
+	private int id;
 	private String name;
 
-	public int getTag_id() {
-		return tag_id;
+	public int getId() {
+		return id;
 	}
 
-	public void setTag_id(int tag_id) {
-		this.tag_id = tag_id;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -39,7 +39,7 @@ public class Tag {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + tag_id;
+		result = prime * result + id;
 		return result;
 	}
 
@@ -57,14 +57,14 @@ public class Tag {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (tag_id != other.tag_id)
+		if (id != other.id)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Tag [tag_id=" + tag_id + ", name=" + name + "]";
+		return "Tag [tag_id=" + id + ", name=" + name + "]";
 	}
 
 }

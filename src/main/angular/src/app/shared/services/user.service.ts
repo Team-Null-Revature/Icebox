@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UserServiceService {
+
   constructor(private http: HttpClient) {}
 
   sendRegistration(user: User) {
@@ -23,5 +24,9 @@ export class UserServiceService {
 
   logout() {
     return this.http.delete('api/login').pipe(map(resp => resp as User));
+  }
+
+  delete(user: User){
+    return this.http.delete('api/home/deleteuser').pipe(map(resp => resp as User));
   }
 }
