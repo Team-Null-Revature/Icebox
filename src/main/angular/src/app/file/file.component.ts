@@ -50,4 +50,13 @@ export class FileComponent implements OnInit {
     });
     window.location.reload();
   }
+
+  delete_tag(){
+    console.log('in delete tag');
+
+    this.tagServ.deleteTag(this.tag, this.selectedFile).subscribe(resp => {
+      console.log(resp);
+    });
+    window.location.reload();
+  }
 }

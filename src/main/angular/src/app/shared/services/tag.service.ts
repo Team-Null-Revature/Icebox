@@ -20,4 +20,10 @@ export class TagService {
     console.log('url' + url);
     return this.http.post(url, tag).pipe(map(resp => resp as Tag));
   }
+
+  deleteTag(tag: Tag, file: File){
+    const url: string = this.appUrl + '/' + file.id;
+
+      return this.http.delete(url);
+  }
 }
