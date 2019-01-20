@@ -27,24 +27,13 @@ export class DirectoryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.folder=new Folder();
-    this.file=new File();
     document.getElementById("renameFolderForm").style.visibility = "hidden";
     document.getElementById("renameFileForm").style.visibility ="hidden";
-    // get all folders
-    console.log('Initializing Directory');
-    this.folderService.getFolders().subscribe(folders => {
-      this.folders = folders;
-      console.log(this.folders);
-    });
-    // get all files
-    this.fileService.getFiles().subscribe(files => {
-      this.files = files;
     this.folder = new Folder();
+    this.file = new File();
     this.searchStr = '';
     this.checkFolder();
-  });
-}
+  }
 
   checkFolder() {
     this.route.params.subscribe(params => {
@@ -111,12 +100,6 @@ export class DirectoryComponent implements OnInit {
   enterFolder(id: number) {
     console.log('Entering folder ' + id);
     this.router.navigate(['/home/folder/' + id]);
-  }
-
-  enterFile(foid: number, fiid: number) {
-    console.log('Entering file ' + fiid);
-    this.router.navigate(['/home/folder/' + foid + '/file/' + fiid]);
-    this.reload();
   }
 
   reload() {

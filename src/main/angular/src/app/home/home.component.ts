@@ -39,6 +39,9 @@ export class HomeComponent implements OnInit {
       if (params.get('id')) {
         this.fileServ.getFile(+params.get('id')).subscribe(f => this.selectedFile = f);
         }
+        if (params.get('sharestr')) {
+            this.fileServ.getShareFile(params.get('sharestr')).subscribe(f => this.selectedFile = f);
+        }
     });
 
     this.route.paramMap.subscribe(params => {
