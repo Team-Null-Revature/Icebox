@@ -15,7 +15,7 @@
 
       <dt class="col-sm-5">Tags:</dt>
       <dd class="col-sm-8">
-        <span class="badge badge-pill badge-primary" *ngFor="let t of selectedFile.tags" style="margin-left: 5px">{{ t.name }}</span>
+        <span class="badge badge-pill badge-primary" *ngFor="let t of selectedFile.tags" style="margin-left: 5px" (click) = "delete_tag(t)">{{ t.name }}</span>
       </dd>
     </dl>
     <div class="row">
@@ -27,9 +27,9 @@
       </form>
     </div>
     <div class="row">
-      <div class="col pl-0 pr-1">
-        <app-download [file]="selectedFile"></app-download>
-      </div>
+          <div class="col pl-0 pr-1">
+              <app-download [file]="selectedFile"></app-download>
+          </div>
       <div class="col px-1">
         <button class="btn btn-success w-100 h-100" (click)="share()">Share</button>
       </div>
@@ -39,3 +39,4 @@
     </div>
   </div>
 </div>
+

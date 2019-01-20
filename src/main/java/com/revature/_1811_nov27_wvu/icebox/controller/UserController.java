@@ -2,6 +2,7 @@ package com.revature._1811_nov27_wvu.icebox.controller;
 
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +17,7 @@ import com.revature._1811_nov27_wvu.icebox.services.UserService;
 
 @RestController
 public class UserController {
+	private Logger log = Logger.getLogger(UserController.class);
 	@Autowired
 	private UserService us;
 	@Autowired
@@ -39,6 +41,14 @@ public class UserController {
 		folder.setOwner(u);
 		fs.addFolder(folder);
 		return u;
+	}
+	
+	@RequestMapping(value ="api/home/deleteUser", method = RequestMethod.DELETE)
+	public User deleteUser(@RequestBody User u) {
+		log.trace("in delete user method");
+		log.trace("User: " + u);
+		us.deleteUser(u);
+		return null;
 	}
 
 }
