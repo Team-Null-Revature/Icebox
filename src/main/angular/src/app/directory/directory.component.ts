@@ -16,6 +16,7 @@ export class DirectoryComponent implements OnInit {
   public rootId: Number;
   public folder: Folder;
   public files: File[];
+  public file: File;
   public searchStr: String;
 
   constructor(
@@ -26,6 +27,10 @@ export class DirectoryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.folder=new Folder();
+    this.file=new File();
+    document.getElementById("renameFolderForm").style.visibility = "hidden";
+    document.getElementById("renameFileForm").style.visibility ="hidden";
     // get all folders
     console.log('Initializing Directory');
     this.folderService.getFolders().subscribe(folders => {
@@ -122,5 +127,21 @@ export class DirectoryComponent implements OnInit {
     this.selectedFile.emit(file);
     console.log('Select File');
     console.log(file);
+  }
+
+  newFolderName(folder: Folder){
+    document.getElementById("renameFolderForm").style.visibility = "visible";
+  }
+  renameFolder(folder: Folder){
+    document.getElementById("renameFolderForm").style.visibility = "hidden";
+    console.log("Rename called on Folder: " + folder.id);
+  }
+  
+  newFileName(file: File){
+    document.getElementById("renameFileForm").style.visibility = "visible";
+  }
+  renameFile(file: File){
+    document.getElementById("renameFileForm").style.visibility = "hidden";
+    console.log("Rename called on File: " + file.id);
   }
 }

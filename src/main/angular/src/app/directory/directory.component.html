@@ -18,7 +18,7 @@
         <td>--</td> <!--File size not implemented for folders-->
         <td>
           <!--Rename Button (secondary)-->
-          <button class="btn btn-secondary" (click)="newFolderName(f.id)">Rename</button>
+          <button class="btn btn-secondary" (click)="newFolderName(f)">Rename</button>
           <!--Delete Folder Button (danger)-->
           <button class="btn btn-danger" (click)="removeFolder(f.id)"> X </button>
         </td>
@@ -33,11 +33,25 @@
       <td>{{ f.size | bytes }}</td>
       <td>
           <!--Rename Button (secondary)-->
-          <button class="btn btn-secondary" (click)="newFileName(fi.id)">Rename</button> <!--Open form or text area-->
+          <button class="btn btn-secondary" (click)="newFileName(f)">Rename</button> <!--Open form or text area-->
           <!--Delete File Button-->
           <button class="btn btn-danger" (click)="removeFile(f.id)">X</button>
         </td>
     </tr>
   </tbody>
 </table>
-
+<div>
+    <form id="renameFolderForm" (ngSubmit)="renameFolder(f)" class="w-100">
+        <div class="input-group mb-3">
+          <input id="changeFolder" name="newName" type="text" class="form-control" required [(ngModel)]="folder.name" required placeholder= "New Folder Name"/>
+          <div class="input-group-append"><button class="btn btn-secondary" type="submit">Change Name</button></div>
+        </div>
+      </form>
+      
+      <form id="renameFileForm" (ngSubmit)="renameFile(fi)" class="w-100">
+        <div class="input-group mb-3">
+          <input id="changeFile" name="newName" type="text" class="form-control" required [(ngModel)]="file.name" required placeholder= "New File Name"/>
+          <div class="input-group-append"><button class="btn btn-secondary" type="submit">Change Name</button></div>
+        </div>
+      </form> 
+</div>
