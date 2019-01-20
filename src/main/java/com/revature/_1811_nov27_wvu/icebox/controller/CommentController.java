@@ -39,6 +39,9 @@ public class CommentController {
 	@RequestMapping(value = "/api/comments/{id}", method = RequestMethod.POST)
 	public Comment addFile(@PathVariable("id") int id, @RequestBody Comment c) {
 		c.setSender((User)session.getAttribute("user"));
+		if(c.getSender() == null) {
+			return null;
+		}
 		c.setFile(fs.getFileById(id));
 		return cs.addComment(c);
 	}
