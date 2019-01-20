@@ -27,6 +27,11 @@ public class HomeController {
 		return Optional.ofNullable(user).map(u -> "redirect:/").orElse("/static/index.html");
 	}
 	
+	@GetMapping("/shared/**")
+	public String sharedFilePage() {
+		return "/static/index.html";
+	}
+	
 	@GetMapping("/register")
 	public String registerPage() {
 		return "/static/index.html";

@@ -1,16 +1,19 @@
 package com.revature._1811_nov27_wvu.icebox.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+import java.util.Objects;
 import java.util.Set;
-
+import java.util.stream.Collectors;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -96,24 +99,25 @@ public class FileController {
 		return fs.uploadFile(folderId, file);
 	}
 	
-	@GetMapping("/api/files/{fileId}/dl")
-	public ResponseEntity<InputStreamResource> downloadFile(@PathVariable int fileId) {
-		return prepareFileDownload(fs.getFileById(fileId));
+	@GetMapping("/api/files/{fileIds}/dl")
+	public ResponseEntity<InputStreamResource> downloadFiles(@PathVariable List<Integer> fileIds) throws IOException {
+		return prepareFilesDownload(fileIds.stream().map(fs::getFileById).filter(Objects::nonNull).collect(Collectors.toList()));
 	}
 	
 	@GetMapping("/api/files/shared/{share}/dl")
-	public ResponseEntity<InputStreamResource> downloadSharedFile(@PathVariable String share) { 
-		return prepareFileDownload(fs.getFileByShareStr(share));
+	public ResponseEntity<InputStreamResource> downloadSharedFile(@PathVariable List<String> shares) throws IOException { 
+		return prepareFilesDownload(shares.stream().map(fs::getFileByShareStr).filter(Objects::nonNull).collect(Collectors.toList()));
 	}
 	
-	private ResponseEntity<InputStreamResource> prepareFileDownload(File f) {
-		if(f == null) {
+	private ResponseEntity<InputStreamResource> prepareFilesDownload(List<File> files) throws IOException {
+		if(files.isEmpty()) {
 			return new ResponseEntity<InputStreamResource>(HttpStatus.NOT_FOUND);
 		} else {
 		    HttpHeaders headers = new HttpHeaders();
-		    headers.setContentLength(f.getSize());
-		    headers.setContentDispositionFormData("attachment", f.getName());
-			return new ResponseEntity<InputStreamResource>(new InputStreamResource(fs.downloadFile(f)), headers, HttpStatus.OK);
+		    Pair<InputStream, Long> resp = fs.downloadFiles(files);
+		    headers.setContentLength(resp.getRight());
+		    headers.setContentDispositionFormData("attachment", files.size() > 1 ? "files.zip" : files.get(0).getName());
+			return new ResponseEntity<InputStreamResource>(new InputStreamResource(resp.getLeft()), headers, HttpStatus.OK);
 		} 
 	}
 }

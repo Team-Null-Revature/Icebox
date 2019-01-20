@@ -1,11 +1,17 @@
 package com.revature._1811_nov27_wvu.icebox.services;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,7 +68,8 @@ public class FileServiceImpl implements FileService {
 	}
 
 	@Override
-	public File uploadFile(int folderId, MultipartFile file) throws AmazonServiceException, SdkClientException, IOException {
+	public File uploadFile(int folderId, MultipartFile file)
+			throws AmazonServiceException, SdkClientException, IOException {
 		// Create the folder of the file
 		Folder folder = new Folder();
 		folder.setId(folderId);
@@ -96,21 +103,45 @@ public class FileServiceImpl implements FileService {
 	public Set<File> getAllSharedFiles() {
 		return fd.getAllSharedFiles();
 	}
-	
+
 	@Override
-	public Set<File> getFilesByFolder(int i){
+	public Set<File> getFilesByFolder(int i) {
 		return fd.getFilesByFolder(i);
 	}
 
-	public Set<File> getFileBySearch(String s, User u){
+	public Set<File> getFileBySearch(String s, User u) {
 		Set<File> fSet = fd.getFilesByName(s, u);
 		Set<File> tSet = fd.getFilesByTag(s, u);
-		if(tSet != null) fSet.addAll(tSet);
+		if (tSet != null)
+			fSet.addAll(tSet);
 		return fSet;
 	}
 
 	@Override
-	public InputStream downloadFile(File f) {
-		return s3Client.getObject("icebox1", f.getId() + "").getObjectContent();
+	public Pair<InputStream, Long> downloadFiles(List<File> files) throws IOException {
+		if (files.size() == 1) {
+			return Pair.of(s3Client.getObject("icebox1", files.get(0).getId() + "").getObjectContent(), files.get(0).getSize());
+		} else {
+			ByteArrayOutputStream bout = new ByteArrayOutputStream();
+			ZipOutputStream zout = new ZipOutputStream(bout);
+			for (File f : files) {
+				zout.putNextEntry(new ZipEntry(f.getName()));
+				InputStream s3In = s3Client.getObject("icebox1", f.getId() + "").getObjectContent();
+
+				byte[] bytes = new byte[1024];
+				int length;
+				while ((length = s3In.read(bytes)) >= 0) {
+					zout.write(bytes, 0, length);
+				}
+
+				s3In.close();
+				zout.closeEntry();
+			}
+
+			zout.close();
+			byte[] o = bout.toByteArray();
+			System.out.println("Zip Length: " + o.length);
+			return Pair.of(new ByteArrayInputStream(o), Long.valueOf(o.length));
+		}
 	}
 }
