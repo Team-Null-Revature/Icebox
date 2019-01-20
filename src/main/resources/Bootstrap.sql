@@ -45,6 +45,7 @@ DROP SEQUENCE User_Seq;
 DROP SEQUENCE File_Seq;
 DROP SEQUENCE Folder_Seq;
 DROP SEQUENCE Tag_Seq;
+DROP SEQUENCE Comment_Seq;
 
 /*******************************************************************************
    Create Tables
@@ -107,6 +108,7 @@ CREATE SEQUENCE User_Seq;
 CREATE SEQUENCE File_Seq;
 CREATE SEQUENCE Folder_Seq;
 CREATE SEQUENCE Tag_Seq;
+CREATE SEQUENCE Comment_Seq;
 
 /*******************************************************************************
    Insert Data
@@ -156,5 +158,19 @@ VALUES (1,1);
 INSERT INTO Ib_File_Tag (File_Id,Tag_Id)
 VALUES (1,2);
 
+
+Insert into ib_comment (Comment_id,User_Id, File_id, commentstr)
+    values (Comment_seq.nextVal,2,2,'This is a comment');
+
 commit;
+
+    select
+        comment0_.comment_id as comment_id1_1_,
+        comment0_.commentstr as comment2_1_,
+        comment0_.file_id as file_id3_1_,
+        comment0_.user_id as user_id4_1_ 
+    from
+        ib_comment comment0_ 
+    where
+        comment0_.file_id=2;
 

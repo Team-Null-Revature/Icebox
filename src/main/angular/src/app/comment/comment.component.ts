@@ -6,7 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comment.component.css']
 })
 export class CommentComponent implements OnInit {
+  private comments : Comment[];
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.populateComments();
+  }
+
+  populateComments(){
+
+  }
 }
