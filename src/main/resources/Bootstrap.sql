@@ -126,7 +126,7 @@ VALUES (User_Seq.nextVal, 'chrispham','alsosecure','Chris','Pham','another@ta.or
 INSERT INTO Ib_Folder (Folder_Id, Owner, Name)
 VALUES (Folder_Seq.nextVal, 3, 'chrispham');
 INSERT INTO Ib_User(User_id,Username,Pass,FName,LName,Email)
-VALUES (User_Seq.nextVal, 'daviddonnely','verysecure','David','Donnely','onemore@ta.org');
+VALUES (User_Seq.nextVal, 'davidonnelly','verysecure','David','Donnely','onemore@ta.org');
 INSERT INTO Ib_Folder (Folder_Id, Owner, Name)
 VALUES (Folder_Seq.nextVal, 4, 'daviddonnely');
 INSERT INTO Ib_User(User_id,Username,Pass,FName,LName,Email)
@@ -163,14 +163,4 @@ Insert into ib_comment (Comment_id,User_Id, File_id, commentstr)
     values (Comment_seq.nextVal,2,2,'This is a comment');
 
 commit;
-
-    select
-        comment0_.comment_id as comment_id1_1_,
-        comment0_.commentstr as comment2_1_,
-        comment0_.file_id as file_id3_1_,
-        comment0_.user_id as user_id4_1_ 
-    from
-        ib_comment comment0_ 
-    where
-        comment0_.file_id=2;
 
