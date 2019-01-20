@@ -2,8 +2,10 @@ package com.revature._1811_nov27_wvu.icebox.services;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.amazonaws.AmazonServiceException;
@@ -26,7 +28,7 @@ public interface FileService {
 
 	public File uploadFile(int folderId, MultipartFile file) throws AmazonServiceException, SdkClientException, IOException;
 	
-	public InputStream downloadFile(File f);
+	public Pair<InputStream, Long> downloadFiles(List<File> files) throws IOException;
 
 	public File getFileByShareStr(String s);
 
