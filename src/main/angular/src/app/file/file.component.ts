@@ -47,6 +47,7 @@ export class FileComponent implements OnInit {
 
     this.tagServ.addTag(this.tag, this.selectedFile).subscribe(resp => {
       console.log(resp);
+      this.tag.name = '';
       this.selectedFile.tags.push(resp);
     });
   }
@@ -55,7 +56,6 @@ export class FileComponent implements OnInit {
     console.log('in delete tag');
     console.log('tag: ' + tag.id);
     console.log(tag);
-    
     console.log('file: ' + this.selectedFile.id);
 
     this.tagServ.deleteTag(tag, this.selectedFile).subscribe(resp => {
