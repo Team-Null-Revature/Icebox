@@ -26,7 +26,7 @@ export class UserServiceService {
     return this.http.delete('api/login').pipe(map(resp => resp as User));
   }
 
-  delete(user: User){
-    return this.http.delete('api/home/deleteuser').pipe(map(resp => resp as User));
+  delete(){ 
+    return this.http.delete('api/home/user/deleteUser').pipe(map(resp => resp as User));
   }
 }
