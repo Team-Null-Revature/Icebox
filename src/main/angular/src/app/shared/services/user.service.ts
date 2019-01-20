@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UserServiceService {
-  private userUrl = 'api/user';
+
   constructor(private http: HttpClient) {}
 
   sendRegistration(user: User) {
@@ -27,8 +27,6 @@ export class UserServiceService {
   }
 
   delete(user: User){
-    // const url: string = this.userUrl + '/' + user.
-
-    // return this.http.delete()
+    return this.http.delete('api/home/deleteuser').pipe(map(resp => resp as User));
   }
 }

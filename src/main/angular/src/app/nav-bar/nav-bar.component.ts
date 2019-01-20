@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UserServiceService } from '../shared/services/user.service';
+import { User } from '../shared/models/user.model';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,7 +10,7 @@ import { UserServiceService } from '../shared/services/user.service';
 })
 export class NavBarComponent implements OnInit {
   searchSt: String;
-
+  user: User;
   constructor(private uService: UserServiceService, private router: Router) {}
 
   ngOnInit() {
@@ -28,6 +29,8 @@ export class NavBarComponent implements OnInit {
   }
   deleteUser(){
     console.log("deleting user");
-    this.uService.
+    this.uService.delete(this.user).subscribe(resp => {
+        this.router.navigate(['/login']);
+      });
   }
 }
