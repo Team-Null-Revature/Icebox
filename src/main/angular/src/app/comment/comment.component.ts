@@ -10,7 +10,7 @@ import { File } from '../shared/models/file.model';
 export class CommentComponent implements OnInit {
   private comments : Comment[];
   private comment;
-  @Input() selectedFile : File;
+  _selectedFile : File;
   constructor(private commentService: CommentService) {}
 
   ngOnInit() {
@@ -18,8 +18,14 @@ export class CommentComponent implements OnInit {
     this.populateComments();
   }
 
+  @Input()
+  set selectedFile(selectedFile: File){
+    this._selectedFile = selectedFile;
+    this.populateComments();
+  }
+
   populateComments(){
-    this.commentService.getComments(this.selectedFile.id).subscribe(comments => {
+    this.commentService.getComments(this._selectedFile.id).subscribe(comments => {
       console.log("Comments:");
       console.log(comments);
       this.comments = comments;
@@ -27,10 +33,11 @@ export class CommentComponent implements OnInit {
   }
 
   addComment(){
-    this.comment.comment = "Added comment";
-    this.commentService.addComment(this.selectedFile.id,this.comment).subscribe(comment =>{
-      this.comment = comment;
+    this.commentService.addComment(this._selectedFile.id,this.comment).subscribe(comment =>{
+      this.comments.push(comment);
+      this.comment.comment = '';
     });
+
 
   }
 }
