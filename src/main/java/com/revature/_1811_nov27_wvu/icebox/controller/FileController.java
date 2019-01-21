@@ -90,6 +90,8 @@ public class FileController {
 
 	@RequestMapping(value ="/api/files/search/{searchStr}", method = RequestMethod.GET)
 	public Set<File> searchFiles(@PathVariable("searchStr") String s) {
+		s = s.replace("`", ".");
+		s = s.replace("%20", " ");
 		log.trace("Searching for "+s);
 		return fs.getFileBySearch(s,(User)session.getAttribute("user"));
 	}
