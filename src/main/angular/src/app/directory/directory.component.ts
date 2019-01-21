@@ -27,6 +27,8 @@ export class DirectoryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    document.getElementById("renameFolderForm").style.visibility = "hidden";
+    document.getElementById("renameFileForm").style.visibility ="hidden";
     this.folder = new Folder();
     this.file = new File();
     this.searchStr = '';
@@ -108,5 +110,35 @@ export class DirectoryComponent implements OnInit {
     this.selectedFile.emit(file);
     console.log('Select File');
     console.log(file);
+  }
+
+  newFolderName(folder: Folder){
+    console.log("Received: ");
+    this.folder = folder;
+    console.log(folder);
+    document.getElementById("renameFolderForm").style.visibility = "visible";
+  }
+  renameFolder(folder: Folder){
+    document.getElementById("renameFolderForm").style.visibility = "hidden";
+    console.log("Rename called on Folder: ");
+    console.log(folder);
+    this.folderService.editFolder(folder).subscribe(resp => {
+      console.log(resp);
+    });
+  }
+  
+  newFileName(file: File){
+    console.log("Received: ");
+    this.file = file;
+    console.log(file);
+    document.getElementById("renameFileForm").style.visibility = "visible";
+  }
+  renameFile(file: File){
+    document.getElementById("renameFileForm").style.visibility = "hidden";
+    console.log("Rename called on File: ")
+    console.log(file);
+    this.fileService.editFile(file).subscribe(resp =>{
+      console.log(resp);
+    })
   }
 }

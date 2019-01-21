@@ -65,4 +65,8 @@ public class FolderController {
 	public Folder getFolder(@PathVariable("id") int id) {
 		return fs.getFolderById(id);
 	}
+	@RequestMapping(value="/api/folders/rename", method=RequestMethod.POST)
+	public Folder updateFolder(@RequestBody Folder f) {
+		return fs.updateFolder(f);
+	}
 }

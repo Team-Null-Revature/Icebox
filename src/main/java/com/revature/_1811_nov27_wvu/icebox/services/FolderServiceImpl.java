@@ -46,4 +46,9 @@ public class FolderServiceImpl implements FolderService {
 		return fd.getContents(i);
 	}
 
+	@Override
+	public Folder updateFolder(Folder f) {
+		return fd.updateFolder(f);
+	}
+
 }

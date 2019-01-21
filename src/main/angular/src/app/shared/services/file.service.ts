@@ -133,4 +133,10 @@ export class FileService {
         map(resp => resp as FileCustom[])
       );
   }
+  //Change name of a file in the DB
+  editFile(file: FileCustom): Observable<FileCustom>{
+    console.log("Updating File...");
+    console.log(File);
+    return this.http.post('api/files/rename', file).pipe(map(resp => resp as FileCustom));
+  }
 }
