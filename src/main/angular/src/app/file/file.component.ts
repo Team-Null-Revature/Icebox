@@ -14,6 +14,7 @@ import { FileService } from '../shared/services/file.service';
 export class FileComponent implements OnInit {
   @Input() selectedFile: File;
   tag: Tag;
+  base = document.getElementsByTagName('base')[0].href;
 
   constructor(private fileService: FileService, private router: Router, private route: ActivatedRoute, private tagServ: TagService) {}
 
