@@ -2,9 +2,12 @@ package com.revature._1811_nov27_wvu.icebox.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -12,6 +15,8 @@ import javax.persistence.Table;
 public class Comment {
 	@Id
 	@Column(name = "comment_id")
+	@SequenceGenerator(name = "comSeq", sequenceName = "Comment_Seq", allocationSize = 1)
+	@GeneratedValue(generator = "comSeq", strategy = GenerationType.SEQUENCE)
 	private int id;
 	@ManyToOne
 	@JoinColumn(name = "user_id")
@@ -19,6 +24,7 @@ public class Comment {
 	@ManyToOne
 	@JoinColumn(name = "file_id")
 	private File file;
+	@Column(name = "commentstr")
 	private String comment;
 
 	public int getId() {

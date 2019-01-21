@@ -73,7 +73,7 @@ export class HomeComponent implements OnInit {
   onFileSelected(file: File) {
     this.selectedFile = file;
     // Change the URL to reflect the selected file
-    this.router.navigate([`/home/folder/${this.folderId}/file/${file.id}`]);
+    this.router.navigate([`/home/folder/${file.folder.id}/file/${file.id}`]);
   }
 
   // File has been uploaded to the current folder

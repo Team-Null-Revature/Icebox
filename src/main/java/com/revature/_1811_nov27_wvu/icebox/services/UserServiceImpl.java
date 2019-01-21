@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void deleteUser(User u) {
-		deleteUser(u);
+		ud.deleteUser(u);
 	}
 
 	@Override

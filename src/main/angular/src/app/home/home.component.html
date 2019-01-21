@@ -10,7 +10,7 @@
     <!-- Column for the file and folder table -->
     <div class="col-lg-8 px-0">
       <!-- Table for files and folders -->
-      <app-directory [folderId]="folderId" [searchStr]="searchStr" [uploadedFile]="uploadedFile" [createdFolder]="createdFolder" (selectedFile)="onFileSelected($event)"></app-directory>
+      <app-directory id="content" [folderId]="folderId" [searchStr]="searchStr" [uploadedFile]="uploadedFile" [createdFolder]="createdFolder" (selectedFile)="onFileSelected($event)"></app-directory>
     </div>
     <!-- Column for the currently selected file info -->
     <div class="col-lg-4 px-0">
