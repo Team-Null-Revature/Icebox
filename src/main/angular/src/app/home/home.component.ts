@@ -3,6 +3,7 @@ import { File } from '../shared/models/file.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FileService } from '../shared/services/file.service';
 import { FolderService } from '../shared/services/folder.service';
+import { Folder } from '../shared/models/folder.model';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,6 +14,7 @@ export class HomeComponent implements OnInit {
   folderId: number;
   selectedFile: File;
   uploadedFile: File;
+  createdFolder: Folder;
 
   constructor(private router: Router, private fis: FileService, private fos: FolderService, private route: ActivatedRoute) {}
 
@@ -70,5 +72,10 @@ export class HomeComponent implements OnInit {
   // File has been uploaded to the current folder
   onFileUploaded(file: File) {
     this.uploadedFile = file;
+  }
+
+  // Folder has been created in the current folder
+  onFolderCreated(folder: Folder) {
+    this.createdFolder = folder;
   }
 }

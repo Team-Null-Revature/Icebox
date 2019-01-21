@@ -114,4 +114,11 @@ export class DirectoryComponent implements OnInit {
       this.files.push(uploadedFile);
     }
   }
+
+  @Input()
+  set createdFolder(createdFolder: Folder) {
+    if (createdFolder) {
+      this.folders.push(createdFolder);
+    }
+  }
 }
