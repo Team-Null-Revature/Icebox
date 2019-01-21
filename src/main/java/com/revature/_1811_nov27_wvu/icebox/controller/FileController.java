@@ -106,7 +106,7 @@ public class FileController {
 		return prepareFilesDownload(fileIds.stream().map(fs::getFileById).filter(Objects::nonNull).collect(Collectors.toList()));
 	}
 	
-	@GetMapping("/api/files/shared/{share}/dl")
+	@GetMapping("/api/files/shared/{shares}/dl")
 	public ResponseEntity<InputStreamResource> downloadSharedFile(@PathVariable List<String> shares) throws IOException { 
 		return prepareFilesDownload(shares.stream().map(fs::getFileByShareStr).filter(Objects::nonNull).collect(Collectors.toList()));
 	}
