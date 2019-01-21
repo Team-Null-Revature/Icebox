@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
 
   Login() {
     this.uService.sendLogin(this.user).subscribe(resp => {
+      console.log('User logged in as: ');
       console.log(resp);
       if (resp == null) {
         this.incorrect = true;
