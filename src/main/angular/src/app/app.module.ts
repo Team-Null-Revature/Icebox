@@ -26,6 +26,7 @@ import { DirectoryComponent } from './directory/directory.component';
 import { AllSharedComponent } from './all-shared/all-shared.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ApiInterceptorService } from './shared/services/api-interceptor.service';
+import { CommentService } from './shared/services/comment.service';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ApiInterceptorService } from './shared/services/api-interceptor.service
     FolderService,
     DirectoryComponent,
     UserServiceService,
+    CommentService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiInterceptorService,

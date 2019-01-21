@@ -45,6 +45,7 @@ DROP SEQUENCE User_Seq;
 DROP SEQUENCE File_Seq;
 DROP SEQUENCE Folder_Seq;
 DROP SEQUENCE Tag_Seq;
+DROP SEQUENCE Comment_Seq;
 
 /*******************************************************************************
    Create Tables
@@ -107,6 +108,7 @@ CREATE SEQUENCE User_Seq;
 CREATE SEQUENCE File_Seq;
 CREATE SEQUENCE Folder_Seq;
 CREATE SEQUENCE Tag_Seq;
+CREATE SEQUENCE Comment_Seq;
 
 /*******************************************************************************
    Insert Data
@@ -124,7 +126,7 @@ VALUES (User_Seq.nextVal, 'chrispham','alsosecure','Chris','Pham','another@ta.or
 INSERT INTO Ib_Folder (Folder_Id, Owner, Name)
 VALUES (Folder_Seq.nextVal, 3, 'chrispham');
 INSERT INTO Ib_User(User_id,Username,Pass,FName,LName,Email)
-VALUES (User_Seq.nextVal, 'daviddonnely','verysecure','David','Donnely','onemore@ta.org');
+VALUES (User_Seq.nextVal, 'davidonnelly','verysecure','David','Donnely','onemore@ta.org');
 INSERT INTO Ib_Folder (Folder_Id, Owner, Name)
 VALUES (Folder_Seq.nextVal, 4, 'daviddonnely');
 INSERT INTO Ib_User(User_id,Username,Pass,FName,LName,Email)
@@ -155,6 +157,10 @@ VALUES (1,1);
 
 INSERT INTO Ib_File_Tag (File_Id,Tag_Id)
 VALUES (1,2);
+
+
+Insert into ib_comment (Comment_id,User_Id, File_id, commentstr)
+    values (Comment_seq.nextVal,2,2,'This is a comment');
 
 commit;
 
