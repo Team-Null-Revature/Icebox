@@ -13,11 +13,9 @@ import { FolderService } from '../shared/services/folder.service';
 export class DirectoryComponent implements OnInit {
   @Output() selectedFile = new EventEmitter<File>();
   public folders: Folder[];
-  public rootId: Number;
   public folder: Folder;
   public files: File[];
   public file: File;
-  public searchStr: String;
 
   constructor(
     private folderService: FolderService,
@@ -30,34 +28,6 @@ export class DirectoryComponent implements OnInit {
     this.folder = new Folder();
     this.file = new File();
     this.searchStr = '';
-    this.checkFolder();
-  }
-
-  checkFolder() {
-    this.route.params.subscribe(params => {
-      if (params['searchStr'] != null) {
-        console.log('Search found: ' + params['searchStr']);
-        this.fetchSearchResults(params['searchStr']);
-      } else {
-        this.rootId = +params['folderId'];
-        console.log('RootId: ' + this.rootId);
-        if (!(this.rootId > 0)) {
-          this.fetchRoot();
-        } else {
-          this.fetchFolderContents(this.rootId);
-          this.fetchFileContents(this.rootId);
-        }
-      }
-    });
-  }
-
-  fetchRoot() {
-    console.log('Initializing Directory');
-    this.folderService.getRoot().subscribe(root => {
-      this.rootId = root.id;
-      this.fetchFolderContents(this.rootId);
-      this.fetchFileContents(this.rootId);
-    });
   }
 
   fetchFolderContents(rf: Number) {
@@ -119,6 +89,21 @@ export class DirectoryComponent implements OnInit {
   set createdFolder(createdFolder: Folder) {
     if (createdFolder) {
       this.folders.push(createdFolder);
+    }
+  }
+
+  @Input()
+  set searchStr(searchStr: string) {
+    if (searchStr) {
+      this.fetchSearchResults(searchStr);
+    }
+  }
+
+  @Input()
+  set folderId(folderId: number) {
+    if (folderId) {
+      this.fetchFolderContents(folderId);
+      this.fetchFileContents(folderId);
     }
   }
 }
