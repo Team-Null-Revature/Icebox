@@ -144,4 +144,9 @@ public class FileServiceImpl implements FileService {
 			return Pair.of(new ByteArrayInputStream(o), Long.valueOf(o.length));
 		}
 	}
+
+	@Override
+	public File renameFile(File f) {
+		return fd.renameFile(f);
+	}
 }

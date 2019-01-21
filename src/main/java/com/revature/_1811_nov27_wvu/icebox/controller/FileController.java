@@ -60,8 +60,8 @@ public class FileController {
 	}
 
 	@RequestMapping(value = "/api/files/rename", method = RequestMethod.POST)
-	public File updateFile(@RequestBody File f) {
-		fs.updateFile(f);
+	public File renameFile(@RequestBody File f) {
+		fs.renameFile(f);
 		return f;
 	}
 

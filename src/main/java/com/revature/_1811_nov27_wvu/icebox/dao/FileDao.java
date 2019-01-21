@@ -25,4 +25,6 @@ public interface FileDao {
 	Set<File> getFilesByTag(String s, User u);
 	
 	Set<File> getFilesByName(String s, User u);
+
+	File renameFile(File f);
 }
