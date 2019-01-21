@@ -34,4 +34,10 @@ export class FolderService {
   getFolderContent(fl: Number): Observable<Folder[]> {
     return this.http.get('api/folder=' + fl).pipe(map(resp => resp as Folder[]));
   }
+  //Change name of a folder in the DB
+  editFolder(folder: Folder): Observable<Folder>{
+    console.log("Updating folder..")
+    console.log(folder);
+    return this.http.post('api/folders/rename', folder).pipe(map(resp => resp as Folder));
+  }
 }

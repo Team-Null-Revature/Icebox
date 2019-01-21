@@ -28,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.SdkClientException;
 import com.revature._1811_nov27_wvu.icebox.entity.File;
+import com.revature._1811_nov27_wvu.icebox.entity.Folder;
 import com.revature._1811_nov27_wvu.icebox.entity.User;
 import com.revature._1811_nov27_wvu.icebox.services.FileService;
 
@@ -58,7 +59,7 @@ public class FileController {
 		fs.deleteFile(target);
 	}
 
-	@RequestMapping(value = "/api/files", method = RequestMethod.PUT)
+	@RequestMapping(value = "/api/files/rename", method = RequestMethod.POST)
 	public File updateFile(@RequestBody File f) {
 		fs.updateFile(f);
 		return f;
@@ -119,5 +120,5 @@ public class FileController {
 		    headers.setContentDispositionFormData("attachment", files.size() > 1 ? "files.zip" : files.get(0).getName());
 			return new ResponseEntity<InputStreamResource>(new InputStreamResource(resp.getLeft()), headers, HttpStatus.OK);
 		} 
-	}
+	}	
 }
