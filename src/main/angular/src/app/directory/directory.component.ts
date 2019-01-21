@@ -97,7 +97,7 @@ export class DirectoryComponent implements OnInit {
 
   enterFolder(id: number) {
     console.log('Entering folder ' + id);
-    this.router.navigate(['/home/folder/' + id]);
+    this.router.navigate([`/home/folder/${id}/file/0`]);
   }
 
   reload() {

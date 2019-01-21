@@ -3,54 +3,58 @@ import { File } from '../shared/models/file.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FileService } from '../shared/services/file.service';
 import { FolderService } from '../shared/services/folder.service';
-import { UserServiceService } from '../shared/services/user.service';
-import { DirectoryComponent } from '../directory/directory.component';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  folderId: Number;
   fileId: number;
+  folderId: number;
   selectedFile: File;
 
-  constructor(
-    private uService: UserServiceService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private folderServ: FolderService,
-    private fileServ: FileService,
-    private directory: DirectoryComponent
-  ) {}
+  constructor(private router: Router, private fis: FileService, private fos: FolderService, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    console.log('Making home');
-    this.uService.checkLogin().subscribe(
-      resp => {
-          if (resp == null) {
-              this.router.navigate(['/login']);
-          }
-      }
-    );
     this.route.paramMap.subscribe(params => {
-      if (params.get('id')) {
-        this.fileServ.getFile(+params.get('id')).subscribe(f => this.selectedFile = f);
-        }
-        if (params.get('sharestr')) {
-            this.fileServ.getShareFile(params.get('sharestr')).subscribe(f => this.selectedFile = f);
-        }
-    });
+      let redirect = false;
+      const fileId = +params.get('fileId');
+      const folderId = +params.get('folderId');
 
-    this.route.paramMap.subscribe(params => {
-      if (params.get('folderId')) {
-        this.folderId = +params.get('folderId');
+      // Check if the fileId is undefined
+      if (!fileId) {
+        // It is, set it to zero
+        this.fileId = 0;
+        redirect = true;
       } else {
-        this.folderServ.getRoot().subscribe(root => {
-          this.folderId = root.id;
+        // Its not, set it to the paths
+        this.fileId = fileId;
+
+        // Dont load a file we already have
+        if (!this.selectedFile || this.selectedFile.id !== this.fileId) {
+          this.fis.getFile(this.fileId).subscribe(f => (this.selectedFile = f));
+        }
+      }
+
+      // Check if the folderId is unefined
+      if (!folderId) {
+        // It is, get the root folder
+        redirect = false;
+        this.fos.getRoot().subscribe(root => {
+          this.router.navigate([`/home/folder/${root.id}/file/${this.fileId}`]);
         });
+      } else {
+        // Its not, set it to the paths
+        this.folderId = folderId;
+      }
+
+      // Redirect
+      if (redirect) {
+        this.router.navigate([`/home/folder/${this.folderId}/file/${this.fileId}`]);
+      }
+
+      if (params.get('sharestr')) {
+        this.fis.getShareFile(params.get('sharestr')).subscribe(f => (this.selectedFile = f));
       }
     });
   }
