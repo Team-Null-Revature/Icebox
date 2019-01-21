@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   fileId: number;
   folderId: number;
   selectedFile: File;
+  uploadedFile: File;
 
   constructor(private router: Router, private fis: FileService, private fos: FolderService, private route: ActivatedRoute) {}
 
@@ -64,5 +65,10 @@ export class HomeComponent implements OnInit {
     this.selectedFile = file;
     // Change the URL to reflect the selected file
     this.router.navigate([`/home/folder/${this.folderId}/file/${file.id}`]);
+  }
+
+  // File has been uploaded to the current folder
+  onFileUploaded(file: File) {
+    this.uploadedFile = file;
   }
 }

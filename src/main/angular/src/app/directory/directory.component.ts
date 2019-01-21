@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { File } from '../shared/models/file.model';
 import { Folder } from '../shared/models/folder.model';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -106,7 +106,12 @@ export class DirectoryComponent implements OnInit {
 
   selectFile(file: File) {
     this.selectedFile.emit(file);
-    console.log('Select File');
-    console.log(file);
+  }
+
+  @Input()
+  set uploadedFile(uploadedFile: File) {
+    if (uploadedFile) {
+      this.files.push(uploadedFile);
+    }
   }
 }

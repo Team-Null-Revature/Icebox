@@ -10,7 +10,7 @@
     <!-- Column for the file and folder table -->
     <div class="col-lg-8 px-0">
       <!-- Table for files and folders -->
-      <app-directory (selectedFile)="onFileSelected($event)"></app-directory>
+      <app-directory [uploadedFile]="uploadedFile" (selectedFile)="onFileSelected($event)"></app-directory>
     </div>
     <!-- Column for the currently selected file info -->
     <div class="col-lg-4 px-0">
@@ -24,13 +24,13 @@
             </th>
             <th scope="col" class="border-top-0 th-md-btn">
               <!-- Import the upload button -->
-              <app-upload [folderId]="folderId"></app-upload>
+              <app-upload [folderId]="folderId" (fileUploaded)="onFileUploaded($event)"></app-upload>
             </th>
           </tr>
         </thead>
       </table>
       <!-- Display the selected file -->
-      <app-file [selectedFile]="selectedFile"></app-file>
+      <app-file *ngIf="this.fileId !== 0" [selectedFile]="selectedFile"></app-file>
     </div>
   </div>
 </div>
