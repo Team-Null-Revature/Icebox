@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CommentService } from '../shared/services/comment.service';
 import { File } from '../shared/models/file.model';
 import { UserServiceService } from '../shared/services/user.service';
+import { Comment } from '../shared/models/comment.model';
 
 @Component({
   selector: 'app-comment',
@@ -41,7 +42,12 @@ export class CommentComponent implements OnInit {
       console.log("Comments:");
       console.log(comments);
       this.comments = comments;
+      this.comments.sort(this.commentCompare);
     });
+  }
+
+  commentCompare(a: Comment, b:Comment){
+    return (a.id-b.id);
   }
 
   addComment(){
