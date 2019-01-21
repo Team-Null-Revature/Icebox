@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.revature._1811_nov27_wvu.icebox.entity.Tag;
@@ -27,6 +28,19 @@ public class TagHibernate implements TagDAO{
 	public Tag addTag(Tag t) {
 		Session s = sf.getSession();
 		Transaction tx = s.beginTransaction();
+		
+		//Check if tag already exists
+		Query<Tag> q = s.createQuery("FROM Tag where name=:nam", Tag.class);
+		q.setParameter("nam", t.getName());
+		Tag nt = q.uniqueResult();
+		if(nt != null) {
+			tx.commit();
+			s.close();
+			return nt;
+		}
+		log.trace("Tag not found");
+		
+		//Add new tag
 		s.save(t);
 		tx.commit();
 		s.close();
