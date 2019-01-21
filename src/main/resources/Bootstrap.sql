@@ -72,7 +72,7 @@ CREATE TABLE Ib_File (
     File_Id NUMBER(10) PRIMARY KEY,
     Name VARCHAR2(100) NOT NULL,
     Type VARCHAR2(100) NOT NULL,
-    Created DATE NOT NULL,
+    Created TIMESTAMP NOT NULL,
     fSize NUMBER(20,10) NOT NULL,
     fShare VARCHAR2(36),
     Folder NUMBER(10), --fk
