@@ -7,6 +7,7 @@
 
         <label for="inPassword" class="sr-only">Password: </label> 
         <input id="inPassword" class="form-control" type="password" name="password" required [(ngModel)]="user.pass" placeholder="Password" required/>
+        <div *ngIf="incorrect" class="alert alert-danger">Incorrect Login Information</div>
 
         <span class="col-md-7">Don't have an account? <a href="register">Register Here.</a></span>
 
