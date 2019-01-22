@@ -30,10 +30,10 @@ export class FileComponent implements OnInit {
     if (this.selectedFile.share == null) {
       this.fileService.shareFile(this.selectedFile).subscribe(file => {
         this.selectedFile = file;
-        alert('Link created: icebox/shared/' + this.selectedFile.share);
+        alert(`Link created: ${this.base}shared/${this.selectedFile.share}`);
       });
     } else {
-      alert('Link already created: icebox/shared/' + this.selectedFile.share);
+      alert(`Link already created: ${this.base}shared/${this.selectedFile.share}`);
     }
   }
 
