@@ -50,7 +50,7 @@ public class FileHibernate implements FileDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public File updateFile(File f) {
+	public File renameFile(File f) {
 		Session s = sf.getSession();
 		Transaction tx = s.beginTransaction();
 		Query<File> q = s.createQuery("update File set name = :name" +
@@ -130,6 +130,16 @@ public class FileHibernate implements FileDao {
 		q.setParameter("ownId", u.getId());
 		Set<File> shareSet = new HashSet<File>(q.getResultList());
 		return shareSet;
+	}
+
+	@Override
+	public File updateFile(File f) {
+		Session s = sf.getSession();
+		Transaction tx = s.beginTransaction();
+		s.update(f);
+		tx.commit();
+		s.close();
+		return f;
 	}
 
 }
