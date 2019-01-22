@@ -26,7 +26,6 @@ import { DirectoryComponent } from './directory/directory.component';
 import { AllSharedComponent } from './all-shared/all-shared.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ApiInterceptorService } from './shared/services/api-interceptor.service';
-
 @NgModule({
   declarations: [
     AppComponent,

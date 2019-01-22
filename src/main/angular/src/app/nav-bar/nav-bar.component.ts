@@ -1,7 +1,8 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { UserServiceService } from '../shared/services/user.service';
 import { User } from '../shared/models/user.model';
+import { HomeComponent } from '../home/home.component';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,11 +11,21 @@ import { User } from '../shared/models/user.model';
 })
 export class NavBarComponent implements OnInit {
   searchSt: String;
-  user: User;
-  constructor(private uService: UserServiceService, private router: Router) {}
+  @Input() u: User;
+  constructor(private uService: UserServiceService, private router: Router, private home : HomeComponent) {}
 
   ngOnInit() {
     this.searchSt = '';
+    this.uService.checkLogin().subscribe(
+      resp => {
+          this.u = resp;
+          console.log("user in navbar");
+          console.log(this.u);
+          if (resp == null) {
+              this.router.navigate(['/login']);
+          }
+      }
+    );
   }
 
   logout() {

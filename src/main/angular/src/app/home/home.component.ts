@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { File } from '../shared/models/file.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FileService } from '../shared/services/file.service';
@@ -6,6 +6,7 @@ import { FolderService } from '../shared/services/folder.service';
 import { UserServiceService } from '../shared/services/user.service';
 import { DirectoryComponent } from '../directory/directory.component';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
+import { User } from '../shared/models/user.model';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,7 @@ export class HomeComponent implements OnInit {
   folderId: Number;
   fileId: number;
   selectedFile: File;
-
+  
   constructor(
     private uService: UserServiceService,
     private router: Router,

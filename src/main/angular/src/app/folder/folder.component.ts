@@ -25,6 +25,7 @@ export class FolderComponent implements OnInit {
     console.log('variable:');
     this.route.params.subscribe(params => {
       const pId = +params['folderId'];
+      
       if (!(pId > 0)) {
         // checking if it's not a number in the only way that i found to work
         this.attachToRoot();

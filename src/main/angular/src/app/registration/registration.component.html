@@ -1,35 +1,33 @@
-<div class="page-header container">
-        <div class="col-md-7">
-        <H1>Icebox</H1>
+<div class="container-fluid">
+    <form class="form-registration" (ngSubmit)="onSubmit()" #userForm="ngForm">
+            <img src="http://www.pngmart.com/files/7/Ice-Cube-PNG-HD.png" height = 10% width = 10%>
+            <span style="margin-left:5px; font-size: 45px">Icebox</span>
+            <hr class="my-4">
+        <div class="form-group ">
+            <p class="lead">Enter Registration Details:</p>
+            <label for="inputUname">Username:</label>
+            <input id="inputUname" type="text" class="form-text"  required [(ngModel)]="user.username" name="username" 
+            placeholder="JSmith360">
         </div>
-</div>
-<div class="container border">
-<form (ngSubmit)="onSubmit()" #userForm="ngForm">
-    <p class="lead">Enter Registration Details:</p>
-	<hr class="my-4">
-  <div class="form-group">
-      <label for="inputUname">Username:</label>
-      <input id="inputUname" type="text" class="form-text"  required [(ngModel)]="user.username" name="username" 
-      placeholder="JSmith360">
-  </div>
 
-  <div class="form-group">
-      <label for="inputPass">Password:</label>
-      <input id="inputPass" class="form-text" type="text" name="pass" required [(ngModel)]="user.pass" placeholder="hunter2"/>
-  </div>
-  <div class="form-group">
-      <label for="inputFn">First name:</label>
-      <input id="inputFn" class="form-text" type="text" name="fname" required [(ngModel)]="user.fname" placeholder="John"/>
-  </div>
-  <div class="form-group">
-    <label for="inputLn">Last name:</label>
-    <input id="inputLn" class="form-text" type="text" name="lname" required [(ngModel)]="user.lname" placeholder="Smith"/>
+        <div class="form-group">
+            <label for="inputPass">Password:</label>
+            <input id="inputPass" class="form-text" type="text" name="pass" required [(ngModel)]="user.pass" placeholder="hunter2"/>
+        </div>
+        <div class="form-group">
+            <label for="inputFn">First name:</label>
+            <input id="inputFn" class="form-text" type="text" name="fname" required [(ngModel)]="user.fname" placeholder="John"/>
+        </div>
+        <div class="form-group">
+            <label for="inputLn">Last name:</label>
+            <input id="inputLn" class="form-text" type="text" name="lname" required [(ngModel)]="user.lname" placeholder="Smith"/>
+        </div>
+        <div class="form-group">
+        <label for="inputEm">Email:</label>
+        <input id="inputEm" class="form-text" type="text" name="email" required [(ngModel)]="user.email" placeholder="JSmith@email.com"/>
+    </div>
+    <input type="submit" class="btn btn-primary" [disabled]="!userForm.form.valid" value="Submit"/>
+    <div class="text">Already have an account? <a href="login">Login Here.</a></div>
+    </form>
 </div>
-<div class="form-group">
-  <label for="inputEm">Email:</label>
-  <input id="inputEm" class="form-text" type="text" name="email" required [(ngModel)]="user.email" placeholder="JSmith@email.com"/>
-</div>
-  <input type="submit" class="btn btn-primary" [disabled]="!userForm.form.valid" value="submit"/>
-</form>
-</div>
-<div class="col-md-7">Already have an account? <a href="login">Login Here.</a></div> 
+
