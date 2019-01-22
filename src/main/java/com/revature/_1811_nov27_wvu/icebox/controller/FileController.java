@@ -28,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.SdkClientException;
 import com.revature._1811_nov27_wvu.icebox.entity.File;
+import com.revature._1811_nov27_wvu.icebox.entity.Folder;
 import com.revature._1811_nov27_wvu.icebox.entity.User;
 import com.revature._1811_nov27_wvu.icebox.services.FileService;
 
@@ -58,9 +59,9 @@ public class FileController {
 		fs.deleteFile(target);
 	}
 
-	@RequestMapping(value = "/api/files", method = RequestMethod.PUT)
-	public File updateFile(@RequestBody File f) {
-		fs.updateFile(f);
+	@RequestMapping(value = "/api/files/rename", method = RequestMethod.POST)
+	public File renameFile(@RequestBody File f) {
+		fs.renameFile(f);
 		return f;
 	}
 
@@ -90,6 +91,8 @@ public class FileController {
 
 	@RequestMapping(value ="/api/files/search/{searchStr}", method = RequestMethod.GET)
 	public Set<File> searchFiles(@PathVariable("searchStr") String s) {
+		s = s.replace("`", ".");
+		s = s.replace("%20", " ");
 		log.trace("Searching for "+s);
 		return fs.getFileBySearch(s,(User)session.getAttribute("user"));
 	}
@@ -104,7 +107,7 @@ public class FileController {
 		return prepareFilesDownload(fileIds.stream().map(fs::getFileById).filter(Objects::nonNull).collect(Collectors.toList()));
 	}
 	
-	@GetMapping("/api/files/shared/{share}/dl")
+	@GetMapping("/api/files/shared/{shares}/dl")
 	public ResponseEntity<InputStreamResource> downloadSharedFile(@PathVariable List<String> shares) throws IOException { 
 		return prepareFilesDownload(shares.stream().map(fs::getFileByShareStr).filter(Objects::nonNull).collect(Collectors.toList()));
 	}
@@ -119,5 +122,5 @@ public class FileController {
 		    headers.setContentDispositionFormData("attachment", files.size() > 1 ? "files.zip" : files.get(0).getName());
 			return new ResponseEntity<InputStreamResource>(new InputStreamResource(resp.getLeft()), headers, HttpStatus.OK);
 		} 
-	}
+	}	
 }

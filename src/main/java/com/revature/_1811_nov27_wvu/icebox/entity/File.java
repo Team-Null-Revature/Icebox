@@ -1,6 +1,6 @@
 package com.revature._1811_nov27_wvu.icebox.entity;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -26,7 +26,7 @@ public class File {
 	private int id;
 	@Column(name = "fSize")
 	private long size;
-	private Date created;
+	private Timestamp created;
 	private String name, type;
 	@Column(name = "fShare")
 	private String share;
@@ -55,11 +55,11 @@ public class File {
 		this.size = size;
 	}
 
-	public Date getCreated() {
+	public Timestamp getCreated() {
 		return created;
 	}
 
-	public void setCreated(Date created) {
+	public void setCreated(Timestamp created) {
 		this.created = created;
 	}
 

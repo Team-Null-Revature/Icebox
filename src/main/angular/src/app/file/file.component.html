@@ -13,6 +13,9 @@
       <dt class="col-sm-4">Size:</dt>
       <dd class="col-sm-8">{{ selectedFile.size | bytes }}</dd>
 
+      <dt class="col-sm-4" *ngIf="selectedFile.share">Share URL:</dt>
+      <dd class="col-sm-8" *ngIf="selectedFile.share"><a href="{{base}}shared/{{selectedFile.share}}">{{base}}shared/{{selectedFile.share}}</a></dd>
+
       <dt class="col-sm-5">Tags:</dt>
       <dd class="col-sm-8">
         <span class="badge badge-pill badge-primary" *ngFor="let t of selectedFile.tags" style="margin-left: 5px" (click) = "delete_tag(t)">{{ t.name }}</span>
@@ -37,6 +40,7 @@
         <button class="btn btn-danger w-100 h-100"><i class="fas fa-trash-alt"></i> Delete</button>
       </div>
     </div>
+    <app-comment [selectedFile]="selectedFile"></app-comment>
   </div>
 </div>
 

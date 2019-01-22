@@ -19,8 +19,8 @@ import com.revature._1811_nov27_wvu.icebox.entity.User;
 public class FileHibernate implements FileDao {
 	@Autowired
 	SessionFactory sf;
-//	@Autowired
-//	private Logger log;
+	@Autowired
+	private Logger log;
 
 	@Override
 	public File addFile(File f) {
@@ -48,13 +48,29 @@ public class FileHibernate implements FileDao {
 		return new HashSet<File>(f);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public File updateFile(File f) {
+	public File renameFile(File f) {
 		Session s = sf.getSession();
 		Transaction tx = s.beginTransaction();
-		s.update(f);
-		tx.commit();
-		s.close();
+		Query<File> q = s.createQuery("update File set name = :name" +
+				" where file_id = :file_id");
+		q.setParameter("name", f.getName());
+		q.setParameter("file_id", f.getId());
+		try {
+			int result = q.executeUpdate();
+			if(result == 0) {
+				log.trace("Failed to update File");
+			}else {
+				log.trace("File renamed");
+				tx.commit();
+			}
+		}catch(Exception e) {
+			log.error(e);
+			tx.rollback();
+		}finally {
+			s.close();
+		}
 		return f;
 	}
 
@@ -114,6 +130,16 @@ public class FileHibernate implements FileDao {
 		q.setParameter("ownId", u.getId());
 		Set<File> shareSet = new HashSet<File>(q.getResultList());
 		return shareSet;
+	}
+
+	@Override
+	public File updateFile(File f) {
+		Session s = sf.getSession();
+		Transaction tx = s.beginTransaction();
+		s.update(f);
+		tx.commit();
+		s.close();
+		return f;
 	}
 
 }

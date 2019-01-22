@@ -12,4 +12,5 @@ public interface FolderDao {
 	Folder getFolderById(int i);
 	void deleteFolder(Folder f);
 	List<Folder> getContents(int i);
+	Folder updateFolder(Folder f);
 }

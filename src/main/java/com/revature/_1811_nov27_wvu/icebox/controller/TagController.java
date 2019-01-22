@@ -50,7 +50,7 @@ public class TagController {
 		File tempFile = fs.getFileById(id);
 		System.out.println("file: " + tempFile.toString());
 		log.trace("adding tags");
-		ts.addTag(t);
+		t = ts.addTag(t);
 		log.trace("tag2: " + t);
 		tempFile.getTags().add(t);
 		System.out.println("file: " + tempFile.toString());

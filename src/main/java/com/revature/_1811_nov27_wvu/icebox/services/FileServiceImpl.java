@@ -4,7 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -79,7 +79,7 @@ public class FileServiceImpl implements FileService {
 		f.setName(file.getOriginalFilename());
 		f.setSize(file.getSize());
 		f.setType(file.getContentType());
-		f.setCreated(new Date(System.currentTimeMillis()));
+		f.setCreated(new Timestamp(System.currentTimeMillis()));
 		f.setFolder(folder);
 
 		// Save the file
@@ -143,5 +143,10 @@ public class FileServiceImpl implements FileService {
 			System.out.println("Zip Length: " + o.length);
 			return Pair.of(new ByteArrayInputStream(o), Long.valueOf(o.length));
 		}
+	}
+
+	@Override
+	public File renameFile(File f) {
+		return fd.renameFile(f);
 	}
 }

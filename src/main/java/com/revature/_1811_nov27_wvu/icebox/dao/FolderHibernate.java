@@ -82,4 +82,34 @@ public class FolderHibernate implements FolderDao {
 		return q.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public Folder updateFolder(Folder f) {
+		Session s = sf.getSession();
+		Transaction tx = s.beginTransaction();
+		Query<Folder> q = s.createQuery("update Folder set name = :name" +
+				" where folder_id = :folder_id");
+		q.setParameter("name", f.getName());
+		q.setParameter("folder_id", f.getId());
+		try {
+			int result = q.executeUpdate();
+			if(result == 0) {
+				log.trace("Failed to update Folder");
+			}else {
+				log.trace("Folder renamed");
+				//f = q.getSingleResult();
+				tx.commit();
+			}
+		}catch(Exception e) {
+			log.error(e);
+			tx.rollback();
+		}finally {
+			s.close();
+		}
+		//Transaction tx = s.beginTransaction();
+		//s.update(f);
+		//tx.commit();
+		return f;
+	}
+
 }

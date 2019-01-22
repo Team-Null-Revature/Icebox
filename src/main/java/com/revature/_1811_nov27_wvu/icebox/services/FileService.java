@@ -37,4 +37,6 @@ public interface FileService {
 	public Set<File> getFilesByFolder(int i);
 
 	public Set<File> getFileBySearch(String s, User u);
+
+	public File renameFile(File f);
 }
