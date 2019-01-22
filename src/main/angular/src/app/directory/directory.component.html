@@ -10,6 +10,7 @@
         <button class="btn btn-secondary" id="backButton"> Back </button>
       </td> --> <!--Maybe impliment this later-->
     </thead>
+    <div *ngIf="(files.length == 0) && (folders.length == 0)" class="alert alert-info">This folder is empty.</div>
     <tbody>
       <!-- Display all folders -->
       <tr *ngFor="let f of folders" (dblclick)="enterFolder(f.id)">
