@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -81,6 +82,7 @@ public class FileServiceImpl implements FileService {
 		f.setType(file.getContentType());
 		f.setCreated(new Timestamp(System.currentTimeMillis()));
 		f.setFolder(folder);
+		f.setTags(new HashSet<>());
 
 		// Save the file
 		fd.addFile(f);

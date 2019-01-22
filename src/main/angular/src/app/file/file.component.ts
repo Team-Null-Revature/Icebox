@@ -29,7 +29,7 @@ export class FileComponent implements OnInit {
   share() {
     if (this.selectedFile.share == null) {
       this.fileService.shareFile(this.selectedFile).subscribe(file => {
-        this.selectedFile = file;
+        this.selectedFile.share = file.share;
         alert(`Link created: ${this.base}shared/${this.selectedFile.share}`);
       });
     } else {
