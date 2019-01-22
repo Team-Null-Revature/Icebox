@@ -23,9 +23,9 @@ public class SessionFactory {
 		Properties settings = new Properties();
 		settings.put(Environment.DRIVER, "oracle.jdbc.OracleDriver");
 		settings.put(Environment.DIALECT, "org.hibernate.dialect.Oracle10gDialect");
-		settings.put(Environment.URL, "jdbc:oracle:thin:@localhost:1521:xe");
-		settings.put(Environment.USER, "icebox");
-		settings.put(Environment.PASS, "p4ssw0rd");
+		settings.put(Environment.URL, System.getenv("rdsurl"));
+		settings.put(Environment.USER, System.getenv("rdsuser"));
+		settings.put(Environment.PASS, System.getenv("rdspass"));
 		settings.put(Environment.POOL_SIZE, 35);
 		settings.put(Environment.SHOW_SQL, true);
 		settings.put(Environment.FORMAT_SQL, true);
