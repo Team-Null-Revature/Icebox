@@ -16,7 +16,7 @@ export class TagService {
     console.log('from tag.service.ts');
     console.log(tag);
     console.log(file.id);
-    const url: string = this.appUrl + '/' + file.id;
+    const url: string = this.appUrl + '/file/' + file.id;
     console.log('url' + url);
     return this.http.post(url, tag).pipe(map(resp => resp as Tag));
   }
@@ -25,7 +25,7 @@ export class TagService {
     console.log('in tag service delete');
     console.log('tag: ' + tag.id);
     console.log('file: ' + file.id);
-    const url: string = 'api/file=' + file.id + "/tag=" + tag.id;
+    const url: string = 'api/file/' + file.id + "/tag/" + tag.id;
       return this.http.delete(url);
   }
 }

@@ -40,7 +40,7 @@ public class TagController {
 	
 	//Figure out how to send file object to addtags
 	//
-	@RequestMapping(value = "/api/tag/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/tag/file/{id}", method = RequestMethod.POST)
 	public Tag addTags(@RequestBody Tag t, @PathVariable("id") int id) {
 		log.trace("tag: " + t);
 		log.trace("file: " + id);
@@ -59,7 +59,7 @@ public class TagController {
 		return t;
 	}
 	
-	@RequestMapping(value = "/api/file={fid}/tag={tid}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/file/{fid}/tag/{tid}", method = RequestMethod.DELETE)
 	public void deleteTags(@PathVariable("fid") int fid, @PathVariable("tid") int tid) {
 		log.trace("in deleteTags in ");
 		

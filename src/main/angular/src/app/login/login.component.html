@@ -1,20 +1,19 @@
-<div class="page-header container">
-  <div class="col-md-7"><H1>Icebox</H1></div>
-</div>
-<div class="container border">
-  <form (ngSubmit)="Login()" #userForm="ngForm">
-    <p class="lead">Login:</p>
-    <hr class="my-4" />
-    <div class="form-group">
-      <label for="inUsername">Username: </label> <input id="inUsername" class="form-text" type="text" name="user" required [(ngModel)]="user.username" placeholder="Username" />
-    </div>
+<div class="text-center container-fluid">
+  <form class="form-signin" (ngSubmit)="Login()" #userForm="ngForm">
+    <img class="mb-4" src="http://www.pngmart.com/files/7/Ice-Cube-PNG-HD.png" alt="" width="200" height="200">
+      <p style="font-size:75px">Icebox</p>
+        <label for="inUsername" class="sr-only">Username</label> 
+        <input id="inUsername" class="form-control" type="text" name="user" required [(ngModel)] ="user.username" placeholder="Username" required autofocus/>
 
-    <div class="form-group">
-      <label for="inPassword">Password: </label> <input id="inPassword" class="form-text" type="password" name="password" required [(ngModel)]="user.pass" placeholder="Password" />
-    </div>
-    <div *ngIf="incorrect" class="alert alert-danger">Incorrect Login Information</div>
+        <label for="inPassword" class="sr-only">Password: </label> 
+        <input id="inPassword" class="form-control" type="password" name="password" required [(ngModel)]="user.pass" placeholder="Password" required/>
+        <div *ngIf="incorrect" class="alert alert-danger">Incorrect Login Information</div>
 
-    <div class="form-group"><input type="submit" class="btn btn-primary" value="Submit" /></div>
+        <span class="col-md-7">Don't have an account? <a href="register">Register Here.</a></span>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit">Log in</button>
+
+        <p class="mt-5 mb-3 text-muted">&copy;Team Null 2019</p>
   </form>
 </div>
-<div class="col-md-7">Don't have an account? <a href="register">Register Here.</a></div>
+

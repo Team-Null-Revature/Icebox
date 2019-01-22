@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { File } from '../shared/models/file.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FileService } from '../shared/services/file.service';
 import { FolderService } from '../shared/services/folder.service';
 import { Folder } from '../shared/models/folder.model';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
